@@ -50,7 +50,8 @@
             <div class="mt-4">
                 <x-input-label for="date_acquisition" :value="__('Date Acquisition')" />
                 <x-text-input id="date_acquisition" class="block w-full mt-1" type="date" name="date_acquisition"
-                    value="{{ old('date_acquisition', $bureau?->date_fin) }}" autofocus autocomplete="username" />
+                    value="{{ old('date_acquisition', $bureau?->date_acquisition) }}" autofocus
+                    autocomplete="username" />
                 <x-input-error :messages="$errors->get('date_acquisition')" class="mt-2" />
             </div>
 

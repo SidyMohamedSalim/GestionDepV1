@@ -35,6 +35,7 @@ class BureauController extends Controller
     public function store(BureauRequest $request)
     {
         Bureau::create($request->validated());
+        return redirect()->route('bureau.index')->with('success', 'Bureau créé');
     }
 
     /**
@@ -62,6 +63,7 @@ class BureauController extends Controller
     public function update(BureauRequest $request, Bureau $bureau)
     {
         $bureau->update($request->validated());
+        return redirect()->route('bureau.index')->with('success', 'Bureau modifié');
     }
 
     /**
@@ -71,5 +73,6 @@ class BureauController extends Controller
     {
         //
         $bureau->delete();
+        return redirect()->route('bureau.index')->with('success', 'Bureau supprimé');
     }
 }
