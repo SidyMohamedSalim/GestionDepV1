@@ -48,13 +48,33 @@
                         <a href="{{ route('vacataire.edit', $enseignant) }}"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 
-                        <form method="POST" action="{{ route('vacataire.destroy', $enseignant) }}">
-                            @method('delete')
-                            @csrf
-                            <button class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                Delete
-                            </button>
-                        </form>
+                        <div class="space-y-6 text-red-500 ">
+                            <button x-data=""
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete') }}</button>
+
+                            <x-modal name="confirm-user-deletion" focusable>
+                                <form method="post" action="{{ route('vacataire.destroy', $enseignant) }}" class="p-6">
+                                    @csrf
+                                    @method('delete')
+
+                                    <h2 class="text-lg font-medium text-gray-900">
+                                        {{ __('Are you sure you want to delete ?') }}
+                                    </h2>
+
+                                    <div class="flex justify-end mt-6">
+                                        <x-secondary-button x-on:click="$dispatch('close')">
+                                            {{ __('Cancel') }}
+                                        </x-secondary-button>
+
+                                        <x-danger-button class="ms-3">
+                                            {{ __('Delete') }}
+                                        </x-danger-button>
+                                    </div>
+                                </form>
+                            </x-modal>
+                        </div>
+
+
                     </td>
                 </tr>
             @endforeach

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bureaus', function (Blueprint $table) {
             $table->id();
+            $table->string('numero_bureau');
+            $table->string('designation')->nullable();
+            $table->integer('capacite');
+            $table->date('date_acquisition');
             $table->timestamps();
         });
     }
