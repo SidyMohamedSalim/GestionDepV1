@@ -19,6 +19,9 @@
                     Grade
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Bureau
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Actions
                 </th>
             </tr>
@@ -38,18 +41,30 @@
                     </td>
                     <td class="px-6 py-4">
                         {{ $enseignant->grade }}
+
+                    </td>
+                    <td class="px-6 py-4">
+                        @forelse ($enseignant->bureau as $bureau)
+                            <a href="{{ route('bureau.index') }}" class="hover:underline hover:italic">
+                                {{ $bureau->numero_bureau }}</a>
+                        @empty
+                            <p class="text-gray-500 hover:cursor-not-allowed">Pas de Bureau</p>
+                        @endforelse
+
                     </td>
                     <td class="px-6 py-4">
                         <a href="{{ route('enseignant.edit', $enseignant) }}"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 
+                        <x-enseignant.affectation-bureau :enseignant="$enseignant" />
 
                         <div class="space-y-6 text-red-500 ">
                             <button x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete') }}</button>
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $enseignant->id }}')">{{ __('Delete') }}</button>
 
-                            <x-modal name="confirm-user-deletion" focusable>
-                                <form method="post" action="{{ route('enseignant.destroy', $enseignant) }}" class="p-6">
+                            <x-modal name="confirm-user-deletion{{ $enseignant->id }}" focusable>
+                                <form method="post" action="{{ route('enseignant.destroy', $enseignant) }}"
+                                    class="p-6">
                                     @csrf
                                     @method('delete')
 

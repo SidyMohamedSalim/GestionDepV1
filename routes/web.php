@@ -4,6 +4,7 @@ use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\enseignant\EnseignantVacataireController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Relations\BureauEnseignantController;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
@@ -43,5 +44,11 @@ Route::resource('enseignant', EnseigantController::class)->middleware('auth');
 Route::resource('vacataire', EnseignantVacataireController::class)->middleware('auth');
 Route::resource('bureau', BureauController::class)->middleware('auth');
 
+
+Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('auth')->group(function () {
+    Route::post('affecter/{enseignant}', 'affecterEnseignantBureau')->where([
+        'enseignant' => "[0-9]+"
+    ])->name('affecter_bureau_enseignant');
+});
 
 require __DIR__ . '/auth.php';
