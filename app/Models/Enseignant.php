@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Enseignant extends Model
 {
@@ -18,4 +19,9 @@ class Enseignant extends Model
         'grade',
         'daterecrutement',
     ];
+
+    public  function bureau(): BelongsToMany
+    {
+        return $this->belongsToMany(Bureau::class);
+    }
 }

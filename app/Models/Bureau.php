@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Bureau extends Model
 {
@@ -14,4 +15,9 @@ class Bureau extends Model
         'capacite',
         'date_acquisition'
     ];
+
+    public function enseignant(): BelongsToMany
+    {
+        return $this->belongsToMany(Enseignant::class);
+    }
 }
