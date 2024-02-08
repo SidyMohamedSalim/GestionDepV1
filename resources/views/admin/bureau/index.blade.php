@@ -103,6 +103,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="py-6">{{ $bureaux->links() }}</div>
+
     </div>
 
 

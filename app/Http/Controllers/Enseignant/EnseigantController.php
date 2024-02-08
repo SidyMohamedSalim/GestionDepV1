@@ -15,7 +15,7 @@ class EnseigantController extends Controller
     {
         //
         return view('admin.enseignant.index', [
-            'enseignants' => Enseignant::with('bureau')->get()
+            'enseignants' => Enseignant::with('bureau')->paginate(10)
         ]);
     }
 

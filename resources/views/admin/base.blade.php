@@ -50,6 +50,7 @@ bg-gray-800
 
         @yield('content')
 
+
     </div>
 
 </x-app-layout>
