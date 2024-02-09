@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Enseignant;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Enseignant\EnseignantRequest;
+use App\Models\Bureau;
 use App\Models\Enseignant;
 
 class EnseigantController extends Controller
@@ -15,7 +16,8 @@ class EnseigantController extends Controller
     {
         //
         return view('admin.enseignant.index', [
-            'enseignants' => Enseignant::with('bureau')->paginate(10)
+            'enseignants' => Enseignant::with('bureau')->paginate(10),
+            'bureaux' => Bureau::all()
         ]);
     }
 

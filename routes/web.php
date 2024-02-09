@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'count_enseignant' => Enseignant::all()->count(),
+        'count_vacataire' => EnseignantVacataire::all()->count(),
+        'count_bureau' => Bureau::all()->count(),
+    ]);
 })->middleware('auth');
 
 Route::get('/dashboard', function () {
@@ -46,9 +50,13 @@ Route::resource('bureau', BureauController::class)->middleware('auth');
 
 
 Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('auth')->group(function () {
-    Route::post('affecter/{enseignant}', 'affecterEnseignantBureau')->where([
+    Route::post('affecter/{enseignant}', 'affecterBureauEnseignant')->where([
         'enseignant' => "[0-9]+"
     ])->name('affecter_bureau_enseignant');
+
+    Route::put('affecter/{bureau}', 'affecterEnseignantsBureau')->where([
+        'bureau' => "[0-9]+"
+    ])->name('affecter_enseignants_bureau');
 });
 
 require __DIR__ . '/auth.php';
