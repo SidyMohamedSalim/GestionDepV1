@@ -54,6 +54,10 @@ Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('a
         'enseignant' => "[0-9]+"
     ])->name('affecter_bureau_enseignant');
 
+    Route::get('affecter/{bureau}', 'showAffecterEnseignantsBureau')->where([
+        'bureau' => "[0-9]+"
+    ])->name('show_affecter_enseignants_bureau');
+
     Route::put('affecter/{bureau}', 'affecterEnseignantsBureau')->where([
         'bureau' => "[0-9]+"
     ])->name('affecter_enseignants_bureau');

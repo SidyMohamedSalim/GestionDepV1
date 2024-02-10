@@ -11,7 +11,7 @@ class AffectationEnseignantsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,15 @@ class AffectationEnseignantsRequest extends FormRequest
      */
     public function rules(): array
     {
+        $max = request("bureau")->capacite;
         return [
-            //
+            'enseignants' => [
+                'array', function ($attribute, $value, $fail) use ($max) {
+                    if (count($value) > $max) {
+                        $fail("Le bureau dépasse la limite d'enseignants possibles de $max.");
+                    }
+                },
+            ]
         ];
     }
 }

@@ -17,7 +17,7 @@ class BureauFactory extends Factory
     public function definition(): array
     {
         return [
-            'numero_bureau' => fake()->word(),
+            'numero_bureau' => fake()->numberBetween(100000, 2000000),
             'designation' => fake()->sentence(4, true),
             'capacite' => fake()->numberBetween(2, 8),
             'date_acquisition' => fake()->date()
