@@ -1,13 +1,11 @@
 <x-app-layout>
 
 
-
-
-
     <div class="max-w-screen-xl m-10 mx-auto">
 
         <div class="flex items-center justify-between my-4">
-            <div> <a href="{{ route('enseignant.index') }}" active="request() - > routeIs('enseignant.index')"
+            <div> <a href="{{ route('enseignant.index') }}" wire:navigate
+                    active="request() - > routeIs('enseignant.index')"
                     class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest @if (request()->routeIs('enseignant.index'))
 text-white
 bg-gray-800
@@ -16,7 +14,7 @@ bg-gray-800
                     Enseignants Permanents
                 </a>
 
-                <a href="{{ route('vacataire.index') }}" active="request() - > routeIs('enseignant.index')"
+                <a href="{{ route('vacataire.index') }}" wire:navigate active="request() - > routeIs('enseignant.index')"
                     class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest @if (request()->routeIs('vacataire.index'))
 text-white
 bg-gray-800

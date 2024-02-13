@@ -17,10 +17,7 @@ class BureauController extends Controller
      */
     public function index()
     {
-        return view('admin.bureau.index', [
-            'bureaux' => Bureau::paginate(10),
-            'enseignants' => Enseignant::all()
-        ]);
+        return view('admin.bureau.index');
     }
 
     /**
