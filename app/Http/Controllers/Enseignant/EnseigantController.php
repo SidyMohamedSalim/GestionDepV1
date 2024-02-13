@@ -15,10 +15,7 @@ class EnseigantController extends Controller
     public function index()
     {
         //
-        return view('admin.enseignant.index', [
-            'enseignants' => Enseignant::with('bureau')->paginate(10),
-            'bureaux' => Bureau::all()
-        ]);
+        return view('admin.enseignant.index');
     }
 
     /**

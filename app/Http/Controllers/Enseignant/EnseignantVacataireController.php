@@ -15,9 +15,7 @@ class EnseignantVacataireController extends Controller
     public function index()
     {
         //
-        return view('admin.enseignantVacataire.index', [
-            'enseignants' => EnseignantVacataire::paginate(10)
-        ]);
+        return view('admin.enseignantVacataire.index');
     }
 
     /**

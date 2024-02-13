@@ -21,8 +21,8 @@ class EnseignantBureauModal extends ModalComponent
         );
     }
 
-    public static function destroyOnClose(): bool
-    {
-        return true;
-    }
+    // public static function destroyOnClose(): bool
+    // {
+    //     return true;
+    // }
 }

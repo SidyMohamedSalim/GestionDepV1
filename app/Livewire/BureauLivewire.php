@@ -4,13 +4,22 @@ namespace App\Livewire;
 
 use App\Models\Bureau;
 use App\Models\Enseignant;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Lazy()]
 class BureauLivewire extends Component
 {
 
     use WithPagination;
+
+    //lazy loading
+    public function placeholder()
+    {
+        return view('components.loader');
+    }
+
 
     public function render()
     {

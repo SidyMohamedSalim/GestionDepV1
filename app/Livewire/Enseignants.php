@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Bureau;
 use App\Models\Enseignant;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+
+#[Lazy()]
 class Enseignants extends Component
 {
 
@@ -38,6 +41,16 @@ class Enseignants extends Component
         }
     }
 
+    public function updating($property, $value)
+    {
+        // $property: The name of the current property being updated
+        // $value: The value about to be set to the property
+
+        if ($property === 'nom' || $property == 'prenom' || $property == 'email') {
+            $this->resetPage();
+        }
+    }
+
     //lazy loading
     public function placeholder()
     {
@@ -63,7 +76,7 @@ class Enseignants extends Component
 
 
         return view('livewire.enseignants', [
-            'enseignants' => $query->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
+            'enseignants' => $query->with('bureau')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
             'bureaux' => Bureau::all()
         ]);
     }
