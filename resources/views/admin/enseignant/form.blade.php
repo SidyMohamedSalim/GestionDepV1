@@ -57,7 +57,7 @@
             <div class="mt-4">
                 <x-input-label for="grade" :value="__('Grade')" />
                 <select name="grade" id="grade"
-                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    class="border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
                     <option>Selectionner une grade</option>
                     <option @selected($enseignant->grade == 'PESA') value="PESA">PESA</option>
                     <option @selected($enseignant->grade == 'PH') value="PH">PH</option>
@@ -73,7 +73,7 @@
                 <label for="active" class="inline-flex items-center">
                     <input type="hidden" name="active" value="0">
                     <input @checked(old('active', $enseignant?->active)) id="active" type="checkbox" value="1"
-                        class="text-indigo-600 border-gray-300 rounded shadow-sm focus:ring-indigo-500" name="active">
+                        class="border-gray-300 rounded shadow-sm text-primary focus:ring-primary" name="active">
                     <span class="text-sm text-gray-600 ms-2">{{ __('Active') }}</span>
                     <x-input-error :messages="$errors->get('active')" class="mt-2" />
                 </label>

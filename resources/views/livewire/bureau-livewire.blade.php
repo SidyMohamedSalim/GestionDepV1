@@ -5,7 +5,7 @@
 
         @if (session('success'))
             <div
-                class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold text-green-600 rounded-lg bg-gray-50">
+                class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg text-success bg-gray-50">
                 <span>{{ session('success') }}</span>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -21,16 +21,16 @@
         <div class="flex items-end justify-end my-4">
 
             <a href="{{ route('bureau.create') }}"
-                class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25'>
+                class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
                 +
             </a>
         </div>
 
         {{-- listing bureaux --}}
 
-        <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right ">
 
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-white uppercase bg-secondary ">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Numero
@@ -51,10 +51,8 @@
             </thead>
             <tbody>
                 @foreach ($bureaux as $bureau)
-                    <tr
-                        class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr class="border-b odd:bg-white">
+                        <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap ">
                             {{ $bureau->numero_bureau }}
                         </th>
                         <td class="px-6 py-4">
@@ -70,7 +68,7 @@
 
                             {{-- edit --}}
                             <a href="{{ route('bureau.edit', $bureau) }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                class="font-medium text-primary dark:text-primary hover:underline">
 
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -93,7 +91,7 @@
                                 </svg>
                             </a>
 
-                            <a x-data="" class="text-green-500"
+                            <a x-data="" class="text-success"
                                 href="{{ route('show_affecter_enseignants_bureau', $bureau) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -110,7 +108,7 @@
 
                             <button
                                 wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $bureau->id }}, routeName: 'bureau.destroy' }})"
-                                class="text-red-500">
+                                class="text-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">

@@ -12,9 +12,9 @@
 
 
 
-    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right ">
 
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-white uppercase bg-primary ">
             <tr>
                 <x-table-header fieldname="nom" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                     Nom
@@ -41,9 +41,8 @@
         </thead>
         <tbody>
             @forelse  ($enseignants as $enseignant)
-                <tr
-                    class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="border-b odd:bg-white">
+                    <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                         {{ $enseignant->nom }}
                     </th>
                     <td class="px-6 py-4">
@@ -61,14 +60,14 @@
                             <a href="{{ route('bureau.index') }}" class="hover:underline hover:italic">
                                 {{ $bureau->numero_bureau }}</a>
                         @empty
-                            <p class="text-gray-500 hover:cursor-not-allowed">Pas de Bureau</p>
+                            <p class=" hover:cursor-not-allowed">Pas de Bureau</p>
                         @endforelse
 
                     </td>
                     <td class="flex items-center px-6 py-4 justify-evenly">
                         {{-- editer --}}
                         <a href="{{ route('enseignant.edit', $enseignant) }}"
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            class="font-medium text-primary dark:text-primary hover:underline">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -98,7 +97,7 @@
 
                         <button
                             wire:click="$dispatch('openModal', { component: 'enseignant.enseignant-bureau-modal', arguments: { enseignant: {{ $enseignant }} }})"
-                            class="text-green-500">
+                            class="text-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-package-plus">
@@ -119,7 +118,7 @@
 
                         <button
                             wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $enseignant->id }}, routeName: 'enseignant.destroy' }})"
-                            class="text-red-500">
+                            class="text-danger">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-trash-2">

@@ -1,7 +1,7 @@
 <div>
-    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+    <table class="w-full text-sm text-left">
 
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-white uppercase bg-primary ">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Nom
@@ -25,9 +25,8 @@
         </thead>
         <tbody>
             @foreach ($enseignants as $enseignant)
-                <tr
-                    class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="border-b odd:bg-white">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $enseignant->nom }}
                     </th>
                     <td class="px-6 py-4">
@@ -46,7 +45,7 @@
 
                         {{-- edit --}}
                         <a href="{{ route('vacataire.edit', $enseignant) }}"
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            class="font-medium text-primary dark:text-primary hover:underline">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-notebook-pen">
