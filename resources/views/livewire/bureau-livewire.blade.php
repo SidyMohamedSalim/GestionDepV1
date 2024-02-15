@@ -2,29 +2,25 @@
 
 
     <div class="max-w-screen-xl m-6 mx-auto">
-
-        @if (session('success'))
-            <div
-                class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg text-success bg-gray-50">
-                <span>{{ session('success') }}</span>
-                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-check">
-                        <path d="M20 6 9 17l-5-5" />
-                    </svg></span>
-            </div>
-        @endif
-
         {{-- new bureaux --}}
 
-
-        <div class="flex items-end justify-end my-4">
+        <div class="flex items-end justify-end mb-4">
 
             <a href="{{ route('bureau.create') }}"
                 class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
-                +
+                + Nouveau Bureau
             </a>
         </div>
+
+        <div class="py-4">
+            <form class="grid gap-2 md:grid-cols-2">
+                <x-search-input name="numero" placeholder="Recherche par numero" />
+                <x-search-input name="designation" placeholder="Recherche par designation" />
+            </form>
+        </div>
+
+
+
 
         {{-- listing bureaux --}}
 
@@ -32,18 +28,18 @@
 
             <thead class="text-xs text-white uppercase bg-secondary ">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <x-table-header fieldname="numero_bureau" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                         Numero
-                    </th>
-                    <th scope="col" class="px-6 py-3">
+                    </x-table-header>
+                    <x-table-header fieldname="designation" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                         Designation
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Capacite
-                    </th>
-                    <th scope="col" class="px-6 py-3">
+                    </x-table-header>
+                    <x-table-header fieldname="capacite" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                        Capacitte
+                    </x-table-header>
+                    <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                         Date Acquisition
-                    </th>
+                    </x-table-header>
                     <th scope="col" class="px-6 py-3">
                         Actions
                     </th>
@@ -69,39 +65,18 @@
                             {{-- edit --}}
                             <a href="{{ route('bureau.edit', $bureau) }}"
                                 class="font-medium text-primary dark:text-primary hover:underline">
-
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen">
-                                    <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
-                                    <path d="M2 6h4" />
-                                    <path d="M2 10h4" />
-                                    <path d="M2 14h4" />
-                                    <path d="M2 18h4" />
-                                    <path d="M18.4 2.6a2.17 2.17 0 0 1 3 3L16 11l-4 1 1-4Z" />
-                                </svg>
+                                <x-icons.edit />
                             </a>
+
+                            {{-- show --}}
                             <a href="{{ route('bureau.show', $bureau) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
-                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
+                                <x-icons.eyes />
                             </a>
 
+                            {{-- affectation  enseignants --}}
                             <a x-data="" class="text-success"
                                 href="{{ route('show_affecter_enseignants_bureau', $bureau) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-user-round-plus">
-                                    <path d="M2 21a8 8 0 0 1 13.292-6" />
-                                    <circle cx="10" cy="8" r="5" />
-                                    <path d="M19 16v6" />
-                                    <path d="M22 19h-6" />
-                                </svg>
+                                <x-icons.users />
                             </a>
 
                             {{-- delete --}}
@@ -109,20 +84,8 @@
                             <button
                                 wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $bureau->id }}, routeName: 'bureau.destroy' }})"
                                 class="text-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
-                                    <path d="M3 6h18" />
-                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                    <line x1="10" x2="10" y1="11" y2="17" />
-                                    <line x1="14" x2="14" y1="11" y2="17" />
-                                </svg>
+                                <x-icons.delete />
                             </button>
-
-
-
-
 
                         </td>
                     </tr>

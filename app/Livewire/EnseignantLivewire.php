@@ -5,14 +5,13 @@ namespace App\Livewire;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use Livewire\Attributes\Lazy;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
 #[Lazy()]
-class Enseignants extends Component
+class EnseignantLivewire extends Component
 {
+
 
     use WithPagination;
 
@@ -57,7 +56,6 @@ class Enseignants extends Component
         return view('components.loader');
     }
 
-
     public function render()
     {
         $query = Enseignant::query();
@@ -74,10 +72,12 @@ class Enseignants extends Component
             $query = $query->where('email', "LIKE", "%{$this->email}%");
         }
 
-
-        return view('livewire.enseignants', [
-            'enseignants' => $query->with('bureau')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
-            'bureaux' => Bureau::all()
-        ]);
+        return view(
+            'livewire.enseignant-livewire',
+            [
+                'enseignants' => $query->with('bureau')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
+                'bureaux' => Bureau::all()
+            ]
+        );
     }
 }

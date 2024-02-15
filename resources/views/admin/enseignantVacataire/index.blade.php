@@ -1,5 +1,5 @@
 @extends('admin.base')
 
 @section('content')
-    <livewire:enseignants-vacataire />
+    <livewire:enseignant-vacataire-livewire />
 @endsection
