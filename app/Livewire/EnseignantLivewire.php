@@ -56,6 +56,7 @@ class EnseignantLivewire extends Component
         return view('components.loader');
     }
 
+
     public function render()
     {
         $query = Enseignant::query();

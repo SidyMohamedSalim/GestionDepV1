@@ -34,8 +34,8 @@
 
 
         <main>
-
             <x-side-bar />
+
             {{ $slot }}
         </main>
     </div>

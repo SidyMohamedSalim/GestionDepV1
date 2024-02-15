@@ -5,6 +5,7 @@
 
     <div class="justify-center max-w-xl mx-auto">
 
+
         <form method="POST" action="{{ $bureau->id ? route('bureau.update', $bureau) : route('bureau.store') }}">
             @csrf
 

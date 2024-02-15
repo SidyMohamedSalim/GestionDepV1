@@ -6,6 +6,11 @@
 
     <div class="justify-center max-w-xl mx-auto">
 
+        <div>
+            <a href="{{ redirect()->back() }}"> Retour </a>
+            <h1>Ajouter un Nouveau Enseignant</h1>
+        </div>
+
         <form method="POST"
             action="{{ $enseignant->id ? route('enseignant.update', $enseignant) : route('enseignant.store') }}">
             @csrf

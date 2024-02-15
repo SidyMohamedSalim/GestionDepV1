@@ -57,6 +57,6 @@ class BureauEnseignantController extends Controller
         ]);
 
         $bureau->enseignant()->sync($data['enseignants']);
-        return redirect()->route('bureau.index')->with('success', "Mise a jour effectuer affecter avec succes");
+        return redirect()->route('bureau.index')->with('success', "Enseignants Affecté");
     }
 }

@@ -4,6 +4,7 @@
     <div class="max-w-screen-xl m-6 mx-auto">
         {{-- new bureaux --}}
 
+
         <div class="flex items-end justify-end mb-4">
 
             <a href="{{ route('bureau.create') }}"

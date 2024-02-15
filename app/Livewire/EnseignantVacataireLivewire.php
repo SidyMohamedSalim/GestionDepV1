@@ -5,10 +5,13 @@ namespace App\Livewire;
 use App\Models\EnseignantVacataire;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Lazy()]
 class EnseignantVacataireLivewire extends Component
 {
+
+    use WithPagination;
 
     public string $nom = '';
     public string $email = "";
@@ -39,12 +42,15 @@ class EnseignantVacataireLivewire extends Component
         return view('components.loader');
     }
 
+
+
+
     public function updating($property, $value)
     {
         // $property: The name of the current property being updated
         // $value: The value about to be set to the property
 
-        if ($property === 'nom' || $property == 'email') {
+        if ($property == 'nom' || $property == 'email') {
             $this->resetPage();
         }
     }

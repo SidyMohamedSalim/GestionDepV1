@@ -35,7 +35,7 @@ class EnseignantVacataireController extends Controller
 
         EnseignantVacataire::create($request->validated());
 
-        return redirect()->route('vacataire.index')->with('success', 'person created');
+        return redirect()->route('vacataire.index')->with('success', 'Enseignant Vacataire Créé avec Success');
     }
 
     /**
@@ -66,7 +66,7 @@ class EnseignantVacataireController extends Controller
 
         $vacataire->update($request->validated());
 
-        return redirect()->route('vacataire.index')->with('success', 'person created');
+        return redirect()->route('vacataire.index')->with('success', 'Enseignant Vacataire Modifié avec Success');
     }
 
     /**
@@ -76,6 +76,7 @@ class EnseignantVacataireController extends Controller
     {
         //
         $vacataire->delete();
-        return redirect()->route('vacataire.index')->with('success', 'person deleted');
+
+        return redirect()->route('vacataire.index')->with('success', 'Enseignant Vacataire Suppimé avec Success');
     }
 }

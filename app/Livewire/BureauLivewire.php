@@ -40,7 +40,9 @@ class BureauLivewire extends Component
         // $property: The name of the current property being updated
         // $value: The value about to be set to the property
 
-        if ($property === 'numero' || $property == 'designation') {
+        session()->flash('success', 'Modifier');
+
+        if ($property == 'numero' || $property == 'designation') {
             $this->resetPage();
         }
     }

@@ -35,7 +35,7 @@ class EnseigantController extends Controller
 
         Enseignant::create($request->validated());
 
-        return redirect()->route('enseignant.index')->with('success', 'person created');
+        return redirect()->route('enseignant.index')->with('success', 'Enseignant Créé avec Success');
     }
 
     /**
@@ -66,7 +66,7 @@ class EnseigantController extends Controller
 
         $enseignant->update($request->validated());
 
-        return redirect()->route('enseignant.index')->with('success', 'person created');
+        return redirect()->route('enseignant.index')->with('success', 'Enseignant Modifié avec Success');
     }
 
     /**
@@ -76,6 +76,6 @@ class EnseigantController extends Controller
     {
         //
         $enseignant->delete();
-        return redirect()->route('enseignant.index')->with('success', 'person deleted');
+        return redirect()->route('enseignant.index')->with('success', 'Enseignant Supprimé avec Success');
     }
 }
