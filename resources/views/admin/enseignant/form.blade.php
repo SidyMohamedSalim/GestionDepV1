@@ -7,8 +7,7 @@
     <div class="justify-center max-w-xl mx-auto">
 
         <div>
-            <a href="{{ redirect()->back() }}"> Retour </a>
-            <h1>Ajouter un Nouveau Enseignant</h1>
+            <h1 class="my-5 text-xl font-bold">Ajouter un Nouveau Enseignant</h1>
         </div>
 
         <form method="POST"
