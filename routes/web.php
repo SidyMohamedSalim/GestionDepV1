@@ -3,6 +3,9 @@
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\enseignant\EnseignantVacataireController;
+use App\Http\Controllers\Materiels\EquipementController;
+use App\Http\Controllers\Materiels\FournitureController;
+use App\Http\Controllers\Materiels\MaterielsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
 use App\Models\Bureau;
@@ -38,10 +41,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
+// enseignant
 Route::resource('enseignant', EnseigantController::class)->middleware('auth');
 Route::resource('vacataire', EnseignantVacataireController::class)->middleware('auth');
-Route::resource('bureau', BureauController::class)->middleware('auth');
-
 
 Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('auth')->group(function () {
     Route::post('affecter/{enseignant}', 'affecterBureauEnseignant')->where([
@@ -56,5 +58,22 @@ Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('a
         'bureau' => "[0-9]+"
     ])->name('affecter_enseignants_bureau');
 });
+
+
+// bureau
+Route::resource('bureau', BureauController::class)->middleware('auth');
+
+// materiels
+Route::resource('fourniture', FournitureController::class)->middleware('auth');
+Route::resource('equipement', EquipementController::class)->middleware('auth');
+Route::prefix('/materiels')->controller(MaterielsController::class)->name('materiel.')->middleware('auth')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/edit', 'edit')->name('edit');
+});
+
+
+
+
 
 require __DIR__ . '/auth.php';

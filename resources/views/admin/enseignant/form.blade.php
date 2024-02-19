@@ -7,7 +7,7 @@
     <div class="justify-center max-w-xl mx-auto">
 
         <div>
-            <h1 class="my-5 text-xl font-bold">Ajouter un Nouveau Enseignant</h1>
+            <h1 class="my-5 text-xl font-bold">Gestion Enseignant</h1>
         </div>
 
         <form method="POST"
@@ -63,8 +63,8 @@
                 <select name="grade" id="grade"
                     class="border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
                     <option>Selectionner une grade</option>
-                    <option @selected($enseignant->grade == 'PESA') value="PESA">PESA</option>
-                    <option @selected($enseignant->grade == 'PH') value="PH">PH</option>
+                    <option @selected($enseignant->grade == 'MCH') value="MCH">MCH</option>
+                    <option @selected($enseignant->grade == 'MC') value="MC">MC</option>
                     <option @selected($enseignant->grade == 'PES') value="PES">PES</option>
                 </select>
                 <x-input-error :messages="$errors->get('grade')" class="mt-2" />

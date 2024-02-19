@@ -6,6 +6,10 @@
 
     <div class="justify-center max-w-xl mx-auto">
 
+        <div>
+            <h1 class="my-5 text-xl font-bold">Gestion Enseignant Vacataire</h1>
+        </div>
+
         <form method="POST"
             action="{{ $enseignant->id ? route('vacataire.update', $enseignant) : route('vacataire.store') }}">
             @csrf
