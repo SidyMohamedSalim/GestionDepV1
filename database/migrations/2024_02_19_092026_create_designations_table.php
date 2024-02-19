@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('designations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

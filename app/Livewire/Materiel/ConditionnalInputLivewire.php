@@ -4,7 +4,9 @@ namespace App\Livewire\Materiel;
 
 use App\Models\Designation;
 use App\Models\Reference;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -17,10 +19,27 @@ class ConditionnalInputLivewire extends Component
 
     public string $label = "";
 
+    public string $table_name = "";
 
 
-    #[Validate('required|min:3')]
+    public function mount()
+    {
+
+        $this->table_name = ($this->name == 'reference') ? "references" : "designations";
+    }
+
     public string $content = '';
+
+    public function rules()
+    {
+        return [
+            'content' => [
+                'required',
+                Rule::unique($this->table_name, 'title'),
+            ],
+        ];
+    }
+
 
     public function addOption()
     {
@@ -28,13 +47,13 @@ class ConditionnalInputLivewire extends Component
         $this->validate();
 
 
-        if ($this->name == 'reference_id') {
+        if ($this->name == 'reference') {
             Reference::create([
                 'title' => $this->content
             ]);
         }
 
-        if ($this->name == 'designation_id') {
+        if ($this->name == 'designation') {
             Designation::create([
                 'title' => $this->content
             ]);
@@ -42,25 +61,14 @@ class ConditionnalInputLivewire extends Component
 
         $this->add = false;
         $this->content = '';
-        $this->dispatch('saved');
+        $this->dispatch('refresh-page');
     }
 
 
     public function render()
     {
 
-        $options = null;
 
-        if ($this->name == 'reference_id') {
-            $options = Reference::all();
-        }
-
-        if ($this->name == 'designation_id') {
-            $options = Designation::all();
-        }
-
-        return view('livewire.materiel.conditionnal-input-livewire', [
-            'options' => $options
-        ]);
+        return view('livewire.materiel.conditionnal-input-livewire');
     }
 }

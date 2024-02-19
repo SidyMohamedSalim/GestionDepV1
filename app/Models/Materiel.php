@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Materiel extends Model
 {
@@ -19,4 +20,15 @@ class Materiel extends Model
         'date_acquisition',
         'reference_id'
     ];
+
+
+    public function reference(): BelongsTo
+    {
+        return $this->belongsTo(Reference::class);
+    }
+
+    public function designation(): BelongsTo
+    {
+        return $this->belongsTo(Designation::class);
+    }
 }

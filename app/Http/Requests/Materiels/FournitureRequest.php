@@ -27,7 +27,6 @@ class FournitureRequest extends FormRequest
             'commentaire' => ['nullable'],
             'categorie' => ['required'],
             'type' => ['required'],
-            'numero_inventaire' => ['nullable'],
             'date_acquisition' => ['required'],
             'reference_id' => ['required']
         ];

@@ -69,7 +69,7 @@ Route::prefix('/materiels')->controller(MaterielsController::class)->name('mater
 
     Route::get('/create', 'create')->name('create');
 
-    Route::post('/create', 'store');
+    Route::post('/create', 'store')->name('store');
 
     Route::get('/{materiel}/edit', 'edit')->name('edit');
     Route::post('/{materiel}/edit', 'update')->name('update');
