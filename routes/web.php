@@ -64,12 +64,15 @@ Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('a
 Route::resource('bureau', BureauController::class)->middleware('auth');
 
 // materiels
-Route::resource('fourniture', FournitureController::class)->middleware('auth');
-Route::resource('equipement', EquipementController::class)->middleware('auth');
 Route::prefix('/materiels')->controller(MaterielsController::class)->name('materiel.')->middleware('auth')->group(function () {
     Route::get('/', 'index')->name('index');
+
     Route::get('/create', 'create')->name('create');
-    Route::get('/edit', 'edit')->name('edit');
+
+    Route::post('/create', 'store');
+
+    Route::get('/{materiel}/edit', 'edit')->name('edit');
+    Route::post('/{materiel}/edit', 'update')->name('update');
 });
 
 

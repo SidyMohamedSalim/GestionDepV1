@@ -11,7 +11,7 @@ class EquipementRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class EquipementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'active' => ['nullable'],
+            'designation_id' => ['required'],
+            'commentaire' => ['nullable'],
+            'categorie' => ['required'],
+            'type' => ['required'],
+            'numero_inventaire' => ['required'],
+            'date_acquisition' => ['required'],
+            'reference_id' => ['required']
         ];
     }
 }
