@@ -1,14 +1,16 @@
 <x-app-layout>
 
 
-    <!-- Session Status -->
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Gestion Bureau') }}
+        </h2>
+    </x-slot>
 
 
     <div class="justify-center max-w-xl mx-auto">
 
-        <div>
-            <h1 class="my-5 text-xl font-bold">Gestion Bureau</h1>
-        </div>
+
 
         <form method="POST" action="{{ $bureau->id ? route('bureau.update', $bureau) : route('bureau.store') }}">
             @csrf

@@ -1,18 +1,18 @@
 <x-app-layout>
+
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Gestion Materiel') }}
+        </h2>
+    </x-slot>
+
     <div x-data="{ type: 'Equipement' }">
         <div class="justify-center max-w-xl mx-auto">
 
 
-            @php
 
-            @endphp
-            <div>
-                <h1 class="my-5 text-xl font-bold">Gestion Materiel</h1>
-            </div>
-
-            <form method="post" action="{{$materiel->id ? route($categorie =='Equipement' ? "
-                materiel.equipement.update" : "materiel.fourniture.update" , $materiel) : route($categorie=='Equipement'
-                ? "materiel.equipement.store" : "materiel.fourniture.store" )}}">
+            <form method="post"
+                action="{{$materiel->id ? route($categorie =='Equipement' ? 'materiel.equipement.update' : 'materiel.fourniture.update' , $materiel) : route($categorie=='Equipement' ? 'materiel.equipement.store' : 'materiel.fourniture.store' )}}">
                 @csrf
 
                 @method($materiel->id ? 'PUT' : 'POST')

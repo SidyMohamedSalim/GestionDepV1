@@ -5,6 +5,7 @@ namespace App\Livewire\Materiel;
 use App\Models\Equipement;
 use App\Models\Fourniture;
 use App\Models\Materiel;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,7 +16,7 @@ class MaterielLivewire extends Component
 
     public string $type = 'Bureau';
     public string $categorie = '';
-    protected $query;
+    protected Builder $query;
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'ASC';
@@ -37,8 +38,11 @@ class MaterielLivewire extends Component
         }
     }
 
-    public function mount()
+
+
+    public function render()
     {
+
         if ($this->categorie == 'Equipement') {
             $this->query = Equipement::query();
         } else {
@@ -49,19 +53,12 @@ class MaterielLivewire extends Component
             $this->query =
                 $this->query->where('type', "LIKE", "%{$this->type}%");
         }
-    }
-
-    public function render()
-    {
-
-
-
 
         return view(
             'livewire.materiel.materiel-livewire',
             [
                 'materiels'
-                => $this->query->with('materiel')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
+                => $this->query->with(['materiel', 'reference'])->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
             ]
         );
     }

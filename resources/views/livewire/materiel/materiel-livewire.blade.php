@@ -55,25 +55,27 @@
                 </td>
                 <td class="flex items-center px-6 py-4 justify-evenly">
                     {{-- editer --}}
-                    <a href="{{ route('materiel.edit', $materiel) }}"
+                    <a href="{{ $categorie == 'Equipement' ? route('materiel.equipement.edit',$materiel) :
+                        route('materiel.fourniture.edit',$materiel) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
 
                         <x-icons.edit />
                     </a>
 
                     {{-- voir --}}
-                    <a href="s">
+                    <a href="{{ $categorie == 'Equipement' ? route('materiel.equipement.show',$materiel) :
+                        route('materiel.fourniture.show',$materiel) }}">
                         <x-icons.eyes />
                     </a>
 
-
-                    {{-- affectation --}}
+                    {{--
+                    affectation
 
                     <button
-                        wire:click="$dispatch('openModal', { component: 'materiel.materiel-bureau-modal', arguments: { materiel: {{ $materiel }} }})"
+                        wire:click="$dispatch('openModal', { component: 'materiel-bureau-modal', arguments: { materiel: {{ $materiel }} }})"
                         class="text-success">
                         <x-icons.desktop />
-                    </button>
+                    </button> --}}
 
 
                     {{-- delete --}}
@@ -81,7 +83,7 @@
 
 
                     <button
-                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel->id }}, routeName: 'materiel.destroy' }})"
+                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel->id }}, routeName: {{$categorie == 'Equipement' ? 'materiel.equipement.destroy' : 'materiel.fourniture.destroy' }})"
                         class="text-danger">
                         <x-icons.delete />
                     </button>

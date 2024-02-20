@@ -1,14 +1,16 @@
 <x-app-layout>
 
 
-    <!-- Session Status -->
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Gestion Enseignant') }}
+        </h2>
+    </x-slot>
 
 
     <div class="justify-center max-w-xl mx-auto">
 
-        <div>
-            <h1 class="my-5 text-xl font-bold">Gestion Enseignant</h1>
-        </div>
+
 
         <form method="POST"
             action="{{ $enseignant->id ? route('enseignant.update', $enseignant) : route('enseignant.store') }}">
@@ -21,8 +23,8 @@
             <div class="mt-4">
                 <x-input-label for="nom" :value="__('Nom')" />
 
-                <x-text-input id="nom" class="block w-full mt-1" type="nom" type='text' name="nom"
-                    autocomplete="nom" value="{{ old('nom', $enseignant?->nom) }}" />
+                <x-text-input id="nom" class="block w-full mt-1" type="nom" type='text' name="nom" autocomplete="nom"
+                    value="{{ old('nom', $enseignant?->nom) }}" />
 
                 <x-input-error :messages="$errors->get('nom')" class="mt-2" />
             </div>
@@ -34,8 +36,8 @@
             <div class="mt-4">
                 <x-input-label for="prenom" :value="__('Prenom')" />
 
-                <x-text-input id="prenom" class="block w-full mt-1" type="prenom" name="prenom"
-                    autocomplete="prenom" type='text' value="{{ old('prenom', $enseignant?->prenom) }}" />
+                <x-text-input id="prenom" class="block w-full mt-1" type="prenom" name="prenom" autocomplete="prenom"
+                    type='text' value="{{ old('prenom', $enseignant?->prenom) }}" />
 
                 <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
             </div>
@@ -43,8 +45,8 @@
             <!-- Email Address -->
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block w-full mt-1" type="email" name="email" type='email'
-                    autofocus autocomplete="username" value="{{ old('email', $enseignant?->email) }}" />
+                <x-text-input id="email" class="block w-full mt-1" type="email" name="email" type='email' autofocus
+                    autocomplete="username" value="{{ old('email', $enseignant?->email) }}" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
@@ -77,7 +79,7 @@
                 <label for="active" class="inline-flex items-center">
                     <input type="hidden" name="active" value="0">
                     <input @checked(old('active', $enseignant?->active)) id="active" type="checkbox" value="1"
-                        class="border-gray-300 rounded shadow-sm text-primary focus:ring-primary" name="active">
+                    class="border-gray-300 rounded shadow-sm text-primary focus:ring-primary" name="active">
                     <span class="text-sm text-gray-600 ms-2">{{ __('Active') }}</span>
                     <x-input-error :messages="$errors->get('active')" class="mt-2" />
                 </label>
