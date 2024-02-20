@@ -13,10 +13,12 @@
                     Designation
                 </x-table-header>
 
+                @if ($categorie == 'Equipement')
                 <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Inventaire
                 </x-table-header>
+                @endif
                 <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Date Acquisition
@@ -40,9 +42,11 @@
                     {{ $materiel->designation->title }}
                 </th>
 
+                @if ($categorie == 'Equipement')
                 <td class="px-6 py-4">
                     {{ $materiel->numero_inventaire }}
                 </td>
+                @endif
                 <td class="px-6 py-4">
                     {{ $materiel->date_acquisition }}
                 </td>
@@ -62,7 +66,6 @@
                     <a href="s">
                         <x-icons.eyes />
                     </a>
-
 
 
                     {{-- affectation --}}

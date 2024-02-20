@@ -20,8 +20,10 @@
 
                         <select x-model='type' name="categorie"
                             class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
-                            <option value="Equipement" @selected($materiel->categorie == 'Equipement')>Equipement</option>
-                            <option value="Fourniture" @selected($materiel->categorie == 'Fourniture')>Fourniture</option>
+                            <option value="Equipement" @selected($materiel->categorie == 'Equipement')>Equipement
+                            </option>
+                            <option value="Fourniture" @selected($materiel->categorie == 'Fourniture')>Fourniture
+                            </option>
                         </select>
 
                         <x-input-error :messages="$errors->get('categorie')" class="mt-2" />
@@ -34,7 +36,8 @@
                         <select name="type"
                             class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                             <option value="Bureau" @selected($materiel->type == 'Bureau')>Bureautique</option>
-                            <option value="Informatique" @selected($materiel->type == 'Informatique')>Informatique</option>
+                            <option value="Informatique" @selected($materiel->type == 'Informatique')>Informatique
+                            </option>
                         </select>
 
                         <x-input-error :messages="$errors->get('type')" class="mt-2" />
@@ -46,13 +49,12 @@
                 <div class="mt-4" x-show="type=='Equipement'">
                     <x-input-label for="numero_inventaire" :value="__('Numero Inventaire')" />
 
-                    <x-text-input id="numero_inventaire" class="block w-full mt-1" type="text"
-                        name="numero_inventaire" autocomplete="numero_inventaire"
+                    <x-text-input id="numero_inventaire" class="block w-full mt-1" type="text" name="numero_inventaire"
+                        autocomplete="numero_inventaire"
                         value="{{ old('numero_inventaire', $materiel->numero_inventaire) }}" />
 
                     <x-input-error :messages="$errors->get('numero_inventaire')" class="mt-2" />
                 </div>
-
 
                 <div class="grid grid-cols-2 gap-4">
 
@@ -61,7 +63,9 @@
                         <select name="designation_id"
                             class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                             @foreach ($designations as $designation)
-                                <option value="{{ $designation->id }}">{{ $designation->title }}</option>
+                            <option @selected($designation->id == $materiel?->designation?->id) value="{{
+                                $designation->id
+                                }}">{{ $designation->title }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('designation_id')" class="mt-2" />
@@ -73,7 +77,8 @@
                         <select name="reference_id"
                             class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                             @foreach ($references as $reference)
-                                <option value="{{ $reference->id }}">{{ $reference->title }}</option>
+                            <option @selected($reference->id == $materiel?->reference?->id) value="{{ $reference->id
+                                }}">{{ $reference->title }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('reference_id')" class="mt-2" />
