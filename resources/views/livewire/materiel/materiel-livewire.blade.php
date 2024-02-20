@@ -8,10 +8,9 @@
                     :orderDirection="$orderByDirection">
                     Status
                 </x-table-header>
-                <x-table-header fieldname="designation_id" :selectedFieldName="$orderByField"
-                    :orderDirection="$orderByDirection">
+                <th scope="col" class="px-6 py-3">
                     Designation
-                </x-table-header>
+                </th>
 
                 @if ($categorie == 'Equipement')
                 <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
@@ -39,7 +38,7 @@
                     <x-status-icons :active="$materiel->active" />
                 </th>
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    {{ $materiel->designation->title }}
+                    {{ $materiel->materiel->designation }}
                 </th>
 
                 @if ($categorie == 'Equipement')

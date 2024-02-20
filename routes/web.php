@@ -73,6 +73,9 @@ Route::prefix('/materiels')->controller(MaterielsController::class)->name('mater
 
     Route::get('/{materiel}/edit', 'edit')->name('edit');
     Route::post('/{materiel}/edit', 'update')->name('update');
+
+    Route::resource('fourniture', FournitureController::class)->middleware('auth');
+    Route::resource('equipement', EquipementController::class)->middleware('auth');
 });
 
 

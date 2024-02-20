@@ -3,6 +3,7 @@
 namespace App\Livewire\Materiel;
 
 use App\Models\Designation;
+use App\Models\Materiel;
 use App\Models\Reference;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,7 +26,7 @@ class ConditionnalInputLivewire extends Component
     public function mount()
     {
 
-        $this->table_name = ($this->name == 'reference') ? "references" : "designations";
+        $this->table_name = ($this->name == 'reference') ? "references" : "materiels";
     }
 
     public string $content = '';
@@ -35,7 +36,7 @@ class ConditionnalInputLivewire extends Component
         return [
             'content' => [
                 'required',
-                Rule::unique($this->table_name, 'title'),
+                Rule::unique($this->table_name, $this->table_name == "references" ? "title" : "designation"),
             ],
         ];
     }
@@ -53,9 +54,9 @@ class ConditionnalInputLivewire extends Component
             ]);
         }
 
-        if ($this->name == 'designation') {
-            Designation::create([
-                'title' => $this->content
+        if ($this->name == 'designation_id') {
+            Materiel::create([
+                'designation' => $this->content
             ]);
         }
 

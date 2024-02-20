@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Materiel extends Model
 {
@@ -12,23 +13,18 @@ class Materiel extends Model
 
     protected $fillable = [
         'active',
-        'designation_id',
-        'commentaire',
-        'categorie',
-        'type',
-        'numero_inventaire',
-        'date_acquisition',
-        'reference_id'
+        'designation',
     ];
 
 
-    public function reference(): BelongsTo
+    public function equipement(): HasMany
     {
-        return $this->belongsTo(Reference::class);
+        return $this->hasMany(Equipement::class);
     }
 
-    public function designation(): BelongsTo
+
+    public function fourniture(): HasMany
     {
-        return $this->belongsTo(Designation::class);
+        return $this->hasMany(Fourniture::class);
     }
 }

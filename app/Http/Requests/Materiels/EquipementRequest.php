@@ -23,9 +23,8 @@ class EquipementRequest extends FormRequest
     {
         return [
             'active' => ['nullable'],
-            'designation_id' => ['required'],
+            'materiel_id' => ['required'],
             'commentaire' => ['nullable'],
-            'categorie' => ['required'],
             'type' => ['required'],
             'numero_inventaire' => ['required'],
             'date_acquisition' => ['required'],

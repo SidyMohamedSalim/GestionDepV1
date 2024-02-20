@@ -23,9 +23,8 @@ class FournitureRequest extends FormRequest
     {
         return [
             'active' => ['nullable'],
-            'designation_id' => ['required'],
+            'materiel_id' => ['required'],
             'commentaire' => ['nullable'],
-            'categorie' => ['required'],
             'type' => ['required'],
             'date_acquisition' => ['required'],
             'reference_id' => ['required']

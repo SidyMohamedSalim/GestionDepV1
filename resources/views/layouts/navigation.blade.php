@@ -1,4 +1,6 @@
 <nav x-data="{ open: false }" class="border-b bg-gray-50 border-gray-50 ">
+
+    {{$routeName = Route::currentRouteName()}}
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -7,17 +9,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="Str::startsWith($routeName, 'dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('enseignant.index')" :active="request()->routeIs('enseignant.index')">
+                    <x-nav-link :href="route('enseignant.index')" :active="Str::startsWith($routeName, 'enseignant')">
                         {{ __('Enseignants') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('bureau.index')" :active="request()->routeIs('bureau.index')">
+                    <x-nav-link :href="route('bureau.index')" :active="Str::startsWith($routeName, 'bureau')">
                         {{ __('Bureaux') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('materiel.index')" :active="request()->routeIs('materiel.index')">
+                    <x-nav-link :href="route('materiel.equipement.index')"
+                        :active="Str::startsWith($routeName, 'materiel') ">
                         {{ __('Materiels') }}
                     </x-nav-link>
                 </div>

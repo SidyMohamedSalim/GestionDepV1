@@ -2,5 +2,5 @@
 
 
 @section('content')
-    <livewire:materiel.materiel-livewire />
+<livewire:materiel.materiel-livewire :categorie="$categorie" />
 @endsection
