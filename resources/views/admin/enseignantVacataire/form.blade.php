@@ -18,17 +18,13 @@
             @method($enseignant->id ? 'PUT' : 'POST')
 
             {{-- Nom --}}
-
             <div class="mt-4">
                 <x-input-label for="nom" :value="__('Nom')" />
 
                 <x-text-input id="nom" class="block w-full mt-1" type="nom" type='text' name="nom" autocomplete="nom"
                     value="{{ old('nom', $enseignant?->nom) }}" />
-
                 <x-input-error :messages="$errors->get('nom')" class="mt-2" />
             </div>
-
-
 
             {{-- Prennom --}}
 

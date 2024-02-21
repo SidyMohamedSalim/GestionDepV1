@@ -1,16 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Materiels;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Designation extends Model
+class MaterielAcquisition extends Model
 {
     use HasFactory;
-
-    protected  $fillable = [
-        'title',
-        'active'
-    ];
 }

@@ -18,10 +18,6 @@
                     Inventaire
                 </x-table-header>
                 @endif
-                <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
-                    :orderDirection="$orderByDirection">
-                    Date Acquisition
-                </x-table-header>
                 <x-table-header fieldname="reference_id" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Reference
@@ -38,7 +34,7 @@
                     <x-status-icons :active="$materiel->active" />
                 </th>
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    {{ $materiel->materiel->designation }}
+                    {{ $materiel->designation }}
                 </th>
 
                 @if ($categorie == 'Equipement')
@@ -46,11 +42,9 @@
                     {{ $materiel->numero_inventaire }}
                 </td>
                 @endif
+
                 <td class="px-6 py-4">
-                    {{ $materiel->date_acquisition }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $materiel->reference->title }}
+                    {{ $materiel->reference }}
 
                 </td>
                 <td class="flex items-center px-6 py-4 justify-evenly">
@@ -68,29 +62,17 @@
                         <x-icons.eyes />
                     </a>
 
-                    {{--
-                    affectation
+
+                    @php
+                    $routeName = $categorie == 'Equipement' ? 'materiel.equipement.destroy' :
+                    'materiel.fourniture.destroy';
+                    @endphp
 
                     <button
-                        wire:click="$dispatch('openModal', { component: 'materiel-bureau-modal', arguments: { materiel: {{ $materiel }} }})"
-                        class="text-success">
-                        <x-icons.desktop />
-                    </button> --}}
-
-
-                    {{-- delete --}}
-
-
-
-                    <button
-                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel->id }}, routeName: {{$categorie == 'Equipement' ? 'materiel.equipement.destroy' : 'materiel.fourniture.destroy' }})"
+                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel->id }}, routeName: {{  $routeName }})"
                         class="text-danger">
                         <x-icons.delete />
                     </button>
-
-
-
-
                 </td>
             </tr>
             @empty

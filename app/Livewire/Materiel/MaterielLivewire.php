@@ -16,7 +16,6 @@ class MaterielLivewire extends Component
 
     public string $type = 'Bureau';
     public string $categorie = '';
-    protected Builder $query;
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'ASC';
@@ -42,23 +41,23 @@ class MaterielLivewire extends Component
 
     public function render()
     {
-
-        if ($this->categorie == 'Equipement') {
-            $this->query = Equipement::query();
-        } else {
-            $this->query = Fourniture::query();
-        }
+        $query = Materiel::query();
 
         if (!empty($this->type)) {
-            $this->query =
-                $this->query->where('type', "LIKE", "%{$this->type}%");
+            $query =
+                $query->where('type', "LIKE", "%{$this->type}%");
+        }
+
+        if (!empty($this->categorie)) {
+            $query =
+                $query->where('categorie', "LIKE", "%{$this->categorie}%");
         }
 
         return view(
             'livewire.materiel.materiel-livewire',
             [
                 'materiels'
-                => $this->query->with(['materiel', 'reference'])->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
+                => $query->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
             ]
         );
     }

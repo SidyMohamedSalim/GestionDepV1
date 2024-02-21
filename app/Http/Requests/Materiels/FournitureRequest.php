@@ -23,11 +23,11 @@ class FournitureRequest extends FormRequest
     {
         return [
             'active' => ['nullable'],
-            'materiel_id' => ['required'],
+            'designation' => ['required'],
             'commentaire' => ['nullable'],
+            'categorie' => ['required'],
             'type' => ['required'],
-            'date_acquisition' => ['required'],
-            'reference_id' => ['required']
+            'reference' => ['nullable']
         ];
     }
 }

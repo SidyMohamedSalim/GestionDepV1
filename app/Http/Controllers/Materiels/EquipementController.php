@@ -30,10 +30,8 @@ class EquipementController extends Controller
     public function create()
     {
         return view('admin.Materiel.form', [
-            'materiel' => new Equipement(),
+            'materiel' => new Materiel(),
             'categorie' => 'Equipement',
-            'designations' => Materiel::all(),
-            'references' => Reference::all()
         ]);
     }
 
@@ -42,14 +40,14 @@ class EquipementController extends Controller
      */
     public function store(EquipementRequest $request)
     {
-        Equipement::create($request->validated());
+        Materiel::create($request->validated());
         return redirect()->route('materiel.equipement.index')->with('success', 'Equipement créé');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Equipement $equipement)
+    public function show(Materiel $equipement)
     {
         return $equipement;
     }
@@ -57,21 +55,19 @@ class EquipementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Equipement $equipement)
+    public function edit(Materiel $equipement)
     {
         //
         return view('admin.Materiel.form', [
             'materiel' => $equipement,
             'categorie' => 'Equipement',
-            'designations' => Materiel::all(),
-            'references' => Reference::all()
         ]);;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EquipementRequest $request, Equipement $equipement)
+    public function update(EquipementRequest $request, Materiel $equipement)
     {
         $equipement->update($request->validated());
         return redirect()->route('materiel.equipement.index')->with('success', 'Equipement modifié');
@@ -80,7 +76,7 @@ class EquipementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Equipement $equipement)
+    public function destroy(Materiel $equipement)
     {
         //
         $equipement->delete();

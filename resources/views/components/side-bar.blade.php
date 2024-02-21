@@ -72,12 +72,5 @@
         </a>
 
     </div>
-    <div class="mt-[300%]">
-        <div class="my-4 bg-black h-[1px]"></div>
-        <div
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-primary text-white">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span class="text-[15px] ml-4 text-danger font-bold">Deconnexion</span>
-        </div>
-    </div>
+
 </div>

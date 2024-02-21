@@ -6,9 +6,8 @@
         </h2>
     </x-slot>
 
-    <div x-data="{ type: 'Equipement' }">
+    <div x-data="{ categorie: 'Equipement' }">
         <div class="justify-center max-w-xl mx-auto">
-
 
 
             <form method="post"
@@ -37,15 +36,19 @@
                         ])>
                         + Fourniture
                     </a>
-
+                    <input type="text" id="categorie" name="categorie" value="{{ $categorie }}" class="hidden" />
                 </div>
+                @else
+                <input type="text" id="categorie" name="categorie" value="{{ $materiel->categorie }}" class="hidden" />
                 @endif
 
 
                 <div class="mt-4">
                     <x-input-label for="type" :value="__('Materiel de ?')" />
-
-                    <select name="type" @disabled($materiel->type)
+                    @if ($materiel->id)
+                    <input type="text" name="type" value="{{ $materiel->type }}" class="hidden" />
+                    @endif
+                    <select name="type" @disabled($materiel->id)
                         class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                         <option value="Bureau" @selected($materiel->type == 'Bureau')>Bureautique</option>
                         <option value="Informatique" @selected($materiel->type == 'Informatique')>Informatique
@@ -71,30 +74,21 @@
                 <div class="grid grid-cols-2 gap-4">
 
                     <div class="mt-4">
-                        <x-input-label for="materiel_id" :value="__(' Designation')" />
-                        <select name="materiel_id"
-                            class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
-                            @foreach ($designations as $designation)
-                            <option @selected($designation->id == $materiel?->materiel?->id) value="{{
-                                $designation->id
-                                }}">{{ $designation->designation }}</option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('materiel_id')" class="mt-2" />
-                        <livewire:materiel.conditionnal-input-livewire name="designation_id" label="Designation" />
+                        <x-input-label for="designation" :value="__('Designation')" />
+
+                        <x-text-input id="designation" class="block w-full mt-1" type="text" name="designation"
+                            autocomplete="designation" value="{{ old('designation', $materiel->designation) }}" />
+
+                        <x-input-error :messages="$errors->get('designation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="reference_id" :value="__('Reference')" />
-                        <select name="reference_id"
-                            class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
-                            @foreach ($references as $reference)
-                            <option @selected($reference->id == $materiel?->reference?->id) value="{{ $reference->id
-                                }}">{{ $reference->title }}</option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('reference_id')" class="mt-2" />
-                        <livewire:materiel.conditionnal-input-livewire name="reference" label="Reference" />
+                        <x-input-label for="reference" :value="__('Reference')" />
+
+                        <x-text-input id="reference" class="block w-full mt-1" type="text" name="reference"
+                            autocomplete="reference" value="{{ old('reference', $materiel->reference) }}" />
+
+                        <x-input-error :messages="$errors->get('reference')" class="mt-2" />
                     </div>
 
                 </div>
@@ -108,13 +102,7 @@
                     <x-input-error :messages="$errors->get('commentaire')" class="mt-2" />
                 </div>
 
-                <div class="mt-4">
-                    <x-input-label for="date_acquisition" :value="__('Date Acquisition')" />
-                    <x-text-input id="date_acquisition" class="block w-full mt-1" type="date" name="date_acquisition"
-                        value="{{ old('date_acquisition', $materiel->date_acquisition) }}" autofocus
-                        autocomplete="username" />
-                    <x-input-error :messages="$errors->get('date_acquisition')" class="mt-2" />
-                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button type='submit' class="ms-3">
                         {{ __('Enregistrer') }}

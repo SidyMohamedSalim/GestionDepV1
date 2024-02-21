@@ -14,17 +14,11 @@ class Materiel extends Model
     protected $fillable = [
         'active',
         'designation',
+        'commentaire',
+        'numero_inventaire',
+        'type',
+        'categorie',
+        'reference',
+        'designation'
     ];
-
-
-    public function equipement(): HasMany
-    {
-        return $this->hasMany(Equipement::class);
-    }
-
-
-    public function fourniture(): HasMany
-    {
-        return $this->hasMany(Fourniture::class);
-    }
 }

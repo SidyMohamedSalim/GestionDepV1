@@ -33,10 +33,8 @@ class FournitureController extends Controller
     public function create()
     {
         return view('admin.Materiel.form', [
-            'materiel' => new Fourniture(),
+            'materiel' => new Materiel(),
             'categorie' => 'Fourniture',
-            'designations' => Materiel::all(),
-            'references' => Reference::all()
         ]);
     }
 
@@ -45,14 +43,14 @@ class FournitureController extends Controller
      */
     public function store(FournitureRequest $request)
     {
-        Fourniture::create($request->validated());
+        Materiel::create($request->validated());
         return redirect()->route('materiel.fourniture.index')->with('success', 'fourniture créé');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Fourniture $fourniture)
+    public function show(Materiel $fourniture)
     {
         return $fourniture;
     }
@@ -60,22 +58,22 @@ class FournitureController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fourniture $fourniture)
+    public function edit(Materiel $fourniture)
     {
         //
         return view('admin.Materiel.form', [
             'materiel' => $fourniture,
             'categorie' => 'Fourniture',
-            'designations' => Materiel::all(),
-            'references' => Reference::all()
         ]);;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FournitureRequest $request, Fourniture $fourniture)
+    public function update(FournitureRequest $request, Materiel $fourniture)
     {
+        dd($request->validated());
+
         $fourniture->update($request->validated());
         return redirect()->route('materiel.fourniture.index')->with('success', 'fourniture modifié');
     }
@@ -83,10 +81,11 @@ class FournitureController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fourniture $fourniture)
+    public function destroy(Materiel $fourniture)
     {
-        //
+        //p
         $fourniture->delete();
+
         return redirect()->route('materiel.fourniture.index')->with('success', 'fourniture supprimé');
     }
 }

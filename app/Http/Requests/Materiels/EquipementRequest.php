@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Materiels;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EquipementRequest extends FormRequest
 {
@@ -21,14 +22,16 @@ class EquipementRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        dd();
         return [
             'active' => ['nullable'],
-            'materiel_id' => ['required'],
+            'designation' => ['required'],
             'commentaire' => ['nullable'],
             'type' => ['required'],
+            'categorie' => ['required'],
             'numero_inventaire' => ['required'],
-            'date_acquisition' => ['required'],
-            'reference_id' => ['required']
+            'reference' => ['required']
         ];
     }
 }

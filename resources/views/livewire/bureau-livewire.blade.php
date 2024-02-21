@@ -29,16 +29,20 @@
 
             <thead class="text-xs text-white uppercase bg-secondary ">
                 <tr>
-                    <x-table-header fieldname="numero_bureau" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                    <x-table-header fieldname="numero_bureau" :selectedFieldName="$orderByField"
+                        :orderDirection="$orderByDirection">
                         Numero
                     </x-table-header>
-                    <x-table-header fieldname="designation" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                    <x-table-header fieldname="designation" :selectedFieldName="$orderByField"
+                        :orderDirection="$orderByDirection">
                         Designation
                     </x-table-header>
-                    <x-table-header fieldname="capacite" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                    <x-table-header fieldname="capacite" :selectedFieldName="$orderByField"
+                        :orderDirection="$orderByDirection">
                         Capacitte
                     </x-table-header>
-                    <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                    <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
+                        :orderDirection="$orderByDirection">
                         Date Acquisition
                     </x-table-header>
                     <th scope="col" class="px-6 py-3">
@@ -48,48 +52,48 @@
             </thead>
             <tbody>
                 @foreach ($bureaux as $bureau)
-                    <tr class="border-b odd:bg-white">
-                        <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap ">
-                            {{ $bureau->numero_bureau }}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{ $bureau->designation }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $bureau->capacite }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $bureau->date_acquisition }}
-                        </td>
-                        <td class="flex items-center justify-center gap-3 px-6 py-4">
+                <tr class="border-b odd:bg-white">
+                    <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap ">
+                        {{ $bureau->numero_bureau }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ $bureau->designation }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $bureau->capacite }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $bureau->date_acquisition }}
+                    </td>
+                    <td class="flex items-center justify-center gap-3 px-6 py-4">
 
-                            {{-- edit --}}
-                            <a href="{{ route('bureau.edit', $bureau) }}"
-                                class="font-medium text-primary dark:text-primary hover:underline">
-                                <x-icons.edit />
-                            </a>
+                        {{-- edit --}}
+                        <a href="{{ route('bureau.edit', $bureau) }}"
+                            class="font-medium text-primary dark:text-primary hover:underline">
+                            <x-icons.edit />
+                        </a>
 
-                            {{-- show --}}
-                            <a href="{{ route('bureau.show', $bureau) }}">
-                                <x-icons.eyes />
-                            </a>
+                        {{-- show --}}
+                        <a href="{{ route('bureau.show', $bureau) }}">
+                            <x-icons.eyes />
+                        </a>
 
-                            {{-- affectation  enseignants --}}
-                            <a x-data="" class="text-success"
-                                href="{{ route('show_affecter_enseignants_bureau', $bureau) }}">
-                                <x-icons.users />
-                            </a>
+                        {{-- affectation enseignants --}}
+                        <a x-data="" class="text-success"
+                            href="{{ route('show_affecter_enseignants_bureau', $bureau) }}">
+                            <x-icons.users />
+                        </a>
 
-                            {{-- delete --}}
+                        {{-- delete --}}
 
-                            <button
-                                wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $bureau->id }}, routeName: 'bureau.destroy' }})"
-                                class="text-danger">
-                                <x-icons.delete />
-                            </button>
+                        <button
+                            wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $bureau->id }}, routeName: 'bureau.destroy' }})"
+                            class="text-danger">
+                            <x-icons.delete />
+                        </button>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
