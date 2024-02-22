@@ -72,7 +72,6 @@ class FournitureController extends Controller
      */
     public function update(FournitureRequest $request, Materiel $fourniture)
     {
-        dd($request->validated());
 
         $fourniture->update($request->validated());
         return redirect()->route('materiel.fourniture.index')->with('success', 'fourniture modifié');

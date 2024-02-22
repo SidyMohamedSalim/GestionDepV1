@@ -1,5 +1,18 @@
 <div>
+    <div>
+        @if (session('saveAcquisition'))
+        <div
+            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            <span>{{ session('saveAcquisition') }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-check">
+                <path d="M20 6 9 17l-5-5" />
+            </svg>
+        </div>
+        @endif
 
+    </div>
     <table class="w-full text-sm text-left rtl:text-right ">
 
         <thead class="text-xs text-white uppercase bg-primary ">
@@ -29,7 +42,7 @@
         </thead>
         <tbody>
             @forelse ($materiels as $materiel)
-            <tr class="border-b odd:bg-white">
+            <tr :key="$materiel->id" class="border-b odd:bg-white">
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                     <x-status-icons :active="$materiel->active" />
                 </th>
@@ -39,7 +52,7 @@
 
                 @if ($categorie == 'Equipement')
                 <td class="px-6 py-4">
-                    {{ $materiel->numero_inventaire }}
+                    {{ $materiel->numero_invetaire }}
                 </td>
                 @endif
 
@@ -63,18 +76,21 @@
                     </a>
 
 
-                    @php
-                    $routeName = $categorie == 'Equipement' ? 'materiel.equipement.destroy' :
-                    'materiel.fourniture.destroy';
-                    @endphp
-
-                    <button
-                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel->id }}, routeName: {{  $routeName }})"
-                        class="text-danger">
-                        <x-icons.delete />
+                    <button class="text-success" wire:click.prevent="startAcquisition({{ $materiel->id }})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-plus">
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                        </svg>
                     </button>
                 </td>
             </tr>
+
+            @if ($materielAcquisitionId == $materiel->id)
+            <livewire:materiels.materiel-acquisition-livewire :materiel_id="$materiel->id" :key="$materiel->id" />
+            @endif
+
             @empty
             <div class="flex items-center justify-center w-full h-full">
                 <p>Vide !!</p>

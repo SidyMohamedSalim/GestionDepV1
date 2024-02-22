@@ -6,6 +6,7 @@ use App\Models\Equipement;
 use App\Models\Fourniture;
 use App\Models\Materiel;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -35,6 +36,28 @@ class MaterielLivewire extends Component
             $this->orderByField = $fieldname;
             $this->reset('orderByDirection');
         }
+    }
+
+
+    //ajouter une nouvelle acquisiont
+
+    public string $materielAcquisitionId = '';
+
+    public  function startAcquisition(string $materielId)
+    {
+        $this->materielAcquisitionId = $materielId;
+    }
+
+
+
+
+    //Lorsque l'on enregistre une nouvelle acquitision
+
+    #[On('acquisitionSaved')]
+    public function onAquisitionSaved(string $materielId)
+    {
+        $this->reset('materielAcquisitionId');
+        session()->flash('saveAcquisition', 'Acquisition fait avec succes');
     }
 
 
