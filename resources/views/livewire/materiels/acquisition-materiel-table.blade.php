@@ -9,7 +9,7 @@
 
     <div class="flex items-center justify-between my-6 bg">
         <h1 class="text-2xl font-extrabold">Gestion des differentes acquisitions</h1>
-        <a href="{{ route('materiel.equipement.index') }}"
+        <a href="{{ route('materiel.materiel_acquisition.create') }}"
             class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
             + Nouvelle acquisition
         </a>
