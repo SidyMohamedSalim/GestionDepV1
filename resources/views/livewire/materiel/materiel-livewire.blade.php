@@ -1,4 +1,5 @@
 <div>
+
     <div>
         @if (session('saveAcquisition'))
         <div

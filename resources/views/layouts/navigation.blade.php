@@ -19,7 +19,7 @@
                     <x-nav-link :href="route('bureau.index')" :active="Str::startsWith($routeName, 'bureau')">
                         {{ __('Bureaux') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('materiel.equipement.index')"
+                    <x-nav-link :href="route('materiel.materiel_acquisition.index')"
                         :active="Str::startsWith($routeName, 'materiel') ">
                         {{ __('Materiels') }}
                     </x-nav-link>

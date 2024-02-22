@@ -2,5 +2,9 @@
 
 
 @section('content')
-<livewire:materiel.materiel-livewire :categorie="$categorie" />
+
+<div>
+
+    <livewire:materiel.materiel-livewire :categorie="$categorie" />
+</div>
 @endsection

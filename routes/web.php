@@ -5,6 +5,7 @@ use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\enseignant\EnseignantVacataireController;
 use App\Http\Controllers\Materiels\EquipementController;
 use App\Http\Controllers\Materiels\FournitureController;
+use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
@@ -76,6 +77,8 @@ Route::prefix('/materiels')->controller(MaterielsController::class)->name('mater
 
     Route::resource('fourniture', FournitureController::class)->middleware('auth');
     Route::resource('equipement', EquipementController::class)->middleware('auth');
+
+    Route::resource('materiel_acquisition', MaterielAcquisitionController::class)->middleware('auth');
 });
 
 

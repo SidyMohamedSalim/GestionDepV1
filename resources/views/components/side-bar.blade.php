@@ -48,7 +48,7 @@
             <span class="text-[15px] ml-4 font-bold">Bureaux</span>
         </a>
 
-        <a href="{{ route('materiel.equipement.index') }}"
+        <a href="{{ route('materiel.materiel_acquisition.index') }}"
             class="p-2.5 mt-3 flex items-center @if (Str::contains($routeName, 'materiel.')) bg-primary text-white @endif rounded-md px-4 duration-300 cursor-pointer hover:bg-primary ">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
