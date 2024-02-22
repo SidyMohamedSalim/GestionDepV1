@@ -33,7 +33,7 @@ class MaterielAcquisitionController extends Controller
     public function store(MaterielAcquisitionRequest $request)
     {
         MaterielAcquisition::create($request->validated());
-        return redirect()->route('MaterielAcquisition.index')->with('success', 'MaterielAcquisition créé');
+        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition créé');
     }
 
     /**
@@ -61,7 +61,7 @@ class MaterielAcquisitionController extends Controller
     public function update(MaterielAcquisitionRequest $request, MaterielAcquisition $materiel_acquisition)
     {
         $materiel_acquisition->update($request->validated());
-        return redirect()->route('MaterielAcquisition.index')->with('success', 'MaterielAcquisition modifié');
+        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition modifié');
     }
 
     /**
@@ -71,6 +71,6 @@ class MaterielAcquisitionController extends Controller
     {
         //
         $materiel_acquisition->delete();
-        return redirect()->route('MaterielAcquisition.index')->with('success', 'MaterielAcquisition supprimé');
+        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition supprimé');
     }
 }

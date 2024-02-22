@@ -10,9 +10,7 @@
 
                     <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
                 </div>
-
                 <div class="mt-4">
-
                     <x-input-label for="date_acquisition" :value="__('Date d\'Acquisition')" />
                     <input type="date" wire:model.defer="date_acquisition"
                         class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
