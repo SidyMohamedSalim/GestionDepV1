@@ -30,9 +30,6 @@
 
         <thead class="text-xs text-white uppercase bg-primary ">
             <tr>
-
-
-
                 <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Numero Inventaire
@@ -42,20 +39,18 @@
                 </th>
                 <x-table-header fieldname="destination" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
-                    Destiné A
+                    Destiné Au
                 </x-table-header>
-                <th scope="col" class="px-6 py-3">
-                    Categorie
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    type
-                </th>
+
+                <x-table-header fieldname="categorie" :selectedFieldName="$orderByField"
+                    :orderDirection="$orderByDirection">
+                    Type
+                </x-table-header>
 
                 <x-table-header fieldname="quantite" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     quantite
                 </x-table-header>
-
                 <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Date d'acquisition
@@ -70,7 +65,11 @@
             @forelse ($materiel_acquisitions as $materiel_acquisition)
             <tr class="border-b odd:bg-white">
                 <td class="px-6 py-4 text-primary">
-                    {{ $materiel_acquisition->numero_inventaire ?? "NULL" }}
+                    @if ($materiel_acquisition->numero_inventaire)
+                    {{ $materiel_acquisition->numero_inventaire }}
+                    @else
+                    ------
+                    @endif
                 </td>
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->materiel->designation }}
@@ -83,9 +82,12 @@
                     @endif
                 </td>
                 <td class="px-6 py-4">
+                    @if ( $materiel_acquisition->materiel->categorie == "Equipement" &&
+                    $materiel_acquisition->materiel->type == 'Informatique' )
+                    Matériel
+                    @else
                     {{ $materiel_acquisition->materiel->categorie }}
-                </td>
-                <td class="px-6 py-4">
+                    @endif
                     {{ $materiel_acquisition->materiel->type }}
                 </td>
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">

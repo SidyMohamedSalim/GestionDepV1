@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Reference;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +18,6 @@ return new class extends Migration
             $table->string("commentaire")->nullable();
             $table->enum('categorie', ['Equipement', 'Fourniture']);
             $table->enum('type', ['Bureau', 'Informatique']);
-
             $table->string("reference")->nullable();
 
             $table->timestamps();
