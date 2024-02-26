@@ -50,7 +50,11 @@
                     {{ $materiel->designation }}
                 </th>
                 <td class="px-6 py-4">
+                    @if ($materiel->type == 'Informatique' && $materiel->categorie == "Equipement")
+                    Materiel
+                    @else
                     {{ $materiel->categorie }}
+                    @endif
 
                 </td>
                 <td class="px-6 py-4">

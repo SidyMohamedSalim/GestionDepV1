@@ -14,9 +14,7 @@ return new class extends Migration
     {
         Schema::create('materiels', function (Blueprint $table) {
             $table->id();
-
-            $table->string('designation')->unique();
-
+            $table->string('designation');
             $table->boolean('active')->default(true);
             $table->string("commentaire")->nullable();
             $table->enum('categorie', ['Equipement', 'Fourniture']);

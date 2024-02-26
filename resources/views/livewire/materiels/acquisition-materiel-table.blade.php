@@ -10,8 +10,6 @@
 
 
 
-
-
     <div class="flex items-center justify-between my-6 bg">
         <h1 class="text-2xl font-extrabold">Gestion des differentes acquisitions</h1>
         <a href="{{ route('materiel.materiel_acquisition.create') }}"
@@ -32,14 +30,20 @@
 
         <thead class="text-xs text-white uppercase bg-primary ">
             <tr>
-                <x-table-header fieldname="active" :selectedFieldName="$orderByField"
-                    :orderDirection="$orderByDirection">
-                    Etat
-                </x-table-header>
 
+
+
+                <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
+                    :orderDirection="$orderByDirection">
+                    Numero Inventaire
+                </x-table-header>
                 <th scope="col" class="px-6 py-3">
                     Designation
                 </th>
+                <x-table-header fieldname="destination" :selectedFieldName="$orderByField"
+                    :orderDirection="$orderByDirection">
+                    Destiné A
+                </x-table-header>
                 <th scope="col" class="px-6 py-3">
                     Categorie
                 </th>
@@ -65,11 +69,18 @@
         <tbody>
             @forelse ($materiel_acquisitions as $materiel_acquisition)
             <tr class="border-b odd:bg-white">
-                <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    <x-status-icons :active="true" />
-                </th>
+                <td class="px-6 py-4 text-primary">
+                    {{ $materiel_acquisition->numero_inventaire ?? "NULL" }}
+                </td>
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->materiel->designation }}
+                </td>
+                <td class="px-6 py-4">
+                    @if ($materiel_acquisition->destination == 'informatique')
+                    Departement Informatique
+                    @else
+                    Laboratoire
+                    @endif
                 </td>
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->materiel->categorie }}

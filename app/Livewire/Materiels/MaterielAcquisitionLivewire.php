@@ -4,30 +4,40 @@ namespace App\Livewire\Materiels;
 
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class MaterielAcquisitionLivewire extends Component
 {
-
-    public string $quantite = "1";
-    public string $date_acquisition = '';
-    public string $numero_inventaire = '';
-    public string $caracteristiques = '';
     public Materiel $materiel;
 
 
-    protected $rules = [
-        'quantite' => "required",
-        'date_acquisition' => "required",
-        'numero_inventaire' => "required",
-        'caracteristiques' => "nullable",
-        'destination' => "required",
-    ];
+    public string $quantite = "1";
+    public string $date_acquisition = '';
+    public string $carateristiques = '';
+    public string $destination = '';
+
+    public string $numero_inventaire = '';
+
+
+
+
+    protected function rules()
+    {
+        return [
+            'quantite' => "required",
+            'date_acquisition' => "required",
+            'carateristiques' => "nullable",
+            'destination' => ["required"],
+            "numero_inventaire" => [$this->materiel->categorie == 'Equipement' ? "required" : "nullable"]
+        ];
+    }
 
     public function __construct()
     {
         $this->materiel = new Materiel();
     }
+
 
     public  function  saveAcquisiton()
     {
@@ -36,14 +46,14 @@ class MaterielAcquisitionLivewire extends Component
         if (!empty($this->materiel->id)) {
             MaterielAcquisition::create([
                 'quantite' => $this->quantite,
-                'caracteristiques' => $this->caracteristiques,
-                'numero_inventaire' => $this->numero_inventaire,
+                'carateristiques' => $this->carateristiques,
+                'date_acquisition' => $this->date_acquisition,
                 'numero_inventaire' => $this->numero_inventaire,
                 'destination' => $this->destination,
                 'materiel_id' => $this->materiel->id
             ]);
+            $this->dispatch("acquisitionSaved",  $this->materiel->id);
         }
-        $this->dispatch("acquisitionSaved",  $this->materiel_id);
     }
 
 

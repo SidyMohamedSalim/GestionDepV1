@@ -18,6 +18,5 @@ class Materiel extends Model
         'type',
         'categorie',
         'reference',
-        'designation'
     ];
 }

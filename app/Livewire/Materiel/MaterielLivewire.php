@@ -12,7 +12,7 @@ class MaterielLivewire extends Component
 
     use WithPagination;
 
-    public string $type = 'Bureau';
+    public string $type = '';
     public string $categorie = '';
 
     public string $orderByField = 'created_at';
