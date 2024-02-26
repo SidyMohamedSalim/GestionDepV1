@@ -2,10 +2,7 @@
 
 namespace App\Livewire\Materiel;
 
-use App\Models\Equipement;
-use App\Models\Fourniture;
 use App\Models\Materiel;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;

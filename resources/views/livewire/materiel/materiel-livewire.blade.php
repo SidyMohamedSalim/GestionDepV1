@@ -12,7 +12,6 @@
             </svg>
         </div>
         @endif
-
     </div>
     <table class="w-full text-sm text-left rtl:text-right ">
 
@@ -22,16 +21,16 @@
                     :orderDirection="$orderByDirection">
                     Status
                 </x-table-header>
-                <th scope="col" class="px-6 py-3">
-                    Designation
-                </th>
-
-                @if ($categorie == 'Equipement')
-                <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
+                <x-table-header fieldname="designation" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
-                    Inventaire
+                    Designation
                 </x-table-header>
-                @endif
+                <th scope="col" class="px-6 py-3">
+                    Categorie
+                </th>
+                <x-table-header fieldname="type" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
+                    Type
+                </x-table-header>
                 <x-table-header fieldname="reference_id" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Reference
@@ -50,12 +49,14 @@
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                     {{ $materiel->designation }}
                 </th>
-
-                @if ($categorie == 'Equipement')
                 <td class="px-6 py-4">
-                    {{ $materiel->numero_invetaire }}
+                    {{ $materiel->categorie }}
+
                 </td>
-                @endif
+                <td class="px-6 py-4">
+                    {{ $materiel->type }}
+
+                </td>
 
                 <td class="px-6 py-4">
                     {{ $materiel->reference }}
@@ -63,16 +64,14 @@
                 </td>
                 <td class="flex items-center px-6 py-4 justify-evenly">
                     {{-- editer --}}
-                    <a href="{{ $categorie == 'Equipement' ? route('materiel.equipement.edit',$materiel) :
-                        route('materiel.fourniture.edit',$materiel) }}"
+                    <a href="{{ route('materiel.materiel.edit',$materiel) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
 
                         <x-icons.edit />
                     </a>
 
                     {{-- voir --}}
-                    <a href="{{ $categorie == 'Equipement' ? route('materiel.equipement.show',$materiel) :
-                        route('materiel.fourniture.show',$materiel) }}">
+                    <a href="{{ route('materiel.materiel.show',$materiel) }}">
                         <x-icons.eyes />
                     </a>
 
@@ -89,7 +88,7 @@
             </tr>
 
             @if ($materielAcquisitionId == $materiel->id)
-            <livewire:materiels.materiel-acquisition-livewire :materiel_id="$materiel->id" :key="$materiel->id" />
+            <livewire:materiels.materiel-acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
             @endif
 
             @empty

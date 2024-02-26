@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
+use App\Models\Materiel;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,5 +26,28 @@ class DatabaseSeeder extends Seeder
         Enseignant::factory(50)->create();
         EnseignantVacataire::factory(50)->create();
         Bureau::factory(10)->create();
+
+
+
+        Materiel::factory(20)->create([
+            'categorie' => "Fourniture",
+            'type' => "Informatique"
+        ]);
+
+        Materiel::factory(20)->create([
+            'categorie' => "Fourniture",
+            'type' => "Bureau"
+        ]);
+
+
+        Materiel::factory(20)->create([
+            'categorie' => "Equipement",
+            'type' => "Bureau"
+        ]);
+
+        Materiel::factory(20)->create([
+            'categorie' => "Equipement",
+            'type' => "Informatique"
+        ]);
     }
 }

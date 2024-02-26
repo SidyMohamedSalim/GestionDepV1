@@ -3,10 +3,8 @@
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\enseignant\EnseignantVacataireController;
-use App\Http\Controllers\Materiels\EquipementController;
-use App\Http\Controllers\Materiels\FournitureController;
 use App\Http\Controllers\Materiels\MaterielAcquisitionController;
-use App\Http\Controllers\Materiels\MaterielsController;
+use App\Http\Controllers\Materiels\MaterielController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
 use App\Models\Bureau;
@@ -65,19 +63,8 @@ Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('a
 Route::resource('bureau', BureauController::class)->middleware('auth');
 
 // materiels
-Route::prefix('/materiels')->controller(MaterielsController::class)->name('materiel.')->middleware('auth')->group(function () {
-    Route::get('/', 'index')->name('index');
-
-    Route::get('/create', 'create')->name('create');
-
-    Route::post('/create', 'store')->name('store');
-
-    Route::get('/{materiel}/edit', 'edit')->name('edit');
-    Route::post('/{materiel}/edit', 'update')->name('update');
-
-    Route::resource('fourniture', FournitureController::class)->middleware('auth');
-    Route::resource('equipement', EquipementController::class)->middleware('auth');
-
+Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(function () {
+    Route::resource('materiel', MaterielController::class)->middleware('auth');
     Route::resource('materiel_acquisition', MaterielAcquisitionController::class)->middleware('auth');
 });
 

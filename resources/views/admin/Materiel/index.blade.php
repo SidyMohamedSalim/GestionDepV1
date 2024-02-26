@@ -4,6 +4,6 @@
 @section('content')
 
 <div>
-    <livewire:materiel.materiel-livewire :categorie="$categorie" />
+    <livewire:materiel.materiel-livewire />
 </div>
 @endsection

@@ -23,7 +23,7 @@ class MaterielAcquisitionController extends Controller
     public function create()
     {
         return view('admin.Materiel.acquisition.form', [
-            'MaterielAcquisition' => new MaterielAcquisition()
+            'MaterielAcquisition' => new MaterielAcquisition(),
         ]);
     }
 

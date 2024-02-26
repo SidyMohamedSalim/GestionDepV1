@@ -14,6 +14,9 @@ class MaterielAcquisition extends Model
     protected $fillable = [
         'quantite',
         'date_acquisition',
+        'numero_inventaire',
+        'destination',
+        "carateristiques",
         'materiel_id'
     ];
 

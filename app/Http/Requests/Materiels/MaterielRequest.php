@@ -4,7 +4,7 @@ namespace App\Http\Requests\Materiels;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MaterielAcquisitionRequest extends FormRequest
+class MaterielRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,12 @@ class MaterielAcquisitionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quantite' => ['required'],
-            'date_acquisition' => ['date'],
-            'numero_inventaire',
-            'destination',
-            "carateristiques",
-            'materiel_id' => ['required']
+            'active' => ['nullable'],
+            'designation' => ['required'],
+            'commentaire' => ['nullable'],
+            'categorie' => ['required'],
+            'type' => ['required'],
+            'reference' => ['nullable']
         ];
     }
 }

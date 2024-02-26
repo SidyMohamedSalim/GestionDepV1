@@ -15,7 +15,6 @@ class Materiel extends Model
         'active',
         'designation',
         'commentaire',
-        'numero_inventaire',
         'type',
         'categorie',
         'reference',

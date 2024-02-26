@@ -19,7 +19,6 @@ return new class extends Migration
 
             $table->boolean('active')->default(true);
             $table->string("commentaire")->nullable();
-            $table->string("numero_inventaire")->unique()->nullable();
             $table->enum('categorie', ['Equipement', 'Fourniture']);
             $table->enum('type', ['Bureau', 'Informatique']);
 

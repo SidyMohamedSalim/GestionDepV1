@@ -1,13 +1,35 @@
 <tr class=" bg-gray-50">
-    <td colspan="5">
+    <td colspan="6">
         <form action="" class="p-8" wire:submit.prevent="saveAcquisiton">
-            <div class="grid grid-cols-2 gap-4 ">
+
+            <div @class(["grid gap-4 md:grid-cols-2", "md:grid-cols-3"=> $materiel->categorie =="Fourniture"]) >
+                <div class="mt-4">
+                    <x-input-label for="destination" :value="__('Pour ?')" />
+                    <select name="destination"
+                        class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
+                        <option value="Bureau">Departement Informatique</option>
+                        <option value="Informatique">Laboratoire
+                        </option>
+                    </select>
+                    <x-input-error :messages="$errors->get('destination')" class="mt-2" />
+                </div>
+
+
+                @if ($materiel->categorie == 'Equipement')
+                <div class="mt-4">
+                    <x-input-label for="numero_inventaire" :value="__('Numero d\'inventaire')" />
+                    <input type="text" wire:model.defer="numero_inventaire"
+                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        placeholder="Numero d'inventaire" />
+                    <x-input-error :messages="$errors->get('numero_inventaire')" class="mt-2" />
+                </div>
+                @endif
+
                 <div class="mt-4">
                     <x-input-label for="quantite" :value="__(' Quantite')" />
-                    <input type="text" wire:model.defer="quantite"
+                    <input type="number" wire:model.defer="quantite"
                         class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Quantite" />
-
                     <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
                 </div>
                 <div class="mt-4">
@@ -17,6 +39,12 @@
                         placeholder="Date d'Acquisition" />
                     <x-input-error :messages="$errors->get('date_acquisition')" class="mt-2" />
                 </div>
+            </div>
+            <div class="mt-4">
+                <x-input-label for="caracteristiques" :value="__('Caracteristiques')" />
+                <textarea name="caracteristiques"
+                    class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"></textarea>
+                <x-input-error :messages="$errors->get('caracteristiques')" class="mt-2" />
             </div>
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button type='submit' class="ms-3" wire:loading.attr='disabled'>
