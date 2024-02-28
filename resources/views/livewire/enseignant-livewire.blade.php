@@ -10,7 +10,19 @@
         </form>
     </div>
 
-
+    <div>
+        @if (session('saveAffectation'))
+        <div
+            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            <span>{{ session('saveAffectation') }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-check">
+                <path d="M20 6 9 17l-5-5" />
+            </svg>
+        </div>
+        @endif
+    </div>
 
     <table class="w-full text-sm text-left rtl:text-right ">
 
@@ -76,7 +88,7 @@
                     @endforelse
 
                 </td>
-                <td class="flex items-center px-6 py-4 justify-evenly">
+                <td class="flex items-center gap-3 px-6 py-4 justify-evenly">
                     {{-- editer --}}
                     <a href="{{ route('enseignant.edit', $enseignant) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -99,19 +111,18 @@
                         <x-icons.desktop />
                     </button>
 
+                    <button
+                        wire:click="$dispatch('openModal', { component: 'enseignant.materiel-enseignant-affectation-modal', arguments: { enseignant: {{ $enseignant }} }})"
+                        class="text-secondary">
+                        <x-icons.utils />
+                    </button>
 
                     {{-- delete --}}
-
-
-
                     <button
                         wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $enseignant->id }}, routeName: 'enseignant.destroy' }})"
                         class="text-danger">
                         <x-icons.delete />
                     </button>
-
-
-
 
                 </td>
             </tr>

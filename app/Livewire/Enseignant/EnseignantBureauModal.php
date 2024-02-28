@@ -4,9 +4,9 @@ namespace App\Livewire\Enseignant;
 
 use App\Models\Bureau;
 use App\Models\Enseignant;
-use LivewireUI\Modal\ModalComponent;
+use Illuminate\Console\View\Components\Component;
 
-class EnseignantBureauModal extends ModalComponent
+class EnseignantBureau extends Component
 {
 
     public Enseignant $enseignant;
@@ -16,7 +16,7 @@ class EnseignantBureauModal extends ModalComponent
 
 
         return view(
-            'livewire.enseignant.enseignant-bureau-modal',
+            'livewire.enseignant.enseignant-bureau',
             ['bureaux' => Bureau::all()]
         );
     }

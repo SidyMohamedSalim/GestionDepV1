@@ -7,9 +7,12 @@ use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
+use App\Http\Controllers\Relations\EnseignantMaterielsController;
+use App\Http\Controllers\Relations\MaterielEnseignantController;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
+use App\Models\MaterielEnseignant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +71,18 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
     Route::resource('materiel_acquisition', MaterielAcquisitionController::class)->middleware('auth');
 });
 
+
+
+// Relation materiel enseignant
+
+// affectation une acquisition a plusieur enseignant
+Route::resource('materiel_enseignant', MaterielEnseignantController::class)->middleware('auth');
+
+// affectation a un enseignant plusieurs aquisitions
+Route::prefix("/enseignant_materiel")->controller(EnseignantMaterielsController::class)->name("enseignant_materiel.")->group(function () {
+    Route::get("/{enseignant}", 'affecteMaterielToEnseignant')->name('affecteMaterielToEnseignant');
+    Route::post("/{enseignant}", 'storeAfectationMaterielToEnseignant')->name('storeAffecteMaterielToEnseignant');
+});
 
 
 

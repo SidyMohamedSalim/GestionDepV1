@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,14 +21,14 @@ class EnseignantLivewire extends Component
     public string $email = "";
 
     public string $orderByField = 'created_at';
-    public string $orderByDirection = 'ASC';
+    public string $orderByDirection = 'DESC';
 
     protected $queryString = [
         'nom' => ['except' => ""],
         'prenom' => ['except' => ""],
         'email' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
-        'orderByDirection' => ['except' => "ASC"]
+        'orderByDirection' => ['except' => "DESC"]
     ];
 
     public  function setOrderField(string $fieldname)
@@ -55,6 +56,16 @@ class EnseignantLivewire extends Component
     {
         return view('components.loader');
     }
+
+    //Lorsque l'on enregistre une nouvelle acquitision
+
+    #[On('affectationSaved')]
+    public function onAffectationSaved()
+    {
+        $this->reset('nom');
+        session()->flash('saveAffectation', 'Le materiel a ete affecte avec succes');
+    }
+
 
 
     public function render()
