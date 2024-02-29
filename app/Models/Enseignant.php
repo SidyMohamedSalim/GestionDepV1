@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Enseignant extends Model
 {
@@ -28,5 +29,9 @@ class Enseignant extends Model
     public  function materiel(): BelongsToMany
     {
         return $this->belongsToMany(Materiel::class);
+    }
+    public  function affectation(): HasMany
+    {
+        return $this->hasMany(MaterielEnseignant::class);
     }
 }

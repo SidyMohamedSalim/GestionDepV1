@@ -81,7 +81,7 @@
                 </td>
                 <td class="px-6 py-4">
                     @forelse ($enseignant->bureau as $bureau)
-                    <a href="{{ route('bureau.index') }}" class="hover:underline hover:italic">
+                    <a href="{{ route('bureau.show',$bureau) }}" class="hover:underline hover:italic">
                         {{ $bureau->numero_bureau }}</a>
                     @empty
                     <p class=" hover:cursor-not-allowed">Pas de Bureau</p>
@@ -106,7 +106,7 @@
                     {{-- affectation --}}
 
                     <button
-                        wire:click="$dispatch('openModal', { component: 'enseignant.enseignant-bureau-modal', arguments: { enseignant: {{ $enseignant }} }})"
+                        wire:click="$dispatch('openModal', { component: 'enseignant.enseignant-bureau-affectation-madal', arguments: { enseignant: {{ $enseignant }} }})"
                         class="text-success">
                         <x-icons.desktop />
                     </button>

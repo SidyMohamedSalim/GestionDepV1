@@ -44,7 +44,7 @@ class BureauController extends Controller
      */
     public function show(Bureau $bureau)
     {
-        return $bureau;
+        return view('admin.bureau.show', ['bureau' => $bureau]);
     }
 
     /**

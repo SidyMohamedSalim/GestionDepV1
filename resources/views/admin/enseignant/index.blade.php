@@ -2,5 +2,5 @@
 
 
 @section('content')
-    <livewire:enseignant-livewire />
+<livewire:enseignant-livewire />
 @endsection

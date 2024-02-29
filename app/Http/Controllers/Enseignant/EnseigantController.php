@@ -44,7 +44,9 @@ class EnseigantController extends Controller
     public function show(Enseignant $enseignant)
     {
         //
-        return $enseignant;
+        return view('admin.enseignant.show', [
+            'enseignant' => $enseignant
+        ]);
     }
 
     /**

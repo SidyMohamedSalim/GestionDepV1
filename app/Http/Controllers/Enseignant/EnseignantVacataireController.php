@@ -44,7 +44,9 @@ class EnseignantVacataireController extends Controller
     public function show(EnseignantVacataire $vacataire)
     {
         //
-        return $vacataire;
+        return view('admin.enseignantVacataire.show', [
+            'enseignant' => $vacataire
+        ]);
     }
 
     /**

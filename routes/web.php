@@ -75,10 +75,7 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 
 // Relation materiel enseignant
 
-// affectation une acquisition a plusieur enseignant
-Route::resource('materiel_enseignant', MaterielEnseignantController::class)->middleware('auth');
 
-// affectation a un enseignant plusieurs aquisitions
 
 
 
