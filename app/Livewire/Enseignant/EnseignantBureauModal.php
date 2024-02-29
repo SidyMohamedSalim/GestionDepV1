@@ -6,7 +6,7 @@ use App\Models\Bureau;
 use App\Models\Enseignant;
 use Illuminate\Console\View\Components\Component;
 
-class EnseignantBureau extends Component
+class EnseignantBureauModal extends Component
 {
 
     public Enseignant $enseignant;
@@ -16,13 +16,8 @@ class EnseignantBureau extends Component
 
 
         return view(
-            'livewire.enseignant.enseignant-bureau',
+            'livewire.enseignant.enseignant-bureau-modal',
             ['bureaux' => Bureau::all()]
         );
     }
-
-    // public static function destroyOnClose(): bool
-    // {
-    //     return true;
-    // }
 }

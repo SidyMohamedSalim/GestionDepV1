@@ -1,30 +1,33 @@
 <div class="p-2">
 
-    <h1 class="py-6 text-xl text-center">Affection de materiel a l'enseignant <span class="font-extrabold">{{
-            $enseignant->nom }} {{
+    <h1 class="py-6 text-xl text-center">Affection de materiel
+        {{-- <span class="font-extrabold">{{
+            $acquisition->mte }} {{
             $enseignant->prenom
             }}</span> Avec
-        l'email <span class="font-extrabold">{{$enseignant->email }}</span></h1>
+        l'email <span class="font-extrabold">{{$enseignant->email }}</span> --}}
+
+    </h1>
     <div class="flex flex-col gap-4 p-6 border-b odd:bg-white">
 
         {{-- mteriel acquisition --}}
         <div class="mt-4">
-            <x-input-label for="acquistionIdSelected" :value="__('Selectionner une Acquisition ?')" />
+            <x-input-label for="type" :value="__('Selectionner une Acquisition ?')" />
 
-            <select name="type" wire:model.live.defer='acquistionIdSelected'
+            <select name="enseignanIdSelected" wire:model.live.defer='enseignanIdSelected'
                 class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                 <option value="" disabled selected>
-                    Selectionner une acquisition
+                    Selectionner un enseignant
                 </option>
-                @foreach ($acquisitions as $acquisition )
-                <option value="{{ $acquisition->id }}">
-                    <p>Designation : {{ $acquisition->materiel->designation }}</p>
-                    <p class="mx-16">Quantite: {{ $acquisition->quantite }}</p>
+                @foreach ($enseignants as $enseignant )
+                <option value="{{ $enseignant->id }}">
+                    <p>Nom : {{ $enseignant->nom }}</p>
+                    <p class="mx-16">Email: {{ $enseignant->email }}</p>
                 </option>
                 @endforeach
 
             </select>
-            <x-input-error :messages="$errors->get('acquistionIdSelected')" class="mt-2" />
+            <x-input-error :messages="$errors->get('enseignanIdSelected')" class="mt-2" />
         </div>
 
         <div class="mt-4">

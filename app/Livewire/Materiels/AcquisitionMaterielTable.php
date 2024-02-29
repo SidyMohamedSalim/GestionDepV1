@@ -3,6 +3,7 @@
 namespace App\Livewire\Materiels;
 
 use App\Models\Materiels\MaterielAcquisition;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +17,7 @@ class AcquisitionMaterielTable extends Component
     public string $type = "";
 
     public string $orderByField = 'created_at';
-    public string $orderByDirection = 'ASC';
+    public string $orderByDirection = 'DESC';
 
     protected $queryString = [
         'designation' => ['except' => ""],
@@ -34,6 +35,14 @@ class AcquisitionMaterielTable extends Component
             $this->orderByField = $fieldname;
             $this->reset('orderByDirection');
         }
+    }
+
+
+    #[On('affectationSaved')]
+    public function onAffectationSaved()
+    {
+        $this->reset('type');
+        session()->flash('saveAffectation', 'Le materiel a ete affecte avec succes');
     }
 
 
@@ -77,7 +86,7 @@ class AcquisitionMaterielTable extends Component
         return view(
             'livewire.materiels.acquisition-materiel-table',
             [
-                "materiel_acquisitions" => $query->with('materiel')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
+                "materiel_acquisitions" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
             ]
         );
     }

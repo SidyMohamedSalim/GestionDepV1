@@ -17,7 +17,19 @@
             + Nouvelle acquisition
         </a>
     </div>
-
+    <div>
+        @if (session('saveAffectation'))
+        <div
+            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            <span>{{ session('saveAffectation') }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-check">
+                <path d="M20 6 9 17l-5-5" />
+            </svg>
+        </div>
+        @endif
+    </div>
 
     <div class="py-4">
         <form class="grid gap-2 md:grid-cols-3">
@@ -98,7 +110,7 @@
                     {{ $materiel_acquisition->date_acquisition }}
                 </td>
 
-                <td class="flex items-center px-6 py-4 justify-evenly">
+                <td class="flex items-center gap-4 px-6 py-4 justify-evenly">
                     {{-- editer --}}
                     <a href="{{ route('materiel.materiel_acquisition.edit', $materiel_acquisition) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -110,10 +122,14 @@
                     {{-- affectation --}}
 
 
+                    <button
+                        wire:click="$dispatch('openModal', { component: 'materiel.enseignant-materiel-affectation-modal', arguments: { acquisition: {{ $materiel_acquisition }}, elementId: {{ $materiel_acquisition->id }} }})"
+                        class="text-secondary">
+                        <x-icons.users />
+                    </button>
 
 
                     {{-- delete --}}
-
 
 
                     <button

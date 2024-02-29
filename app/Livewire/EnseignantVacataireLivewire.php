@@ -17,13 +17,13 @@ class EnseignantVacataireLivewire extends Component
     public string $email = "";
 
     public string $orderByField = 'created_at';
-    public string $orderByDirection = 'ASC';
+    public string $orderByDirection = 'DESC';
 
     protected $queryString = [
         'nom' => ['except' => ""],
         'email' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
-        'orderByDirection' => ['except' => "ASC"]
+        'orderByDirection' => ['except' => "DESC"]
     ];
 
     public  function setOrderField(string $fieldname)
@@ -35,6 +35,8 @@ class EnseignantVacataireLivewire extends Component
             $this->reset('orderByDirection');
         }
     }
+
+
 
     //lazy loading
     public function placeholder()

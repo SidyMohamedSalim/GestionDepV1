@@ -19,13 +19,13 @@ class BureauLivewire extends Component
     public string $designation = '';
 
     public string $orderByField = 'created_at';
-    public string $orderByDirection = 'ASC';
+    public string $orderByDirection = 'DESC';
 
     protected $queryString = [
         'numero' => ['except' => ""],
         'designation' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
-        'orderByDirection' => ['except' => "ASC"]
+        'orderByDirection' => ['except' => "DESC"]
     ];
 
 

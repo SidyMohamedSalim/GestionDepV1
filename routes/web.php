@@ -79,10 +79,6 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 Route::resource('materiel_enseignant', MaterielEnseignantController::class)->middleware('auth');
 
 // affectation a un enseignant plusieurs aquisitions
-Route::prefix("/enseignant_materiel")->controller(EnseignantMaterielsController::class)->name("enseignant_materiel.")->group(function () {
-    Route::get("/{enseignant}", 'affecteMaterielToEnseignant')->name('affecteMaterielToEnseignant');
-    Route::post("/{enseignant}", 'storeAfectationMaterielToEnseignant')->name('storeAffecteMaterielToEnseignant');
-});
 
 
 

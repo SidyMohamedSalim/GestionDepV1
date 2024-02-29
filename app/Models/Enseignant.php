@@ -24,4 +24,9 @@ class Enseignant extends Model
     {
         return $this->belongsToMany(Bureau::class);
     }
+
+    public  function materiel(): BelongsToMany
+    {
+        return $this->belongsToMany(Materiel::class);
+    }
 }

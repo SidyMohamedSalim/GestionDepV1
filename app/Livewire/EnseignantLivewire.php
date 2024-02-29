@@ -19,6 +19,7 @@ class EnseignantLivewire extends Component
     public string $nom = '';
     public string $prenom = '';
     public string $email = "";
+    public int $page = 1;
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
@@ -50,6 +51,12 @@ class EnseignantLivewire extends Component
             $this->resetPage();
         }
     }
+
+    // public function updatedPage($page, $pageName)
+    // {
+    //     // Runs after the page is updated for this component...
+    //     $this->page = $page;
+    // }
 
     //lazy loading
     public function placeholder()
