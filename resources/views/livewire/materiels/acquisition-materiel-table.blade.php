@@ -122,7 +122,7 @@
                     {{-- affectation --}}
 
 
-                    <button
+                    <button :key="$materiel_acquisition->id"
                         wire:click="$dispatch('openModal', { component: 'materiel.enseignant-materiel-affectation-modal', arguments: { acquisition: {{ $materiel_acquisition }}, elementId: {{ $materiel_acquisition->id }} }})"
                         class="text-secondary">
                         <x-icons.users />
@@ -132,13 +132,11 @@
                     {{-- delete --}}
 
 
-                    <button
+                    <button :key="$materiel_acquisition->id"
                         wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel_acquisition->id }}, routeName: 'materiel.materiel_acquisition.destroy' }})"
                         class="text-danger">
                         <x-icons.delete />
                     </button>
-
-
 
 
                 </td>

@@ -105,13 +105,13 @@
 
                     {{-- affectation --}}
 
-                    <button
+                    <button :key="$enseignant->id"
                         wire:click="$dispatch('openModal', { component: 'enseignant.enseignant-bureau-affectation-madal', arguments: { enseignant: {{ $enseignant }} }})"
                         class="text-success">
                         <x-icons.desktop />
                     </button>
 
-                    <button
+                    <button :key="$enseignant->id"
                         wire:click="$dispatch('openModal', { component: 'enseignant.materiel-enseignant-affectation-modal', arguments: { enseignant: {{ $enseignant }} }})"
                         class="text-secondary">
                         <x-icons.utils />
