@@ -9,7 +9,6 @@
             <x-search-input name="email" placeholder="Recherche par email" />
         </form>
     </div>
-
     <div>
         @if (session('saveAffectation'))
         <div
@@ -110,7 +109,6 @@
                         <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
                             key="bureau-{{$enseignant->id}}">
                     </x-modal-alpine>
-
 
 
                     {{-- affectation materiel --}}

@@ -120,7 +120,7 @@
                         <path d="M15 8L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <p class="text-base leading-4 ">Acquisitions</p>
+                    <p class="text-base leading-4 ">Stocks</p>
                 </a>
                 <a
                     class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52">

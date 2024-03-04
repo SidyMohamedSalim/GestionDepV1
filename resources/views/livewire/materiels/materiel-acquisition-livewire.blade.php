@@ -14,7 +14,6 @@
                     <x-input-error :messages="$errors->get('destination')" class="mt-2" />
                 </div>
 
-
                 @if ($materiel->categorie == 'Equipement')
                 <div class="mt-4">
                     <x-input-label for="numero_inventaire" :value="__('Numero d\'inventaire')" />

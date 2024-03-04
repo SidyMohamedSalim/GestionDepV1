@@ -6,6 +6,9 @@
     </x-slot> --}}
 
 
+
+
+
     <div class="max-w-screen-xl mx-auto">
         <div class="flex md:justify-center max-md:gap-4 md:items-center max-md:flex-col max-md:mx-7">
             <div class="flex-1 md:py-12 max-md:w-full">
@@ -43,6 +46,8 @@
         </div>
 
     </div>
+
+
 
 
 </x-app-layout>

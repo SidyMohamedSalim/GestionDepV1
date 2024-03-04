@@ -38,8 +38,6 @@ class MaterielLivewire extends Component
 
 
 
-
-
     //Lorsque l'on enregistre une nouvelle acquitision
 
     #[On('acquisitionSaved')]

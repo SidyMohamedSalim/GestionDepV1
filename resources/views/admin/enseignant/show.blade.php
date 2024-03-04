@@ -63,11 +63,19 @@
                             <h2 class="text-xl font-extrabold text-primary">
                                 {{ __('Materiels Inventoriés Reçus') }}
                             </h2>
-                            {{-- <button
-                                wire:click="$dispatch('openModal', { component: 'enseignant.materiel-enseignant-affectation-modal', arguments: {elementId:{{ $enseignant->id }}, enseignant: {{ $enseignant }} }})"
-                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
-                                <x-icons.utils />
-                            </button> --}}
+
+                            {{-- <x-modal-alpine title="Affectation d'un materiel" :key="$enseignant->id"
+                                name="materiel de {{ $enseignant->id }}">
+                                <x-slot name="icon">
+                                    <div
+                                        class="items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
+                                        <x-icons.utils />
+                                    </div>
+                                </x-slot>
+                                <livewire:enseignant.materiel-enseignant-affectation-modal :enseignant="$enseignant"
+                                    key="materiel-{{$enseignant->id}}" />
+                            </x-modal-alpine> --}}
+
                         </header>
 
                         {{-- content --}}

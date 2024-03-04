@@ -64,7 +64,6 @@ class EnseignantMaterielAffectationModal extends Component
 
         $this->reset('quantite');
         $this->dispatch("affectationSaved");
-        $this->closeModal();
     }
 
 

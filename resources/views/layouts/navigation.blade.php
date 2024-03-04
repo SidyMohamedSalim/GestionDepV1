@@ -21,7 +21,7 @@
                     </x-nav-link>
                     <x-nav-link :href="route('materiel.materiel_acquisition.index')"
                         :active="Str::startsWith($routeName, 'materiel') ">
-                        {{ __('Materiels') }}
+                        {{ __('Stocks') }}
                     </x-nav-link>
                 </div>
             </div>
