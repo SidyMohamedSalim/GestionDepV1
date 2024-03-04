@@ -2,10 +2,9 @@
 
 namespace App\Livewire\Modals;
 
-use App\Models\Enseignant;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class ConfirmDeleteModal extends ModalComponent
+class ConfirmDeleteModal extends Component
 {
 
     public string $routeName;

@@ -79,21 +79,24 @@
                         <x-icons.eyes />
                     </a>
 
+                    <x-modal-alpine title="Nouvelle acquisition" :key="$materiel->id"
+                        name="materiel de {{ $materiel->id }}">
+                        <x-slot name="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </x-slot>
+                        <livewire:materiels.materiel-acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
+                    </x-modal-alpine>
 
-                    <button class="text-success" wire:click.prevent="startAcquisition({{ $materiel->id }})">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </button>
                 </td>
             </tr>
 
-            @if ($materielAcquisitionId == $materiel->id)
-            <livewire:materiels.materiel-acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
-            @endif
+
+
 
             @empty
             <div class="flex items-center justify-center w-full h-full">

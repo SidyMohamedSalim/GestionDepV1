@@ -7,9 +7,9 @@ use App\Models\Materiel;
 use App\Models\MaterielEnseignant;
 use App\Models\Materiels\MaterielAcquisition;
 use DateTime;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class EnseignantMaterielAffectationModal extends ModalComponent
+class EnseignantMaterielAffectationModal extends Component
 {
 
     public string $quantite = '1';

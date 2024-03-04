@@ -7,7 +7,6 @@
 
 
     <div class="max-w-screen-xl mx-auto">
-        <x-modal-alpine />
         <div class="flex md:justify-center max-md:gap-4 md:items-center max-md:flex-col max-md:mx-7">
             <div class="flex-1 md:py-12 max-md:w-full">
                 <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">

@@ -4,7 +4,6 @@ namespace App\Livewire\Materiels;
 
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class MaterielAcquisitionLivewire extends Component

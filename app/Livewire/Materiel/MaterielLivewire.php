@@ -36,14 +36,6 @@ class MaterielLivewire extends Component
     }
 
 
-    //ajouter une nouvelle acquisiont
-
-    public string $materielAcquisitionId = '';
-
-    public  function startAcquisition(string $materielId)
-    {
-        $this->materielAcquisitionId = $materielId;
-    }
 
 
 
@@ -53,7 +45,7 @@ class MaterielLivewire extends Component
     #[On('acquisitionSaved')]
     public function onAquisitionSaved(string $materielId)
     {
-        $this->reset('materielAcquisitionId');
+        $this->reset("categorie");
         session()->flash('saveAcquisition', 'Acquisition fait avec succes');
     }
 

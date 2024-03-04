@@ -101,28 +101,39 @@
                         <x-icons.eyes />
                     </a>
 
+                    {{-- affectation bureau --}}
+                    <x-modal-alpine title="Selectionner un bureau" :key="$enseignant->id"
+                        name="desktop de {{ $enseignant->id }}">
+                        <x-slot name="icon">
+                            <x-icons.desktop />
+                        </x-slot>
+                        <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
+                            key="bureau-{{$enseignant->id}}">
+                    </x-modal-alpine>
 
 
-                    {{-- affectation --}}
 
-                    <button :key="$enseignant->id"
-                        wire:click="$dispatch('openModal', { component: 'enseignant.enseignant-bureau-affectation-madal', arguments: { enseignant: {{ $enseignant }} }})"
-                        class="text-success">
-                        <x-icons.desktop />
-                    </button>
+                    {{-- affectation materiel --}}
+                    <x-modal-alpine title="Affectation d'un materiel" :key="$enseignant->id"
+                        name="materiel de {{ $enseignant->id }}">
+                        <x-slot name="icon">
+                            <x-icons.utils />
+                        </x-slot>
+                        <livewire:enseignant.materiel-enseignant-affectation-modal :enseignant="$enseignant"
+                            key="materiel-{{$enseignant->id}}" />
+                    </x-modal-alpine>
 
-                    <button :key="$enseignant->id"
-                        wire:click="$dispatch('openModal', { component: 'enseignant.materiel-enseignant-affectation-modal', arguments: { enseignant: {{ $enseignant }} }})"
-                        class="text-secondary">
-                        <x-icons.utils />
-                    </button>
 
                     {{-- delete --}}
-                    <button
-                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $enseignant->id }}, routeName: 'enseignant.destroy' }})"
-                        class="text-danger">
-                        <x-icons.delete />
-                    </button>
+
+                    <x-modal-alpine title="Suppression" :key="$enseignant->id" name="materiel de {{ $enseignant->id }}">
+                        <x-slot name="icon">
+                            <x-icons.delete />
+                        </x-slot>
+                        <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
+                            routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" />
+                    </x-modal-alpine>
+
 
                 </td>
             </tr>

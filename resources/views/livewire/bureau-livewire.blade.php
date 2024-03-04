@@ -86,11 +86,14 @@
 
                         {{-- delete --}}
 
-                        <button
-                            wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $bureau->id }}, routeName: 'bureau.destroy' }})"
-                            class="text-danger">
-                            <x-icons.delete />
-                        </button>
+                        <x-modal-alpine title="Suppression" :key="$bureau->id" name="bureau de {{ $bureau->id }}">
+                            <x-slot name="icon">
+                                <x-icons.delete />
+                            </x-slot>
+                            <livewire:modals.confirm-delete-modal :elementId="$bureau->id" routeName='bureau.destroy'
+                                key="delete-{{ $bureau->id }}" />
+                        </x-modal-alpine>
+
 
                     </td>
                 </tr>

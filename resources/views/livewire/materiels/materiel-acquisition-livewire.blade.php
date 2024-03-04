@@ -1,5 +1,5 @@
-<tr class=" bg-gray-50">
-    <td colspan="6">
+<div class=" bg-gray-50">
+    <div colspan="6">
         <form action="" class="p-8" wire:submit.prevent="saveAcquisiton">
 
             <div @class(["grid gap-4 md:grid-cols-2", "md:grid-cols-3"=> $materiel->categorie =="Fourniture"]) >
@@ -52,5 +52,6 @@
                 </x-primary-button>
             </div>
         </form>
-    </td>
-</tr>
+    </div>
+</div>
+</div>

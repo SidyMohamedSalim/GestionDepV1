@@ -120,23 +120,30 @@
 
 
                     {{-- affectation --}}
+                    <x-modal-alpine title="Affectation d'un enseignant" :key="$materiel_acquisition->id"
+                        name="enseignant de {{ $materiel_acquisition->id }}">
+                        <x-slot name="icon">
+                            <x-icons.utils />
+                        </x-slot>
+                        <livewire:materiel.enseignant-materiel-affectation-modal :acquisition="$materiel_acquisition"
+                            key="materiel-{{$materiel_acquisition->id}}" :elementId="$materiel_acquisition->id" />
+                    </x-modal-alpine>
 
-
-                    <button :key="$materiel_acquisition->id"
-                        wire:click="$dispatch('openModal', { component: 'materiel.enseignant-materiel-affectation-modal', arguments: { acquisition: {{ $materiel_acquisition }}, elementId: {{ $materiel_acquisition->id }} }})"
-                        class="text-secondary">
-                        <x-icons.users />
-                    </button>
 
 
                     {{-- delete --}}
 
 
-                    <button :key="$materiel_acquisition->id"
-                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $materiel_acquisition->id }}, routeName: 'materiel.materiel_acquisition.destroy' }})"
-                        class="text-danger">
-                        <x-icons.delete />
-                    </button>
+                    <x-modal-alpine title="Suppression" :key="$materiel_acquisition->id"
+                        name="materiel de {{ $materiel_acquisition->id }}">
+                        <x-slot name="icon">
+                            <x-icons.delete />
+                        </x-slot>
+                        <livewire:modals.confirm-delete-modal :elementId="$materiel_acquisition->id"
+                            routeName='materiel.materiel_acquisition.destroy'
+                            key="delete-{{ $materiel_acquisition->id }}" />
+                    </x-modal-alpine>
+
 
 
                 </td>

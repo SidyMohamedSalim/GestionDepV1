@@ -36,11 +36,11 @@
             <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
         </div>
 
-        <td class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-end mt-4">
             <x-primary-button wire:click.prevent='saveAcquisition()' class="ms-3 w-fit">
                 {{ __('Affecter') }}
             </x-primary-button>
-        </td>
+        </div>
 
     </div>
 </div>

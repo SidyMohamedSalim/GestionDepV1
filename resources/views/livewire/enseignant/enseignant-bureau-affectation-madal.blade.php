@@ -3,10 +3,6 @@
         @csrf
         @method('post')
 
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Selectionner un bureau') }}
-        </h2>
-
         <div class="flex flex-col gap-2 p-4 ">
 
             @if (session('bureau_id'))
