@@ -104,37 +104,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($enseignant->affectation as $affectation)
-                                @if ($affectation->numero_inventaire)
+                                @foreach ($enseignant->materiel as $materiel)
+                                @if ($materiel->categorie == 'Equipement')
+
+                                @dump($materiel->pivot->acquisiton)
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
-                                        {{ $affectation->numero_inventaire }}
+                                        {{-- {{ $materiel->acquisition->numero_inventaire }} --}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->materiel->designation }}
+                                        {{ $materiel->designation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->quantite }}
+                                        {{ $materiel->pivot->quantite }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->date_affectation }}
+                                        {{ $materiel->pivot->date_affectation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->signature }}
+                                        {{ $materiel->pivot->signature }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
                                     </td>
 
                                 </tr>
-                                @else
-                                Vide !!
                                 @endif
-                                @empty
-                                <div class="flex items-center justify-center w-full h-full">
-                                    <p>Vide !!</p>
-                                </div>
-                                @endforelse
+                                @endforeach
 
                             </tbody>
 
@@ -175,17 +171,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($enseignant->affectation as $affectation)
-                                @if (!$affectation->numero_inventaire)
+                                @forelse ($enseignant->materiel as $materiel)
+                                @if (!$materiel->pivot->numero_inventaire)
+
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
-                                        {{ $affectation->materiel->designation }}
+                                        {{ $materiel->designation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->quantite }}
+                                        {{ $materiel->pivot->quantite }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $affectation->date_affectation }}
+                                        {{ $materiel->pivot->date_affectation }}
                                     </td>
                                 </tr>
                                 @else

@@ -41,7 +41,9 @@ class MaterielAcquisitionController extends Controller
      */
     public function show(MaterielAcquisition $materiel_acquisition)
     {
-        return $materiel_acquisition;
+        return view('admin.Materiel.acquisition.show', [
+            'acquisition' => $materiel_acquisition
+        ]);
     }
 
     /**

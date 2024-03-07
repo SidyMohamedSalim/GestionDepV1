@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materiel_enseignants', function (Blueprint $table) {
+        Schema::create('enseignant_materiel', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Enseignant::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnUpdate();
             $table->string("quantite");
-            $table->date("date_affectation")->default(new DateTime());
+            $table->date("date_affectation");
 
             $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('not-concerned');
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materiel_enseignants');
+        Schema::dropIfExists('enseignant_materiel');
     }
 };

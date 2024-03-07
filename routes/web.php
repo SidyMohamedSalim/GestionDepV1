@@ -7,12 +7,9 @@ use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
-use App\Http\Controllers\Relations\EnseignantMaterielsController;
-use App\Http\Controllers\Relations\MaterielEnseignantController;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
-use App\Models\MaterielEnseignant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,7 +59,7 @@ Route::prefix('/')->controller(BureauEnseignantController::class)->middleware('a
 });
 
 
-// bureau
+// bureaup
 Route::resource('bureau', BureauController::class)->middleware('auth');
 
 // materiels

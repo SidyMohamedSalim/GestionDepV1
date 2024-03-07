@@ -66,7 +66,7 @@
                     {{ $materiel->reference }}
 
                 </td>
-                <td class="flex items-center px-6 py-4 justify-evenly">
+                <td class="flex items-center gap-3 px-6 py-4 justify-evenly">
                     {{-- editer --}}
                     <a href="{{ route('materiel.materiel.edit',$materiel) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">

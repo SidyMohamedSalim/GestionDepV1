@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Materiels;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Materiels\MaterielRequest;
 use App\Models\Materiel;
-use Illuminate\Http\Request;
 
 class MaterielController extends Controller
 {
@@ -46,7 +45,12 @@ class MaterielController extends Controller
      */
     public function show(Materiel $materiel)
     {
-        return $materiel;
+        return  view(
+            'admin.Materiel.show',
+            [
+                'materiel' => $materiel,
+            ]
+        );
     }
 
     /**
@@ -57,7 +61,8 @@ class MaterielController extends Controller
         //
         return view('admin.Materiel.form', [
             'materiel' => $materiel,
-        ]);;
+
+        ]);
     }
 
     /**
