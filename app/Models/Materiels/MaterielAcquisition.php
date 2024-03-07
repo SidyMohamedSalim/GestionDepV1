@@ -21,6 +21,7 @@ class MaterielAcquisition extends Model
         'numero_inventaire',
         'destination',
         "carateristiques",
+        "base_quantite",
         'materiel_id'
     ];
 

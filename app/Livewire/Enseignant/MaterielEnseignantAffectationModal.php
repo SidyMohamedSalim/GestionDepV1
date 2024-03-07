@@ -55,7 +55,7 @@ class MaterielEnseignantAffectationModal extends Component
     {
         $this->validate();
 
-        $materielEnseignant  =  $this->enseignant->acquisition()->attach($this->acquisition->materiel->id, [
+        $this->enseignant->acquisition()->attach($this->acquisition->id, [
             'date_affectation' => new DateTime(),
             "quantite" => $this->quantite,
         ]);
@@ -73,7 +73,7 @@ class MaterielEnseignantAffectationModal extends Component
             $pdf = Pdf::loadView('pdf.materiel-affectation', [
                 'acquisition' => $this->acquisition,
                 'enseignant' => $this->enseignant,
-                'quantite' => $this->quantite
+                'quantite' => $this->quantite,
             ]);
 
             return response()->streamDownload(function () use ($pdf) {

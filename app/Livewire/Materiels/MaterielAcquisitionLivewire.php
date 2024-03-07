@@ -49,7 +49,9 @@ class MaterielAcquisitionLivewire extends Component
                 'date_acquisition' => $this->date_acquisition,
                 'numero_inventaire' => $this->numero_inventaire,
                 'destination' => $this->destination,
-                'materiel_id' => $this->materiel->id
+                'materiel_id' => $this->materiel->id,
+                'base_quantite' => $this->quantite
+
             ]);
             $this->dispatch("acquisitionSaved",  $this->materiel->id);
         }

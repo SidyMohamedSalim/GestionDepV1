@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('materiel_acquisitions', function (Blueprint $table) {
             $table->id();
             $table->float('quantite')->default(1);
+            $table->float('base_quantite')->default(1);
             $table->date('date_acquisition');
             $table->string('carateristiques');
             $table->enum('destination', ['informatique', 'laboratoire']);

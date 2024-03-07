@@ -185,12 +185,9 @@
                                     </td>
                                 </tr>
                                 @else
-                                Vide !!
+
                                 @endif
                                 @empty
-                                <div class="flex items-center justify-center w-full h-full">
-                                    <p>Vide !!</p>
-                                </div>
                                 @endforelse
 
                             </tbody>

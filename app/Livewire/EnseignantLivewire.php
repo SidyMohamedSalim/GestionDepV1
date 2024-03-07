@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Bureau;
 use App\Models\Enseignant;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -21,8 +22,12 @@ class EnseignantLivewire extends Component
     public string $email = "";
     public int $page = 1;
 
+    // order
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
+
+
+
 
     protected $queryString = [
         'nom' => ['except' => ""],
@@ -32,6 +37,7 @@ class EnseignantLivewire extends Component
         'orderByDirection' => ['except' => "DESC"]
     ];
 
+
     public  function setOrderField(string $fieldname)
     {
         if ($fieldname == $this->orderByField) {
@@ -40,7 +46,9 @@ class EnseignantLivewire extends Component
             $this->orderByField = $fieldname;
             $this->reset('orderByDirection');
         }
+        $this->resetPage();
     }
+
 
     public function updating($property, $value)
     {

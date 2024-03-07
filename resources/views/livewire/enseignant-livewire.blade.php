@@ -31,13 +31,12 @@
                     :orderDirection="$orderByDirection">
                     Status
                 </x-table-header>
+
                 <x-table-header fieldname="nom" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                     Nom
                 </x-table-header>
 
-
-
-                <x-table-header fieldname="email" :selectedFieldName="$orderByField"
+                <x-table-header fieldname=" email" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Email
                 </x-table-header>

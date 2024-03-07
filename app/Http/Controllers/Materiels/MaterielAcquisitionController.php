@@ -32,7 +32,11 @@ class MaterielAcquisitionController extends Controller
      */
     public function store(MaterielAcquisitionRequest $request)
     {
-        MaterielAcquisition::create($request->validated());
+        $data  = $request->validated();
+        $data['base_quantite'] = $data['quantite'];
+
+
+        MaterielAcquisition::create($data);
         return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition créé');
     }
 

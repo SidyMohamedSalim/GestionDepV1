@@ -68,7 +68,7 @@ class EnseignantMaterielAffectationModal extends Component
             $pdf = Pdf::loadView('pdf.materiel-affectation', [
                 'acquisition' => $this->acquisition,
                 'enseignant' => Enseignant::find($this->enseignanIdSelected),
-                'quantite' => $this->quantite
+                'quantite' => $this->quantite,
             ]);
 
             return response()->streamDownload(function () use ($pdf) {
