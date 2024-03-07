@@ -55,7 +55,7 @@ class MaterielEnseignantAffectationModal extends Component
     {
         $this->validate();
 
-        $materielEnseignant  =  $this->enseignant->materiel()->attach($this->acquisition->materiel->id, [
+        $materielEnseignant  =  $this->enseignant->acquisition()->attach($this->acquisition->materiel->id, [
             'date_affectation' => new DateTime(),
             "quantite" => $this->quantite,
         ]);

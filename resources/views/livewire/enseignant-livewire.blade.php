@@ -51,7 +51,7 @@
                 </x-table-header>
 
                 <th scope="col" class="px-6 py-3">
-                    Bureau
+                    Local
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Actions

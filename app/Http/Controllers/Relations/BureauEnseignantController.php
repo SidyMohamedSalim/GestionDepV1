@@ -56,6 +56,13 @@ class BureauEnseignantController extends Controller
             ]
         ]);
 
+        foreach ($data['enseignants'] as $key => $value) {
+            $enseignant =   Enseignant::with("bureau")->find($value);
+            $enseignant->bureau()->sync([]);
+        }
+
+
+
         $bureau->enseignant()->sync($data['enseignants']);
         return redirect()->route('bureau.index')->with('success', "Enseignants Affecté");
     }

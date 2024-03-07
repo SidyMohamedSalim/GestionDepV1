@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,9 +27,9 @@ class Enseignant extends Model
         return $this->belongsToMany(Bureau::class);
     }
 
-    public  function materiel(): BelongsToMany
+    public  function acquisition(): BelongsToMany
     {
-        return $this->belongsToMany(Materiel::class)->withTimestamps()->withPivot(['quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+        return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
     public  function affectation(): HasMany
     {

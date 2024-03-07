@@ -17,7 +17,7 @@
                         {{ __('Enseignants') }}
                     </x-nav-link>
                     <x-nav-link :href="route('bureau.index')" :active="Str::startsWith($routeName, 'bureau')">
-                        {{ __('Bureaux') }}
+                        {{ __('Locaux') }}
                     </x-nav-link>
                     <x-nav-link :href="route('materiel.materiel_acquisition.index')"
                         :active="Str::startsWith($routeName, 'materiel') ">

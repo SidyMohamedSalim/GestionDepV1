@@ -43,7 +43,7 @@
                         {{-- header --}}
                         <header class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                Enseignants pour ce materiel
+                                Affectations Enseignants pour ce materiel
                             </h2>
                             <p x-data=""
                                 class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
@@ -60,13 +60,17 @@
                                         Nom
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Nom
+                                        Prenom
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Email
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Date de Recrutement
+                                        Quantité
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                        Date d'affectation
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -75,7 +79,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($materiel->enseignant as $enseignant)
+
+                                @forelse ($materiel->acquisition as $acquisition)
+                                <tr class="bg-gray-100 border-b">
+
+                                    <td colspan="6" class="px-6 py-4 text-center">
+                                        Enseignants Affectées pour l'acquisition fait le
+                                        <span class="font-extrabold">{{$acquisition->date_acquisition }}</span>
+                                        @if ($acquisition->numero_inventaire)
+                                        <p>
+                                            Numero Inventaire : <span
+                                                class="font-extrabold">{{$acquisition->numero_inventaire }}</span>
+                                        </p>
+                                        @endif
+                                    </td>
+
+
+                                </tr>
+                                @foreach ($acquisition->enseignant as $enseignant)
                                 <tr class="border-b odd:bg-white">
 
                                     <td class="px-6 py-4">
@@ -88,13 +109,17 @@
                                         {{ $enseignant->email }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $enseignant->daterecrutement }}
+                                        {{ $enseignant->pivot->quantite}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <p class="text-green-500 cursor-pointer hover:underline"></p>
+                                        {{$enseignant->pivot->date_affectation }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        ------
                                     </td>
 
                                 </tr>
+                                @endforeach
                                 @empty
                                 <div class="flex items-center justify-center w-full h-full">
                                     <p>Vide !!</p>

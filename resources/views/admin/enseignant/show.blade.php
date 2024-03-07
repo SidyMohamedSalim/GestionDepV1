@@ -54,26 +54,26 @@
                 </div>
             </div>
 
-            {{-- materiels inventories --}}
+            {{-- acquisitions inventories --}}
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div>
                     <section>
                         {{-- header --}}
                         <header class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('Materiels Inventoriés Reçus') }}
+                                {{ __('acquisitions Inventoriés Reçus') }}
                             </h2>
 
-                            {{-- <x-modal-alpine title="Affectation d'un materiel" :key="$enseignant->id"
-                                name="materiel de {{ $enseignant->id }}">
+                            {{-- <x-modal-alpine title="Affectation d'un acquisition" :key="$enseignant->id"
+                                name="acquisition de {{ $enseignant->id }}">
                                 <x-slot name="icon">
                                     <div
                                         class="items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
                                         <x-icons.utils />
                                     </div>
                                 </x-slot>
-                                <livewire:enseignant.materiel-enseignant-affectation-modal :enseignant="$enseignant"
-                                    key="materiel-{{$enseignant->id}}" />
+                                <livewire:enseignant.acquisition-enseignant-affectation-modal :enseignant="$enseignant"
+                                    key="acquisition-{{$enseignant->id}}" />
                             </x-modal-alpine> --}}
 
                         </header>
@@ -104,25 +104,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($enseignant->materiel as $materiel)
-                                @if ($materiel->categorie == 'Equipement')
+                                @foreach ($enseignant->acquisition as $acquisition)
+                                @if ($acquisition->numero_inventaire)
 
-                                @dump($materiel->pivot->acquisiton)
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
-                                        {{-- {{ $materiel->acquisition->numero_inventaire }} --}}
+                                        {{ $acquisition->numero_inventaire }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->designation }}
+                                        {{ $acquisition->materiel->designation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->pivot->quantite }}
+                                        {{ $acquisition->pivot->quantite }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->pivot->date_affectation }}
+                                        {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->pivot->signature }}
+                                        {{ $acquisition->pivot->signature }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
@@ -140,14 +139,14 @@
             </div>
 
 
-            {{-- Materiels non inventoriees --}}
+            {{-- acquisitions non inventoriees --}}
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div>
                     <section>
                         {{-- header --}}
                         <header class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('Materiels Non Inventoriés Reçus') }}
+                                {{ __('acquisitions Non Inventoriés Reçus') }}
                             </h2>
 
                         </header>
@@ -171,18 +170,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($enseignant->materiel as $materiel)
-                                @if (!$materiel->pivot->numero_inventaire)
+                                @forelse ($enseignant->acquisition as $acquisition)
+                                @if (!$acquisition->numero_inventaire)
 
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
-                                        {{ $materiel->designation }}
+                                        {{ $acquisition->materiel->designation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->pivot->quantite }}
+                                        {{ $acquisition->pivot->quantite }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $materiel->pivot->date_affectation }}
+                                        {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                 </tr>
                                 @else
@@ -202,13 +201,13 @@
             </div>
 
 
-            {{-- materiels restitues --}}
+            {{-- acquisitions restitues --}}
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div class="max-w-xl">
                     <section>
                         <header class="mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('Materiels Restitués') }}
+                                {{ __('acquisitions Restitués') }}
                             </h2>
 
                         </header>

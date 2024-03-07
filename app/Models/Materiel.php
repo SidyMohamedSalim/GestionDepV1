@@ -24,18 +24,8 @@ class Materiel extends Model
 
 
 
-    public  function affectation(): HasMany
-    {
-        return $this->hasMany(EnseignantMateriel::class);
-    }
-
     public function acquisition(): HasMany
     {
         return $this->hasMany(MaterielAcquisition::class);
-    }
-
-    public  function enseignant(): BelongsToMany
-    {
-        return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['quantite', 'date_affectation', 'signature']);
     }
 }

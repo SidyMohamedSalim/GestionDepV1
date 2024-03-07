@@ -3,7 +3,7 @@
 
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Gestion Bureau') }}
+            {{ __('Gestion Local') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
             {{-- Nom --}}
 
             <div class="mt-4">
-                <x-input-label for="numero_bureau" :value="__('Numero Bureau')" />
+                <x-input-label for="numero_bureau" :value="__('Numero Local')" />
 
                 <x-text-input id="numero_bureau" class="block w-full mt-1" type='text' name="numero_bureau"
                     autocomplete="numero_bureau" value="{{ old('numero_bureau', $bureau?->numero_bureau) }}" />

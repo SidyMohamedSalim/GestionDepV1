@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Bureau;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Bureau\BureauRequest;
 use App\Models\Bureau;
-use App\Models\Enseignant;
-use Illuminate\Http\Request;
 
-use function PHPUnit\Framework\returnSelf;
 
 class BureauController extends Controller
 {

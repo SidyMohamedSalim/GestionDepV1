@@ -45,7 +45,7 @@
                 <path d="M12 17v4" />
                 <path d="M8 21h8" />
             </svg>
-            <span class="text-[15px] ml-4 font-bold">Bureaux</span>
+            <span class="text-[15px] ml-4 font-bold">Locaux</span>
         </a>
 
 
@@ -80,6 +80,21 @@
                 </svg>
             </div>
             <div id="menu1" class="flex flex-col items-start justify-start w-full gap-4 px-2 pb-1 mt-3 md:w-auto ">
+                <a href="{{ route('materiel.materiel_acquisition.index') }}"
+                    class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52 @if(Str::contains($routeName, 'materiel.materiel_acquisition')) bg-gray-700 text-white @endif">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8 19C10.2091 19 12 17.2091 12 15C12 12.7909 10.2091 11 8 11C5.79086 11 4 12.7909 4 15C4 17.2091 5.79086 19 8 19Z"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.85 12.15L19 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M18 5L20 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M15 8L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <p class="text-base leading-4 ">Stocks</p>
+                </a>
                 <a href="{{ route('materiel.materiel.index') }}"
                     class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52 @if (Str::contains($routeName, 'materiel.materiel.')) bg-gray-700 text-white @endif">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,21 +122,7 @@
                     </svg>
                     <p class="text-base leading-4 ">Admin Materiels</p>
                 </a>
-                <a href="{{ route('materiel.materiel_acquisition.index') }}"
-                    class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52 @if(Str::contains($routeName, 'materiel.materiel_acquisition')) bg-gray-700 text-white @endif">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M8 19C10.2091 19 12 17.2091 12 15C12 12.7909 10.2091 11 8 11C5.79086 11 4 12.7909 4 15C4 17.2091 5.79086 19 8 19Z"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10.85 12.15L19 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M18 5L20 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M15 8L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <p class="text-base leading-4 ">Stocks</p>
-                </a>
+
                 <a
                     class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -16,7 +16,7 @@ class MaterielLivewire extends Component
     public string $categorie = '';
 
     public string $orderByField = 'created_at';
-    public string $orderByDirection = 'ASC';
+    public string $orderByDirection = 'DESC';
 
     protected $queryString = [
         'type' => ['except' => ""],

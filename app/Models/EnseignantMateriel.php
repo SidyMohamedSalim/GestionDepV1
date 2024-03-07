@@ -26,10 +26,6 @@ class EnseignantMateriel extends Model
         return $this->belongsTo(Enseignant::class);
     }
 
-    public function materiel(): BelongsTo
-    {
-        return $this->belongsTo(Materiel::class);
-    }
 
     public function acquisition(): BelongsTo
     {

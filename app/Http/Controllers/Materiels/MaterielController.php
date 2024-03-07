@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Materiels;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Materiels\MaterielRequest;
+use App\Models\Enseignant;
 use App\Models\Materiel;
 
 class MaterielController extends Controller

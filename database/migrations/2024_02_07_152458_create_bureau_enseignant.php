@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Bureau::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Enseignant::class)->constrained()->cascadeOnDelete();
+            $table->boolean('current')->default(true);
             $table->date('date_affectation')->default(date("Y-m-d H:i:s"));
             $table->timestamps();
             $table->unique(['bureau_id', 'enseignant_id']);
