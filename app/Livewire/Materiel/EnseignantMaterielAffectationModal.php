@@ -20,8 +20,6 @@ class EnseignantMaterielAffectationModal extends Component
     public string $enseignanIdSelected = '';
 
 
-
-
     public function updating($property, $value)
     {
     }
@@ -31,7 +29,7 @@ class EnseignantMaterielAffectationModal extends Component
         $this->withValidator(function ($validator) {
             $validator->after(function ($validator) {
                 if ($this->quantite > $this->acquisition->quantite) {
-                    $validator->errors()->add("quantite", "La quantite ne doit pas etre superieur a celle existante ");
+                    $validator->errors()->add("quantite", "La quantité ne doit pas être superieur à celle existante ");
                 }
             });
         });
@@ -75,6 +73,7 @@ class EnseignantMaterielAffectationModal extends Component
                 echo $pdf->download();
             }, 'decharge' . $this->acquisition->numero_inventaire . Enseignant::find($this->enseignanIdSelected)->nom . '.pdf');
         }
+
         $this->reset('enseignanIdSelected');
     }
 

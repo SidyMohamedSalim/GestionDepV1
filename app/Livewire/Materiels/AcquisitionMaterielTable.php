@@ -89,7 +89,6 @@ class AcquisitionMaterielTable extends Component
             });
         }
 
-
         return view(
             'livewire.materiels.acquisition-materiel-table',
             [

@@ -17,6 +17,7 @@ class EnseignantLivewire extends Component
 
     use WithPagination;
 
+
     public string $nom = '';
     public string $prenom = '';
     public string $email = "";
@@ -25,8 +26,6 @@ class EnseignantLivewire extends Component
     // order
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
-
-
 
 
     protected $queryString = [

@@ -51,10 +51,10 @@ class MaterielAcquisitionLivewire extends Component
                 'destination' => $this->destination,
                 'materiel_id' => $this->materiel->id,
                 'base_quantite' => $this->quantite
-
             ]);
-            $this->dispatch("acquisitionSaved",  $this->materiel->id);
+            $this->dispatch("acquisitionSaved");
         }
+        $this->reset('quantite');
     }
 
 

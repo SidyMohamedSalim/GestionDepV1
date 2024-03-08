@@ -36,6 +36,14 @@
             margin-top: 20px;
         }
 
+        .hero {
+            width: 100%;
+        }
+
+        .hero img {
+            width: 100%;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -57,6 +65,9 @@
 
 <body>
     <div class="container">
+        <div class="hero">
+            <img src="hero.png" alt="img" />
+        </div>
         <div class="header">
             <h2>Décharge de matériel</h2>
         </div>

@@ -45,10 +45,11 @@ class MaterielLivewire extends Component
     //Lorsque l'on enregistre une nouvelle acquitision
 
     #[On('acquisitionSaved')]
-    public function onAquisitionSaved(string $materielId)
+    public function onAquisitionSaved()
     {
-        $this->reset("categorie");
+
         session()->flash('saveAcquisition', 'Acquisition fait avec succes');
+        $this->reset("categorie");
     }
 
 
