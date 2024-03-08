@@ -1,8 +1,9 @@
 <div>
 
 
-
     <div class="py-4">
+
+
         <form class="grid gap-2 md:grid-cols-3">
             <x-search-input name="nom" placeholder="Recherche par nom" />
             <x-search-input name="prenom" placeholder="Recherche par prenom" />

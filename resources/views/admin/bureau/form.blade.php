@@ -7,7 +7,11 @@
         </h2>
     </x-slot>
 
-
+    @if ($bureau->id)
+    <div class="flex justify-center py-12 mx-auto max-w-7xl">
+        {{ Breadcrumbs::render('bureauedit',$bureau) }}
+    </div>
+    @endif
     <div class="justify-center max-w-xl mx-auto">
 
 

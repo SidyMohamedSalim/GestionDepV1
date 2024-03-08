@@ -5,6 +5,7 @@
         {{-- new bureaux --}}
 
 
+
         <div class="flex items-end justify-end mb-4">
 
             <a href="{{ route('bureau.create') }}"

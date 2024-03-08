@@ -6,6 +6,12 @@
         </h2>
     </x-slot>
 
+    @if ($enseignant->id)
+    <div class="flex justify-center py-12 mx-auto max-w-7xl">
+        {{ Breadcrumbs::render('vacataireedit',$enseignant) }}
+    </div>
+    @endif
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

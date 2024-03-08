@@ -5,11 +5,14 @@
             {{ __('Gestion Materiel') }}
         </h2>
     </x-slot>
+    @if ($materiel->id)
+    <div class="flex justify-center py-12 mx-auto max-w-7xl">
+        {{ Breadcrumbs::render('materieledit',$materiel) }}
+    </div>
+    @endif
 
     <div>
         <div class="justify-center max-w-xl mx-auto">
-
-
             <form method="post"
                 action="{{$materiel->id ? route('materiel.materiel.update',$materiel) : route('materiel.materiel.store') }}">
                 @csrf

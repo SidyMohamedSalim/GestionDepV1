@@ -1,5 +1,8 @@
 @extends('admin.base-enseignant')
 
 @section('content')
-    <livewire:enseignant-vacataire-livewire />
+<div class="py-4">
+    {{ Breadcrumbs::render('vacataires') }}
+</div>
+<livewire:enseignant-vacataire-livewire />
 @endsection
