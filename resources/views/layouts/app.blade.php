@@ -14,7 +14,7 @@
 
     <style>
         [x-cloak] {
-            display: none;
+            display: none !important;
         }
 
         .duration-300 {

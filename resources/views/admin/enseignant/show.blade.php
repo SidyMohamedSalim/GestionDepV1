@@ -185,7 +185,6 @@
                                     </td>
                                 </tr>
                                 @else
-
                                 @endif
                                 @empty
                                 @endforelse

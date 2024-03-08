@@ -23,7 +23,6 @@ class Materiel extends Model
     ];
 
 
-
     public function acquisition(): HasMany
     {
         return $this->hasMany(MaterielAcquisition::class);

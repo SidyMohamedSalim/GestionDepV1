@@ -14,6 +14,8 @@ class MaterielLivewire extends Component
 
     public string $type = '';
     public string $categorie = '';
+    public string $designation = '';
+    public string $reference = '';
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
@@ -21,6 +23,8 @@ class MaterielLivewire extends Component
     protected $queryString = [
         'type' => ['except' => ""],
         'categorie' => ['except' => ""],
+        'reference' => ['except' => ""],
+        'designation' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
         'orderByDirection' => ['except' => "ASC"]
     ];
@@ -61,6 +65,16 @@ class MaterielLivewire extends Component
         if (!empty($this->categorie)) {
             $query =
                 $query->where('categorie', "LIKE", "%{$this->categorie}%");
+        }
+
+        if (!empty($this->designation)) {
+            $query =
+                $query->where('designation', "LIKE", "%{$this->designation}%");
+        }
+
+        if (!empty($this->reference)) {
+            $query =
+                $query->where('reference', "LIKE", "%{$this->reference}%");
         }
 
         return view(

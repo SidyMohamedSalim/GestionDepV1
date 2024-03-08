@@ -13,6 +13,16 @@
         </div>
         @endif
     </div>
+
+    <div class="py-4">
+        <form class="grid gap-2 md:grid-cols-4">
+            <x-search-input name="designation" placeholder="Recherche par designation" />
+            <x-search-input name="categorie" placeholder="Recherche par categorie" />
+            <x-search-input name="type" placeholder="Recherche par type" />
+            <x-search-input name="reference" placeholder="Recherche par reference" />
+        </form>
+    </div>
+
     <table class="w-full text-sm text-left rtl:text-right ">
 
         <thead class="text-xs text-white uppercase bg-primary ">

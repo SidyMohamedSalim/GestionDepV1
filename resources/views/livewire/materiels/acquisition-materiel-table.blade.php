@@ -32,7 +32,8 @@
     </div>
 
     <div class="py-4">
-        <form class="grid gap-2 md:grid-cols-3">
+        <form class="grid gap-2 md:grid-cols-4">
+            <x-search-input name="numero_inventaire" placeholder="Recherche par numero inventaire" />
             <x-search-input name="designation" placeholder="Recherche par designation" />
             <x-search-input name="categorie" placeholder="Recherche par categorie" />
             <x-search-input name="type" placeholder="Recherche par type" />

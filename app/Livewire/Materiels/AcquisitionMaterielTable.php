@@ -14,6 +14,7 @@ class AcquisitionMaterielTable extends Component
 
     public string $designation = '';
     public string $categorie = '';
+    public string $numero_inventaire = '';
     public string $type = "";
 
     public string $orderByField = 'created_at';
@@ -22,6 +23,7 @@ class AcquisitionMaterielTable extends Component
     protected $queryString = [
         'designation' => ['except' => ""],
         'categorie' => ['except' => ""],
+        "numero_inventaire" => ['except' => ""],
         'type' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
         'orderByDirection' => ['except' => "ASC"]
@@ -68,6 +70,11 @@ class AcquisitionMaterielTable extends Component
             $query = $query->whereHas('materiel', function ($query) {
                 $query->where('materiels.designation', "LIKE", "%{$this->designation}%");
             });
+        }
+
+
+        if (!empty($this->numero_inventaire)) {
+            $query = $query->where('numero_inventaire', "LIKE", "%{$this->numero_inventaire}%");
         }
 
         if (!empty($this->categorie)) {
