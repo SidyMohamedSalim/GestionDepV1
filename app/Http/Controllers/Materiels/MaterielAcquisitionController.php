@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Materiels;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Materiels\MaterielAcquisitionRequest;
+use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,7 @@ class MaterielAcquisitionController extends Controller
     {
         return view('admin.Materiel.acquisition.form', [
             'MaterielAcquisition' => new MaterielAcquisition(),
+            'materiels' => Materiel::all()
         ]);
     }
 
@@ -33,11 +35,21 @@ class MaterielAcquisitionController extends Controller
     public function store(MaterielAcquisitionRequest $request)
     {
         $data  = $request->validated();
-        $data['base_quantite'] = $data['quantite'];
+
+        dd($data);
 
 
-        MaterielAcquisition::create($data);
-        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition créé');
+        foreach ($data['acquisition'] as $acquisitionData) {
+            MaterielAcquisition::create([
+                'materiel_id' => $acquisitionData['materiel_id'],
+                'quantite' => $acquisitionData['quantite'],
+                'caracteristiques' => $data['caracteristiques'],
+                'destination' => $data['destination'],
+                'date_acquisition' => $data['date_acquisition'],
+            ]);
+        }
+
+        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'Les acquisitions  ont ete faites ');
     }
 
     /**

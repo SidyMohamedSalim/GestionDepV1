@@ -5,9 +5,6 @@
         </h2>
     </x-slot> --}}
 
-    <div class="max-w-screen-xl mx-auto">
-        {{ Breadcrumbs::render('home') }}
-    </div>
 
     <div class="max-w-screen-xl mx-auto">
 
