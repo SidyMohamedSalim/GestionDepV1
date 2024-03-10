@@ -120,8 +120,6 @@
                         <livewire:enseignant.materiel-enseignant-affectation-modal :acquisitions="$acquisitions"
                             :enseignant="$enseignant" key="materiel-{{$enseignant->id}}" />
                     </x-modal-alpine>
-
-
                     {{-- delete --}}
 
                     <x-modal-alpine title="Suppression" :key="$enseignant->id" name="materiel de {{ $enseignant->id }}">

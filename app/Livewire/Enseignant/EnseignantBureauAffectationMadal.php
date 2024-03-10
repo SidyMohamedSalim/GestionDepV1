@@ -2,11 +2,9 @@
 
 namespace App\Livewire\Enseignant;
 
-use App\Models\Bureau;
 use App\Models\Enseignant;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use LivewireUI\Modal\ModalComponent;
 
 class EnseignantBureauAffectationMadal extends Component
 {

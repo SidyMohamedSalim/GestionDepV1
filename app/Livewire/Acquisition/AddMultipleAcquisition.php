@@ -15,6 +15,9 @@ class AddMultipleAcquisition extends Component
     public string $date_acquisition = '';
     public array  $acquisition = [];
 
+    public string $categorie = 'Fourniture';
+
+
 
 
     public function increment()
@@ -28,6 +31,16 @@ class AddMultipleAcquisition extends Component
         }
     }
 
+    public function changeCategorieToEquipement()
+    {
+        $this->categorie =  "Equipement";
+    }
+
+    public function changeCategorieToFourniture()
+    {
+        $this->categorie = "Fourniture";
+    }
+
     public function saveAcquisitions()
     {
 
@@ -39,6 +52,7 @@ class AddMultipleAcquisition extends Component
                     'materiel_id' => $acquisitionData['materiel_id'],
                     'quantite' => $acquisitionData['quantite'],
                     'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
+                    'numero_inventaire' => $acquisitionData['numero_inventaire'] ?? null,
                     'destination' => $data['destination'],
                     'date_acquisition' => $data['date_acquisition'],
                 ]);
@@ -54,7 +68,7 @@ class AddMultipleAcquisition extends Component
     public function render()
     {
         return view('livewire.acquisition.add-multiple-acquisition', [
-            'materiels' => Materiel::select(['id', 'designation'])->where('categorie', '=', 'Fourniture')->get()
+            'materiels' => Materiel::select(['id', 'designation'])->where('categorie', '=', $this->categorie)->get()
         ]);
     }
 
@@ -67,6 +81,7 @@ class AddMultipleAcquisition extends Component
             'acquisition.*.materiel_id' => 'required|exists:materiels,id',
             'acquisition.*.quantite' => 'required|integer|min:1',
             'acquisition.*.carateristiques' => 'nullable|string',
+            'acquisition.*.numero_inventaire' => $this->categorie == "Fourniture" ? 'nullable|string' : "required|string",
         ];
     }
 
@@ -77,7 +92,8 @@ class AddMultipleAcquisition extends Component
             'destination.required' => 'Le champ destination est requis.',
             'acquisition.required' => "Il faut au moins une acquisition",
             'date_acquisition.required' => 'Le champ date d\'acquisition est requis.',
-            'acquisition.*.materiel_id.required' => 'Le champ matériel est requis pour toutes les acquisitions.',
+            'acquisition.*.materiel_id.required' => 'selectionner un materiel.',
+            'acquisition.*.numero_inventaire.required' => 'le numero inventaire est requis pour toutes les acquisitions.',
             'acquisition.*.quantite.required' => 'Le champ quantité est requis pour toutes les acquisitions.',
         ];
     }

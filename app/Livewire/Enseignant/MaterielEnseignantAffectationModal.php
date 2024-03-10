@@ -19,6 +19,7 @@ class MaterielEnseignantAffectationModal extends Component
 
     public MaterielAcquisition $acquisition;
 
+
     public string $acquistionIdSelected = '';
 
 
@@ -90,8 +91,6 @@ class MaterielEnseignantAffectationModal extends Component
     {
         return view(
             'livewire.enseignant.materiel-enseignant-affectation-modal',
-
-
         );
     }
 }
