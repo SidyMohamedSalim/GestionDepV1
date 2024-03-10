@@ -7,12 +7,15 @@ use App\Models\EnseignantMateriel;
 use App\Models\Materiels\MaterielAcquisition;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class MaterielEnseignantAffectationModal extends Component
 {
     public Enseignant $enseignant;
     public string $quantite = '1';
+
+    public Collection $acquisitions;
 
     public MaterielAcquisition $acquisition;
 
@@ -88,9 +91,7 @@ class MaterielEnseignantAffectationModal extends Component
         return view(
             'livewire.enseignant.materiel-enseignant-affectation-modal',
 
-            [
-                'acquisitions' => MaterielAcquisition::with("materiel")->where("quantite", ">", "0")->get()
-            ]
+
         );
     }
 }

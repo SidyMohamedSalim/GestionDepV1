@@ -107,7 +107,7 @@
                             <x-icons.desktop />
                         </x-slot>
                         <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
-                            key="bureau-{{$enseignant->id}}">
+                            :bureaux="$bureaux" key="bureau-{{$enseignant->id}}">
                     </x-modal-alpine>
 
 
@@ -117,8 +117,8 @@
                         <x-slot name="icon">
                             <x-icons.utils />
                         </x-slot>
-                        <livewire:enseignant.materiel-enseignant-affectation-modal :enseignant="$enseignant"
-                            key="materiel-{{$enseignant->id}}" />
+                        <livewire:enseignant.materiel-enseignant-affectation-modal :acquisitions="$acquisitions"
+                            :enseignant="$enseignant" key="materiel-{{$enseignant->id}}" />
                     </x-modal-alpine>
 
 

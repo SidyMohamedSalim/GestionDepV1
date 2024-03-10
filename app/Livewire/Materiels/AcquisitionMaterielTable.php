@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Materiels;
 
+use App\Models\Enseignant;
 use App\Models\Materiels\MaterielAcquisition;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -92,7 +93,8 @@ class AcquisitionMaterielTable extends Component
         return view(
             'livewire.materiels.acquisition-materiel-table',
             [
-                "materiel_acquisitions" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10)
+                "materiel_acquisitions" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
+                'enseignants' => Enseignant::all()
             ]
         );
     }

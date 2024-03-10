@@ -25,7 +25,7 @@ class MaterielAcquisitionController extends Controller
     {
         return view('admin.Materiel.acquisition.form', [
             'MaterielAcquisition' => new MaterielAcquisition(),
-            'materiels' => Materiel::all()
+
         ]);
     }
 

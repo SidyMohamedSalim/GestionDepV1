@@ -8,6 +8,7 @@ use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class EnseignantMaterielAffectationModal extends Component
@@ -15,6 +16,7 @@ class EnseignantMaterielAffectationModal extends Component
 
     public string $quantite = '1';
 
+    public Collection $enseignants;
     public MaterielAcquisition $acquisition;
 
     public string $enseignanIdSelected = '';
@@ -80,8 +82,6 @@ class EnseignantMaterielAffectationModal extends Component
 
     public function render()
     {
-        return view('livewire.materiel.enseignant-materiel-affectation-modal', [
-            'enseignants' => Enseignant::all()
-        ]);
+        return view('livewire.materiel.enseignant-materiel-affectation-modal');
     }
 }

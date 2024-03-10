@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('quantite')->default(1);
             $table->float('base_quantite')->default(1);
             $table->date('date_acquisition');
-            $table->string('carateristiques');
+            $table->string('carateristiques')->nullable();
             $table->enum('destination', ['informatique', 'laboratoire']);
             $table->string("numero_inventaire")->nullable();
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();
