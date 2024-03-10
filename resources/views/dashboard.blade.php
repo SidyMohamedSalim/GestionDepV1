@@ -53,7 +53,7 @@
                     <div class="p-6 text-gray-900">
                         <h1 class="mb-4 text-xl font-extrabold">Materiels</h1>
 
-                        <div class="grid grid-cols-3">
+                        <div class="grid md:grid-cols-3">
                             <div class="flex-1 md:py-6 max-md:w-full">
                                 <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
                                     <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
