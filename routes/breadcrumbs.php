@@ -100,6 +100,13 @@ Breadcrumbs::for('stocks', function (BreadcrumbTrail $trail) {
     $trail->push('Stocks', route("materiel.materiel_acquisition.index"));
 });
 
+//Acceuil > Stocks > Nouvelles acquisitions
+Breadcrumbs::for('addstocks', function (BreadcrumbTrail $trail) {
+    $trail->parent('stocks');
+    $trail->push('Nouvelles acquisitions', route("materiel.materiel_acquisition.create"));
+});
+
+
 
 
 // 2  Admin  Materiels
@@ -109,6 +116,9 @@ Breadcrumbs::for('materiels', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('materiels', route("materiel.materiel.index"));
 });
+
+
+
 
 // Accueil > Materiels > [materiel]
 Breadcrumbs::for('materielshow', function (BreadcrumbTrail $trail, Materiel $materiel) {

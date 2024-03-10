@@ -5,6 +5,9 @@
         </h2>
     </x-slot>
 
+    <div class="flex justify-center pt-12 mx-auto max-w-7xl">
+        {{ Breadcrumbs::render('addstocks') }}
+    </div>
     <div class="max-w-screen-lg p-4 mx-auto my-16 bg-gray-50">
         <livewire:acquisition.add-multiple-acquisition>
     </div>

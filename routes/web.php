@@ -3,6 +3,7 @@
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\enseignant\EnseignantVacataireController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielController;
 use App\Http\Controllers\ProfileController;
@@ -23,13 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard', [
-        'count_enseignant' => Enseignant::all()->count(),
-        'count_vacataire' => EnseignantVacataire::all()->count(),
-        'count_bureau' => Bureau::all()->count(),
-    ]);
-})->middleware('auth')->name('dashboard');
+Route::controller(HomeController::class)->group(function () {
+
+    Route::get('/', 'index')->middleware('auth')->name('dashboard');
+});
+
 
 
 
