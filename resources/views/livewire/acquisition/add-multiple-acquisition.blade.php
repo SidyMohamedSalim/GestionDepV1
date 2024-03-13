@@ -53,7 +53,7 @@
                 <div @class([ 'grid items-start grid-cols-2 gap-3 my-4 ' , 'grid-cols-3'=> $categorie == 'Equipement',
                     ])>
                     <div>
-                        <select wire:model.defer="acquisition.{{ $i }}.materiel_id"
+                        <select wire:model.defer="acquisition.{{$i }}.materiel_id"
                             class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                             <option disabled selected value="">Selectionner materiel</option>
                             @foreach ($materiels as $materiel)

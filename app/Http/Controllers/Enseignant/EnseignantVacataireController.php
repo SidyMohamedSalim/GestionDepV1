@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\enseignant;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\enseignant\EnseignantVacataireRequest;
+use App\Http\Requests\Enseignant\EnseignantVacataireRequest;
 use App\Models\EnseignantVacataire;
-use Illuminate\Http\Request;
 
 class EnseignantVacataireController extends Controller
 {

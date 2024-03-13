@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
-use App\Http\Controllers\enseignant\EnseignantVacataireController;
+use App\Http\Controllers\Enseignant\EnseignantVacataireController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielController;
