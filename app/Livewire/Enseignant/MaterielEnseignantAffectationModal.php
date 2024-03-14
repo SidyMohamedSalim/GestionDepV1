@@ -62,6 +62,7 @@ class MaterielEnseignantAffectationModal extends Component
         $this->enseignant->acquisition()->attach($this->acquisition->id, [
             'date_affectation' => new DateTime(),
             "quantite" => $this->quantite,
+            'signature' => $this->acquisition->numero_inventaire  ? "pending" : "not-concerned"
         ]);
 
 

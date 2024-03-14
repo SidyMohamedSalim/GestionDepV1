@@ -31,7 +31,7 @@
             <x-input-label for="quantite" :value="__('Quantité')" />
 
             <x-text-input wire:model.defer='quantite' id="quantite" class="block w-full mt-1" type='number'
-                name="quantite" autocomplete="quantite" value="{{ old('quantite') }}" />
+                name=" quantite" autocomplete="quantite" value="{{ old('quantite') }}" />
 
             <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
         </div>

@@ -52,6 +52,7 @@ class EnseignantMaterielAffectationModal extends Component
         $materielEnseignant  =  $this->acquisition->enseignant()->attach($this->enseignanIdSelected, [
             'date_affectation' => new DateTime(),
             "quantite" => $this->quantite,
+            'signature' => $this->acquisition->numero_inventaire  ? "pending" : "not-concerned"
         ]);
 
 
@@ -69,6 +70,7 @@ class EnseignantMaterielAffectationModal extends Component
                 'acquisition' => $this->acquisition,
                 'enseignant' => Enseignant::find($this->enseignanIdSelected),
                 'quantite' => $this->quantite,
+
             ]);
 
             return response()->streamDownload(function () use ($pdf) {

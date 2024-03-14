@@ -50,7 +50,7 @@ class MaterielAcquisitionLivewire extends Component
                 'numero_inventaire' => $this->numero_inventaire,
                 'destination' => $this->destination,
                 'materiel_id' => $this->materiel->id,
-                'base_quantite' => $this->quantite
+                'base_quantite' => $this->materiel->categorie == 'Fourniture' ? $this->quantite : "1"
             ]);
             $this->dispatch("acquisitionSaved");
         }

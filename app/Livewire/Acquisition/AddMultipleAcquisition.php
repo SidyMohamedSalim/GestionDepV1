@@ -47,10 +47,10 @@ class AddMultipleAcquisition extends Component
         $data = $this->validate();
 
         foreach ($data['acquisition'] as $acquisitionData) {
-            if (!empty($acquisitionData['materiel_id']) && !empty($acquisitionData['quantite'])) {
+            if (!empty($acquisitionData['materiel_id'])) {
                 MaterielAcquisition::create([
                     'materiel_id' => $acquisitionData['materiel_id'],
-                    'quantite' => $acquisitionData['quantite'],
+                    'quantite' => $this->categorie == "Fourniture" ? $acquisitionData['quantite'] : "1",
                     'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
                     'numero_inventaire' => $acquisitionData['numero_inventaire'] ?? null,
                     'destination' => $data['destination'],
@@ -79,7 +79,7 @@ class AddMultipleAcquisition extends Component
             'date_acquisition' => 'required|date',
             'acquisition' => ['array', 'required'],
             'acquisition.*.materiel_id' => 'required|exists:materiels,id',
-            'acquisition.*.quantite' => 'required|integer|min:1',
+            'acquisition.*.quantite' =>  $this->categorie == "Equipement" ? 'nullable|string' :  'required|integer|min:1',
             'acquisition.*.carateristiques' => 'nullable|string',
             'acquisition.*.numero_inventaire' => $this->categorie == "Fourniture" ? 'nullable|string' : "required|string",
         ];
