@@ -3,7 +3,7 @@
 namespace App\Models\Materiels;
 
 use App\Models\Enseignant;
-use App\Models\EnseignantMateriel;
+use App\Models\EnseignantMaterielAcquisition;
 use App\Models\Materiel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +25,8 @@ class MaterielAcquisition extends Model
         'materiel_id'
     ];
 
+    protected $with = ['materiel', 'enseignant'];
+
     public function materiel(): BelongsTo
     {
         return $this->belongsTo(Materiel::class);
@@ -32,11 +34,11 @@ class MaterielAcquisition extends Model
 
     public  function affectation(): HasMany
     {
-        return $this->hasMany(EnseignantMateriel::class);
+        return $this->hasMany(EnseignantMaterielAcquisition::class);
     }
 
     public  function enseignant(): BelongsToMany
     {
-        return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['quantite', 'date_affectation', 'signature']);
+        return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
 }

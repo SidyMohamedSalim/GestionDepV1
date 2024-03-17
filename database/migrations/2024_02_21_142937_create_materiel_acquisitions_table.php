@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date_acquisition');
             $table->string('carateristiques')->nullable();
             $table->enum('destination', ['informatique', 'laboratoire']);
+
             $table->string("numero_inventaire")->nullable();
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -69,12 +69,12 @@
             <img src="hero.png" alt="img" />
         </div>
         <div class="header">
-            <h2>Décharge affectation matériel</h2>
+            <h2>Décharge restitution matériel</h2>
         </div>
         <div class="content">
-            <p>Date: <span>Now</span></p>
+            <p>Date: <span>{{-- date --}}</span></p>
             <p>Je soussigné(e) <span>{{ $enseignant->nom }} {{ $enseignant->prenom }} de la personne</span>, déclare
-                avoir reçu le matériel suivant :</p>
+                avoir restitué le matériel suivant :</p>
             <table>
                 <thead>
                     <tr>
@@ -86,9 +86,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $acquisition->numero_inventaire }}</td>
-                        <td>{{ $acquisition->materiel->designation }}</td>
-                        <td>{{ $acquisition->caracteristiques }}</td>
+                        <td>{{ $materiel->numero_inventaire }}</td>
+                        <td>{{ $materiel->materiel->designation }}</td>
+                        <td>{{ $materiel->caracteristiques }}</td>
                         <td>{{ $quantite }}</td>
                     </tr>
 

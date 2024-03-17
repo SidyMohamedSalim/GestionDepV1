@@ -3,6 +3,7 @@
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\Enseignant\EnseignantVacataireController;
+use App\Http\Controllers\Enseignant\MaterielRestitutionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Materiels\MaterielAcquisitionController;
 use App\Http\Controllers\Materiels\MaterielController;
@@ -70,6 +71,12 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 
 
 // Relation materiel enseignant
+
+
+// MaterielRestitution
+Route::prefix("/")->name('restoreMateriel.')->controller(MaterielRestitutionController::class)->middleware('auth')->group(function () {
+    Route::post("/restore/{acquisition}", 'restore')->name('restore');
+});
 
 
 

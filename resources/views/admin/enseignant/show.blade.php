@@ -9,6 +9,7 @@
     <div class="flex justify-center py-12 mx-auto max-w-7xl">
         {{ Breadcrumbs::render('enseignantshow',$enseignant) }}
     </div>
+
     <div class="pb-12">
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
@@ -57,6 +58,18 @@
                 </div>
             </div>
 
+            @if (session('status'))
+            <div
+                class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+                <span>{{ session('status') }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-check">
+                    <path d="M20 6 9 17l-5-5" />
+                </svg>
+            </div>
+            @endif
+
             {{-- acquisitions inventories --}}
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div>
@@ -64,20 +77,10 @@
                         {{-- header --}}
                         <header class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('acquisitions Inventoriés Reçus') }}
+                                {{ __('acquisitions Inventoriées Reçus') }}
                             </h2>
 
-                            {{-- <x-modal-alpine title="Affectation d'un acquisition" :key="$enseignant->id"
-                                name="acquisition de {{ $enseignant->id }}">
-                                <x-slot name="icon">
-                                    <div
-                                        class="items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
-                                        <x-icons.utils />
-                                    </div>
-                                </x-slot>
-                                <livewire:enseignant.acquisition-enseignant-affectation-modal :enseignant="$enseignant"
-                                    key="acquisition-{{$enseignant->id}}" />
-                            </x-modal-alpine> --}}
+
 
                         </header>
 
@@ -127,7 +130,32 @@
                                         {{ $acquisition->pivot->signature }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
+                                        <x-modal-alpine title="restitution" :key="$acquisition->id"
+                                            name="materiel de {{ $acquisition->id }}">
+                                            <x-slot name="icon">
+                                                <span
+                                                    class="text-xs text-red-500 cursor-pointer hover:underline">Restitué?</span>
+                                            </x-slot>
+                                            <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
+                                                restitué ?</p>
+                                            <p type="submit"
+                                                class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
+                                                Valider</p>
+                                            {{-- <form action="{{ route('restoreMateriel.restore',$acquisition->id) }}"
+                                                method="post">
+                                                @csrf
+                                                <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
+                                                    restitué ?</p>
+                                                <input type="text" class="hidden" name="enseignant_id" id=""
+                                                    value="{{$enseignant->id }}">
+                                                <input type="text" class="hidden" name="affectation_id" id=""
+                                                    value="{{$acquisition->pivot->id}}">
+                                                <button type="submit"
+                                                    class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
+                                                    Valider</button>
+                                            </form> --}}
+                                        </x-modal-alpine>
+
                                     </td>
 
                                 </tr>
@@ -149,7 +177,7 @@
                         {{-- header --}}
                         <header class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('acquisitions Non Inventoriés Reçus') }}
+                                {{ __('acquisitions Non Inventoriées Reçus') }}
                             </h2>
 
                         </header>
@@ -173,7 +201,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($enseignant->acquisition as $acquisition)
+                                @foreach ($enseignant->acquisition as $acquisition)
                                 @if (!$acquisition->numero_inventaire)
 
                                 <tr class="border-b odd:bg-white">
@@ -187,10 +215,8 @@
                                         {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                 </tr>
-                                @else
                                 @endif
-                                @empty
-                                @endforelse
+                                @endforeach
 
                             </tbody>
 
@@ -206,12 +232,60 @@
                     <section>
                         <header class="mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
-                                {{ __('acquisitions Restitués') }}
+                                {{ __('acquisitions Restituées') }}
                             </h2>
-
                         </header>
                     </section>
+
+
                 </div>
+
+                {{-- content --}}
+                <table class="w-full text-sm text-left rtl:text-right ">
+
+                    <thead class="text-xs text-white uppercase bg-primary ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Numero Inventaire
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Designation
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
+                                quantite
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Signé
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date Restitution
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($enseignant->restitution as $restitution)
+                        <tr class="border-b odd:bg-white">
+                            <td class="px-6 py-4">
+                                -------
+                            </td>
+                            <td class="px-6 py-4">
+                                --------
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $restitution->quantite }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $restitution->signature }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $restitution->date_restitution }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

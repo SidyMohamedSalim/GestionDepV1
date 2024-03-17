@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Enseignant;
-use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enseignant_materiel');
+        Schema::dropIfExists('enseignant_materiel_acquisition');
     }
 };

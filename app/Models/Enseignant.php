@@ -29,10 +29,18 @@ class Enseignant extends Model
 
     public  function acquisition(): BelongsToMany
     {
-        return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+        return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
+
+
+
     public  function affectation(): HasMany
     {
-        return $this->hasMany(EnseignantMateriel::class);
+        return $this->hasMany(EnseignantMaterielAcquisition::class);
+    }
+
+    public function restitution(): HasMany
+    {
+        return $this->hasMany(MaterielRestitution::class);
     }
 }
