@@ -110,11 +110,11 @@
                 </td>
 
                 <td class="flex items-center gap-4 px-6 py-4 justify-evenly">
-                    {{-- editer --}}
-                    {{-- <a href="{{ route('materiel.materiel_acquisition.edit', $materiel_acquisition) }}"
+                    {{-- voir --}}
+                    {{-- <a href="{{ route('materiel.materiel_acquisition.show', $materiel_acquisition) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
 
-                        <x-icons.edit />
+                        <x-icons.eyes />
                     </a> --}}
 
 
