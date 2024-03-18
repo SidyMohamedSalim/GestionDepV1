@@ -136,12 +136,7 @@
                                                 <span
                                                     class="text-xs text-red-500 cursor-pointer hover:underline">Restitué?</span>
                                             </x-slot>
-                                            <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
-                                                restitué ?</p>
-                                            <p type="submit"
-                                                class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
-                                                Valider</p>
-                                            {{-- <form action="{{ route('restoreMateriel.restore',$acquisition->id) }}"
+                                            <form action="{{ route('restoreMateriel.restore',$acquisition->id) }}"
                                                 method="post">
                                                 @csrf
                                                 <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
@@ -153,7 +148,7 @@
                                                 <button type="submit"
                                                     class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
                                                     Valider</button>
-                                            </form> --}}
+                                            </form>
                                         </x-modal-alpine>
 
                                     </td>
@@ -268,10 +263,10 @@
                         @foreach ($enseignant->restitution as $restitution)
                         <tr class="border-b odd:bg-white">
                             <td class="px-6 py-4">
-                                -------
+                                {{ $restitution->designation }}
                             </td>
                             <td class="px-6 py-4">
-                                --------
+                                {{ $restitution->numero_inventaire }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $restitution->quantite }}

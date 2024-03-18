@@ -22,7 +22,8 @@ class MaterielAcquisition extends Model
         'destination',
         "carateristiques",
         "base_quantite",
-        'materiel_id'
+        'materiel_id',
+        'nbre_restitution'
     ];
 
     protected $with = ['materiel', 'enseignant'];

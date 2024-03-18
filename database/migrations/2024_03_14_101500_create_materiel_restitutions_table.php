@@ -16,12 +16,15 @@ return new class extends Migration
     {
         Schema::create('materiel_restitutions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(MaterielAcquisition::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Enseignant::class)->constrained()->cascadeOnDelete();
+            $table->string("designation")->nullable();
+            $table->string("numero_inventaire")->nullable();
+            $table->foreignIdFor(MaterielAcquisition::class);
+            $table->foreignIdFor(Enseignant::class);
             $table->string("quantite")->default("1");
             $table->date("date_restitution");
             $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('pending');
             $table->timestamps();
+            $table->unique(['id', 'materiel_acquisition_id', 'enseignant_id', 'date_restitution']);
         });
     }
 

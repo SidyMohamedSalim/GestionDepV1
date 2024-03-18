@@ -62,6 +62,9 @@
                     :orderDirection="$orderByDirection">
                     quantite
                 </x-table-header>
+                <th scope="col" class="px-6 py-3">
+                    Nbre de Restitution
+                </th>
                 <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Date d'acquisition
@@ -104,6 +107,13 @@
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                     {{ $materiel_acquisition->quantite }}
                 </th>
+                <td class="px-6 py-4">
+                    @if ($materiel_acquisition->numero_inventaire)
+                    {{ $materiel_acquisition->nbre_restitution }}
+                    @else
+                    non concerné
+                    @endif
+                </td>
 
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->date_acquisition }}

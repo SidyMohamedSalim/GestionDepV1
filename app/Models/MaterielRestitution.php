@@ -16,7 +16,9 @@ class MaterielRestitution extends Model
         "date_restitution",
         'signature',
         'enseignant_id',
-        'materiel_acquisition_id'
+        'materiel_acquisition_id',
+        'designation',
+        'numero_inventaire'
     ];
 
     protected $with = ['acquisition'];
