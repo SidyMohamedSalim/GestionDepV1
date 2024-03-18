@@ -47,15 +47,23 @@ class MaterielRestitutionController extends Controller
         $enseignant = Enseignant::find($data['enseignant_id']);
         $acquisition->enseignant()->detach($data['enseignant_id']);
 
+        $this->downloadPDf($enseignant, $acquisition);
+
+        return Redirect::back()->with('status', 'restitution reussi !');
+    }
+
+
+    public function downloadPDf(Enseignant $enseignant, MaterielAcquisition $acquisition)
+    {
         $pdf = Pdf::loadView('pdf.materiel-restitution', [
             'materiel' => $acquisition,
             'enseignant' => $enseignant,
             'quantite' => 1,
         ]);
 
-        response()->streamDownload(function () use ($pdf) {
+
+        return response()->streamDownload(function () use ($pdf) {
             echo $pdf->download();
         }, 'decharge' . $acquisition->numero_inventaire . $enseignant->id . '.pdf');
-        return Redirect::back()->with('status', 'restitution reussi !');
     }
 }

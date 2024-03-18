@@ -64,21 +64,22 @@ class EnseignantMaterielAffectationModal extends Component
 
         $this->reset('quantite');
         $this->dispatch("affectationSaved");
-
+        $enseignant = Enseignant::find($this->enseignanIdSelected);
         if (!empty($this->acquisition->numero_inventaire)) {
             $pdf = Pdf::loadView('pdf.materiel-affectation', [
                 'acquisition' => $this->acquisition,
-                'enseignant' => Enseignant::find($this->enseignanIdSelected),
+                'enseignant' => $enseignant,
                 'quantite' => $this->quantite,
-
             ]);
 
+            $this->reset('enseignanIdSelected');
             return response()->streamDownload(function () use ($pdf) {
                 echo $pdf->download();
-            }, 'decharge' . $this->acquisition->numero_inventaire . Enseignant::find($this->enseignanIdSelected)->nom . '.pdf');
+            }, 'decharge' . $this->acquisition->numero_inventaire . $enseignant->nom . '.pdf');
+        } else {
+            $this->reset('enseignanIdSelected');
+            return redirect()->back();
         }
-
-        $this->reset('enseignanIdSelected');
     }
 
 
