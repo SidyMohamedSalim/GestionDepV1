@@ -53,6 +53,7 @@ class MaterielRestitutionController extends Controller
     }
 
 
+
     public function downloadPDf(Enseignant $enseignant, MaterielAcquisition $acquisition)
     {
         $pdf = Pdf::loadView('pdf.materiel-restitution', [

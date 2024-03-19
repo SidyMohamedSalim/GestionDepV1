@@ -1,7 +1,9 @@
 <header>
     <nav x-data="{ open: false }" class="border-b bg-gray-50 border-gray-50 ">
 
-        {{$routeName = Route::currentRouteName()}}
+        @php
+        $routeName = Route::currentRouteName()
+        @endphp
         <!-- Primary Navigation Menu -->
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
