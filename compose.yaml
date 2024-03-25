@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   web:
-    build: .
+    build: git@github.com:SidyMohamedSalim/GestionDepV1.git
     restart: unless-stopped
     ports:
       - "8080:80"
