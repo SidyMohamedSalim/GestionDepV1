@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   web:
-    build: git@github.com:SidyMohamedSalim/GestionDepV1.git
+    build: .
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -18,7 +18,7 @@ services:
       MYSQL_PASSWORD: gestion
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./data/db:/var/lib/mysql
+      - ./vendor/data/db:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
