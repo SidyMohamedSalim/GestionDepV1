@@ -63,7 +63,13 @@
             <x-side-bar />
 
             {{ $slot }}
+
         </main>
+        <div
+            class="fixed flex items-center justify-center w-6 h-6 text-white rounded-full bottom-10 right-10 bg-primary">
+            <a href="{{ route('help') }}"
+                class="flex items-center justify-center w-full h-full font-extrabold rounded-full hover:bg-secondary ">?</a>
+        </div>
     </div>
 
     @livewireScripts

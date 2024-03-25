@@ -28,7 +28,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller(HomeController::class)->group(function () {
 
     Route::get('/', 'index')->middleware('auth')->name('dashboard');
+
+    Route::get("/help", 'help')->name("help");
 });
+
 
 
 
@@ -77,6 +80,8 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 Route::prefix("/")->name('restoreMateriel.')->controller(MaterielRestitutionController::class)->middleware('auth')->group(function () {
     Route::post("/restore/{acquisition}", 'restore')->name('restore');
 });
+
+
 
 
 

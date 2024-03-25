@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Bureau;
 use App\Models\Enseignant;
+use App\Models\Materiels\MaterielAcquisition;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -76,7 +78,10 @@ class BureauLivewire extends Component
         return view('livewire.bureau-livewire', [
             'bureaux' =>
             $query->with('enseignant')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
-            'enseignants' => Enseignant::all()
+            'enseignants' => Enseignant::all(),
+            'acquisitions' => MaterielAcquisition::query()->where('quantite', ">", "0")->whereHas('materiel', function (Builder $query) {
+                $query->where('categorie', '=', 'Equipement');
+            })->get()
         ]);
     }
 }

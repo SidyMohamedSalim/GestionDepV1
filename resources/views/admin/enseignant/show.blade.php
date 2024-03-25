@@ -127,7 +127,7 @@
                                         {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $acquisition->pivot->signature }}
+                                        <x-signature :signed="$acquisition->pivot->signature" />
                                     </td>
                                     <td class="px-6 py-4">
                                         <x-modal-alpine title="restitution" :key="$acquisition->id"

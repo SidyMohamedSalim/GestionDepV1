@@ -37,13 +37,12 @@
                                     {{count($bureau->enseignant)}}
                                 </p>
                             </div>
-
-
                         </div>
                     </section>
                 </div>
             </div>
 
+            {{-- liste des ensiegnants --}}
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div>
                     <section>
@@ -77,9 +76,9 @@
                                         Date de Recrutement
                                     </th>
 
-                                    {{-- <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3">
                                         Actions
-                                    </th> --}}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,9 +97,11 @@
                                     <td class="px-6 py-4">
                                         {{ $enseignant->daterecrutement }}
                                     </td>
-                                    {{-- <td class="px-6 py-4">
-                                        <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
-                                    </td> --}}
+                                    <td class="px-6 py-4">
+                                        <div class="text-red-500 cursor-pointer hover:underline">
+                                            <x-icons.delete />
+                                        </div>
+                                    </td>
 
                                 </tr>
                                 @empty
@@ -116,6 +117,73 @@
                 </div>
             </div>
 
+            {{-- Liste des mateiels affectes a un local --}}
+            <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
+                <div>
+                    <section>
+                        {{-- header --}}
+                        <header class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-extrabold text-primary">
+                                Materiels Affectés à ce local
+                            </h2>
+
+                        </header>
+
+                        {{-- content --}}
+                        <table class="w-full text-sm text-left rtl:text-right ">
+
+                            <thead class="text-xs text-white uppercase bg-primary ">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Designation
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        signé ?
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Partager
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Date Affection
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($bureau->acquisition as $acquisition)
+                                <tr class="border-b odd:bg-white">
+
+                                    <td class="px-6 py-4">
+                                        {{ $acquisition->materiel->designation }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <x-signature :signed="$acquisition->pivot->signature" />
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        oui
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $acquisition->pivot->date_affectation }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
+                                    </td>
+
+                                </tr>
+                                @empty
+                                <div class="flex items-center justify-center w-full h-full">
+                                    <p>Vide !!</p>
+                                </div>
+                                @endforelse
+
+                            </tbody>
+
+                        </table>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Materiels;
 
+use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantMaterielAcquisition;
 use App\Models\Materiel;
@@ -41,5 +42,22 @@ class MaterielAcquisition extends Model
     public  function enseignant(): BelongsToMany
     {
         return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+    }
+
+    public  function bureau(): BelongsToMany
+    {
+        return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+    }
+
+    // un materiel inventoriee peut avoir des composants materiels
+    public function composants(): HasMany
+    {
+        return $this->hasMany(MaterielAcquisition::class);
+    }
+
+    // un materiel non inventoriee peut avoir comment parent un  materiel inventoriee
+    public function parentMateriel(): BelongsTo
+    {
+        return $this->belongsTo(MaterielAcquisition::class);
     }
 }

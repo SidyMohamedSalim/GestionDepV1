@@ -42,7 +42,11 @@ class MaterielAcquisitionLivewire extends Component
     {
 
         $this->validate();
+
+
+
         if (!empty($this->materiel->id)) {
+
             MaterielAcquisition::create([
                 'quantite' => $this->quantite,
                 'carateristiques' => $this->carateristiques,

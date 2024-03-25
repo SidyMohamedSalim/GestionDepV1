@@ -20,10 +20,12 @@ return new class extends Migration
             $table->date('date_acquisition');
             $table->integer('nbre_restitution')->default(0);
             $table->string('carateristiques')->nullable();
+            $table->boolean('share')->default(false); //partager entre enseignant
             $table->enum('destination', ['informatique', 'laboratoire']);
 
             //Parent materiel pour un materiel utilise dans un materiel detenant un materiel
-            // $table->foreignIdFor(MaterielAcquisition::class)->nullable();
+
+            $table->foreignIdFor(MaterielAcquisition::class)->nullable();
 
             $table->string("numero_inventaire")->nullable();
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();

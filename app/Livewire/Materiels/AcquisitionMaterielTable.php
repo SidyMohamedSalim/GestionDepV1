@@ -14,9 +14,10 @@ class AcquisitionMaterielTable extends Component
     use WithPagination;
 
     public string $designation = '';
-    public string $categorie = '';
+    public string $categorie = 'Equipement';
     public string $numero_inventaire = '';
-    public string $type = "";
+    public string $destination = "";
+
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
@@ -29,6 +30,12 @@ class AcquisitionMaterielTable extends Component
         'orderByField' => ['except' => "created_at"],
         'orderByDirection' => ['except' => "ASC"]
     ];
+
+
+    public function changeCategorie(string $newCategorie)
+    {
+        $this->categorie = $newCategorie;
+    }
 
     public  function setOrderField(string $fieldname)
     {
@@ -65,8 +72,6 @@ class AcquisitionMaterielTable extends Component
 
         $query = MaterielAcquisition::query();
 
-
-
         if (!empty($this->designation)) {
             $query = $query->whereHas('materiel', function ($query) {
                 $query->where('materiels.designation', "LIKE", "%{$this->designation}%");
@@ -78,17 +83,17 @@ class AcquisitionMaterielTable extends Component
             $query = $query->where('numero_inventaire', "LIKE", "%{$this->numero_inventaire}%");
         }
 
+        if (!empty($this->destination)) {
+            $query = $query->where('destination', "LIKE", "%{$this->destination}%");
+        }
+
         if (!empty($this->categorie)) {
             $query = $query->whereHas('materiel', function ($query) {
                 $query->where('materiels.categorie', "LIKE", "%{$this->categorie}%");
             });
         }
 
-        if (!empty($this->type)) {
-            $query = $query->whereHas('materiel', function ($query) {
-                $query->where('materiels.type', "LIKE", "%{$this->type}%");
-            });
-        }
+
 
         return view(
             'livewire.materiels.acquisition-materiel-table',

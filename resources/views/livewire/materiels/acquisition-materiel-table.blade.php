@@ -1,5 +1,9 @@
 <div>
 
+    @php
+    $isInventoriee = $categorie == 'Equipement';
+    @endphp
+
     <div>
         <a href="{{ route('materiel.materiel.index') }}"
             class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
@@ -30,21 +34,39 @@
     </div>
 
     <div class="py-4">
-        <form class="grid gap-2 md:grid-cols-4">
+        <div class="flex items-center gap-4 my-6">
+            <button wire:click.prevent="changeCategorie('Equipement')" @class(['inline-flex items-center px-8 py-2
+                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
+                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
+                focus:ring-2 focus:ring-primary focus:ring-offset-2 ',"text-white bg-primary"=>$categorie == "Equipement" ])>Inventoriée </button>
+            <button wire:click.prevent=' changeCategorie("Fourniture")' @class([' inline-flex items-center px-8 py-2
+                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
+                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
+                focus:ring-2 focus:ring-primary focus:ring-offset-2',"text-white bg-primary"=>$categorie == 'Fourniture'
+                ])>
+                Non Inventoriée
+            </button>
+        </div>
+
+        <form class="grid gap-2 md:grid-cols-3">
+            @if ($isInventoriee)
             <x-search-input name="numero_inventaire" placeholder="Recherche par numero inventaire" />
+            @endif
             <x-search-input name="designation" placeholder="Recherche par designation" />
-            <x-search-input name="categorie" placeholder="Recherche par categorie" />
-            <x-search-input name="type" placeholder="Recherche par type" />
+            <x-search-input name="destination" placeholder="Recherche par destination" />
+
         </form>
     </div>
     <table class="w-full text-sm text-left rtl:text-right ">
 
         <thead class="text-xs text-white uppercase bg-primary ">
             <tr>
+                @if ($isInventoriee)
                 <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Numero Inventaire
                 </x-table-header>
+                @endif
                 <th scope="col" class="px-6 py-3">
                     Designation
                 </th>
@@ -62,9 +84,11 @@
                     :orderDirection="$orderByDirection">
                     quantite
                 </x-table-header>
+                @if ($isInventoriee)
                 <th scope="col" class="px-6 py-3">
                     Nbre de Restitution
                 </th>
+                @endif
                 <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
                     Date d'acquisition
@@ -78,13 +102,11 @@
         <tbody>
             @forelse ($materiel_acquisitions as $materiel_acquisition)
             <tr class="border-b odd:bg-white">
+                @if ($isInventoriee)
                 <td class="px-6 py-4 text-primary">
-                    @if ($materiel_acquisition->numero_inventaire)
                     {{ $materiel_acquisition->numero_inventaire }}
-                    @else
-                    ------
-                    @endif
                 </td>
+                @endif
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->materiel->designation }}
                 </td>
@@ -107,13 +129,11 @@
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                     {{ $materiel_acquisition->quantite }}
                 </th>
+                @if ($isInventoriee)
                 <td class="px-6 py-4">
-                    @if ($materiel_acquisition->numero_inventaire)
                     {{ $materiel_acquisition->nbre_restitution }}
-                    @else
-                    non concerné
-                    @endif
                 </td>
+                @endif
 
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->date_acquisition }}

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bureau extends Model
 {
@@ -19,5 +21,13 @@ class Bureau extends Model
     public function enseignant(): BelongsToMany
     {
         return $this->belongsToMany(Enseignant::class);
+    }
+
+
+
+
+    public  function acquisition(): BelongsToMany
+    {
+        return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
 }

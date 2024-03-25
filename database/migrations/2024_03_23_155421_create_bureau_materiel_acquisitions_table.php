@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Enseignant;
+use App\Models\Bureau;
 use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enseignant_materiel_acquisition', function (Blueprint $table) {
+        Schema::create('bureau_materiel_acquisition', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Enseignant::class)->constrained()->cascadeOnUpdate();
-            $table->foreignIdFor(MaterielAcquisition::class)->constrained()->cascadeOnUpdate();
-            $table->string("quantite");
+            $table->foreignIdFor(Bureau::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(MaterielAcquisition::class)->constrained()->cascadeOnDelete();
+            $table->string("quantite")->default('1');
             $table->date("date_affectation");
-
-            $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('not-concerned');
+            $table->enum('signature', ['pending', 'signed'])->default('pending');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enseignant_materiel_acquisition');
+        Schema::dropIfExists('bureau_materiel_acquisition');
     }
 };

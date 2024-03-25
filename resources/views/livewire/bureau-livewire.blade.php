@@ -91,6 +91,15 @@
                             <x-icons.users />
                         </a>
 
+                        <x-modal-alpine title="Affectation d'un materiel" :key="$bureau->id"
+                            name="materiel de {{ $bureau->id }}">
+                            <x-slot name="icon">
+                                <x-icons.utils />
+                            </x-slot>
+                            <livewire:bureau.bureau-materiel-affectation-modal :acquisitions="$acquisitions"
+                                :bureau="$bureau" key="materiel-{{$bureau->id}}" />
+                        </x-modal-alpine>
+
                         {{-- delete --}}
 
                         <x-modal-alpine title="Suppression" :key="$bureau->id" name="bureau de {{ $bureau->id }}">
