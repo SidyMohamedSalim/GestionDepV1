@@ -27,7 +27,7 @@ class MaterielAcquisition extends Model
         'nbre_restitution'
     ];
 
-    protected $with = ['materiel', 'enseignant'];
+    protected $with = ['materiel', 'enseignant', 'composants'];
 
     public function materiel(): BelongsTo
     {

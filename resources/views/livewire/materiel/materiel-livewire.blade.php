@@ -76,7 +76,7 @@
                     {{ $materiel->reference }}
 
                 </td>
-                <td class="flex items-center gap-3 px-6 py-4 justify-evenly">
+                <td class="flex items-center px-6 py-4 justify-evenly">
                     {{-- editer --}}
                     <a href="{{ route('materiel.materiel.edit',$materiel) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -101,6 +101,25 @@
                         </x-slot>
                         <livewire:materiels.materiel-acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
                     </x-modal-alpine>
+
+
+                    @if (count($materiel->acquisition) == 0)
+                    <x-modal-alpine title="Suppression" :key="$materiel->id" name="materiel de {{ $materiel->id }}">
+                        <x-slot name="icon">
+                            <x-icons.delete />
+                        </x-slot>
+
+                        <div class="px-3 ">
+                            <h1 class="py-6">Voulez vous vraiment supprimer cet element</h1>
+                            <a class="px-4 py-2 my-2 text-white bg-red-500 rounded-lg"
+                                href="{{ route('materiel.materiel.destroy',$materiel) }}">Supprimer</a>
+                        </div>
+                        {{--
+                        <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
+                            routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" /> --}}
+                    </x-modal-alpine>
+                    @endif
+
 
                 </td>
             </tr>

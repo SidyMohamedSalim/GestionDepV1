@@ -61,7 +61,7 @@
                             <option @selected(true) value="">Selectionner materiel</option>
                             @foreach ($materiels as $materiel)
                             <option value="{{ $materiel->id }}">
-                                {{ $materiel->designation }}
+                                {{ $materiel->designation }} {{$materiel->reference }}
                             </option>
                             @endforeach
                         </select>
@@ -79,7 +79,7 @@
                     @endif
                     <div>
                         @if ($estInventorie)
-                        <p class="flex justify-center items-center "><span class="">Quantité
+                        <p class="flex items-center justify-center "><span class="">Quantité
                                 :</span><span class="text-xl font-extrabold">1</span>
                         </p>
                         @else

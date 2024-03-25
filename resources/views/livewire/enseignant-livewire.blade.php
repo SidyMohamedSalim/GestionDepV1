@@ -91,7 +91,6 @@
                     {{-- editer --}}
                     <a href="{{ route('enseignant.edit', $enseignant) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
-
                         <x-icons.edit />
                     </a>
 

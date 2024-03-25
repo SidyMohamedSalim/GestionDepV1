@@ -4,8 +4,6 @@
 
     <div class="max-w-screen-xl mx-auto mt-20">
 
-
-
         <table class="w-full text-sm text-left rtl:text-right ">
 
             <thead class="text-xs text-white uppercase bg-gray-500 ">
@@ -75,6 +73,16 @@
                     </th>
                     <td class="px-6 py-4">
                         ajouter de materiel pour cet element
+                    </td>
+                </tr>
+                <tr class="border-b odd:bg-white">
+                    <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap ">
+                        <span>
+                            <x-icons.desktop />
+                        </span>
+                    </th>
+                    <td class="px-6 py-4">
+                        affecter un enseignant à un local
                     </td>
                 </tr>
 

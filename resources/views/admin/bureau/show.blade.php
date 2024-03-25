@@ -97,10 +97,14 @@
                                     <td class="px-6 py-4">
                                         {{ $enseignant->daterecrutement }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="flex items-center gap-2 px-6 py-4">
                                         <div class="text-red-500 cursor-pointer hover:underline">
                                             <x-icons.delete />
                                         </div>
+                                        {{-- voir --}}
+                                        <a href="{{ route('enseignant.show', $enseignant) }}">
+                                            <x-icons.eyes />
+                                        </a>
                                     </td>
 
                                 </tr>
@@ -129,6 +133,7 @@
 
                         </header>
 
+
                         {{-- content --}}
                         <table class="w-full text-sm text-left rtl:text-right ">
 
@@ -154,7 +159,6 @@
                             <tbody>
                                 @forelse ($bureau->acquisition as $acquisition)
                                 <tr class="border-b odd:bg-white">
-
                                     <td class="px-6 py-4">
                                         {{ $acquisition->materiel->designation }}
                                     </td>
@@ -168,7 +172,16 @@
                                         {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <p class="text-red-500 cursor-pointer hover:underline">X Restitué</p>
+                                        <x-modal-alpine title="Ajouter un composant" :key="$acquisition->id"
+                                            name="composant de {{ $acquisition->id }}">
+                                            <x-slot name="icon">
+                                                <p class="cursor-pointer text-primary hover:underline">Ajouter un
+                                                    composant</p>
+                                            </x-slot>
+                                            <livewire:materiel.add-composant :acquisition="$acquisition"
+                                                :composants="$composants" />
+                                        </x-modal-alpine>
+
                                     </td>
 
                                 </tr>

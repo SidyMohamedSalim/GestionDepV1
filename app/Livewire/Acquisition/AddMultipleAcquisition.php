@@ -68,7 +68,7 @@ class AddMultipleAcquisition extends Component
     public function render()
     {
         return view('livewire.acquisition.add-multiple-acquisition', [
-            'materiels' => Materiel::select(['id', 'designation'])->where('categorie', '=', $this->categorie)->get()
+            'materiels' => Materiel::select(['id', 'designation', 'reference'])->where('categorie', '=', $this->categorie)->get()
         ]);
     }
 
