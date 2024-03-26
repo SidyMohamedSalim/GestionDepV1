@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
 
-                                @forelse ($materiel->acquisition as $acquisition)
+                                @forelse ($materiel->materielAcquisition as $acquisition)
                                 <tr class="border-b odd:bg-white">
 
                                     @if ($materiel->categorie == 'Equipement')
@@ -154,7 +154,11 @@
                             </thead>
                             <tbody>
 
-                                @forelse ($materiel->acquisition as $acquisition)
+                                @php
+                                $acquisitions = $materiel->categorie == 'Equipement' ? $materiel->materielAcquisition :
+                                $materiel->fourniture;
+                                @endphp
+                                @forelse ($acquisitions as $acquisition)
                                 <tr class="bg-gray-100 border-b">
 
                                     <td colspan="6" class="px-6 py-4 text-center">

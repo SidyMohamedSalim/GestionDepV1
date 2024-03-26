@@ -14,7 +14,7 @@
         <div class="mt-4">
             <x-input-label for="type" :value="__('Selectionner un composant (materiel)')" />
 
-            <select name="enseignanIdSelected" wire:model.live.defer='enseignanIdSelected'
+            <select name="materielIdSelected" wire:model.live.defer='materielIdSelected'
                 class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">
                 <option value="" disabled selected>
                     Selectionner un composant
@@ -22,11 +22,11 @@
                 @foreach ($composants as $composant )
                 <option value="{{ $composant->id }}">
                     <p class="mx-16"> {{ $composant->materiel->designation }} {{ $composant->materiel->reference }}</p>
+                    <p>Quantite: {{ $composant->quantite }}</p>
                 </option>
                 @endforeach
-
             </select>
-            <x-input-error :messages="$errors->get('enseignanIdSelected')" class="mt-2" />
+            <x-input-error :messages="$errors->get('materielIdSelected')" class="mt-2" />
         </div>
 
         <div class="mt-4">

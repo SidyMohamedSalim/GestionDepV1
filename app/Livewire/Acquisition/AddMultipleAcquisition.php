@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Acquisition;
 
+use App\Models\Fourniture;
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Livewire\Component;
@@ -48,14 +49,24 @@ class AddMultipleAcquisition extends Component
 
         foreach ($data['acquisition'] as $acquisitionData) {
             if (!empty($acquisitionData['materiel_id'])) {
-                MaterielAcquisition::create([
-                    'materiel_id' => $acquisitionData['materiel_id'],
-                    'quantite' => $this->categorie == "Fourniture" ? $acquisitionData['quantite'] : "1",
-                    'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
-                    'numero_inventaire' => $acquisitionData['numero_inventaire'] ?? null,
-                    'destination' => $data['destination'],
-                    'date_acquisition' => $data['date_acquisition'],
-                ]);
+                if ($this->categorie == 'Equipement') {
+                    MaterielAcquisition::create([
+                        'materiel_id' => $acquisitionData['materiel_id'],
+                        'quantite' => "1",
+                        'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
+                        'numero_inventaire' => $acquisitionData['numero_inventaire'],
+                        'destination' => $data['destination'],
+                        'date_acquisition' => $data['date_acquisition'],
+                    ]);
+                } else {
+                    Fourniture::create([
+                        'materiel_id' => $acquisitionData['materiel_id'],
+                        'quantite' => $acquisitionData['quantite'],
+                        'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
+                        'destination' => $data['destination'],
+                        'date_acquisition' => $data['date_acquisition'],
+                    ]);
+                }
             }
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bureau;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Bureau\BureauRequest;
 use App\Models\Bureau;
+use App\Models\Fourniture;
 use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -44,7 +45,7 @@ class BureauController extends Controller
     {
         return view('admin.bureau.show', [
             'bureau' => $bureau,
-            'composants' => MaterielAcquisition::query()->where('quantite', '>', '0')->whereHas('materiel', function (Builder $query) {
+            'composants' => Fourniture::query()->where('quantite', '>', '0')->whereHas('materiel', function (Builder $query) {
                 $query->where('categorie', '=', 'Fourniture');
             })->get()
         ]);

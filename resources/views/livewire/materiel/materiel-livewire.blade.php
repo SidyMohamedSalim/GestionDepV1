@@ -89,6 +89,8 @@
                         <x-icons.eyes />
                     </a>
 
+
+                    {{-- acquisition --}}
                     <x-modal-alpine title="Nouvelle acquisition" :key="$materiel->id"
                         name="materiel de {{ $materiel->id }}">
                         <x-slot name="icon">
@@ -103,7 +105,7 @@
                     </x-modal-alpine>
 
 
-                    @if (count($materiel->acquisition) == 0)
+                    @if (count($materiel->materielAcquisition) == 0)
                     <x-modal-alpine title="Suppression" :key="$materiel->id" name="materiel de {{ $materiel->id }}">
                         <x-slot name="icon">
                             <x-icons.delete />

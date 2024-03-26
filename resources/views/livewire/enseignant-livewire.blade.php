@@ -116,7 +116,8 @@
                         <x-slot name="icon">
                             <x-icons.utils />
                         </x-slot>
-                        <livewire:enseignant.materiel-enseignant-affectation-modal :acquisitions="$acquisitions"
+                        <livewire:enseignant.materiel-enseignant-affectation-modal
+                            :fournitruesacquistions="$fournitures" :acquisitions="$acquisitions"
                             :enseignant="$enseignant" key="materiel-{{$enseignant->id}}" />
                     </x-modal-alpine>
                     {{-- delete --}}

@@ -8,8 +8,36 @@
     <div class="flex flex-col gap-4 p-6 border-b odd:bg-white">
 
         {{-- mteriel acquisition --}}
+
+        <div class="grid justify-between grid-cols-2 gap-2 text-md-center">
+            <button wire:click='changeCategorieToFourniture' @class([ "'inline-flex items-center px-4 py-2 text-xs
+                                                font-extrabold tracking-widest uppercase duration-150 ease-in-out rounded-md shadow-sm transpition bg-wthite
+                                                hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                                                disabled:opacity-25" , 'bg-primary text-white'=> $categorie ==
+                'Fourniture',
+                ])>Materiels
+                Non
+                Inventoriés
+            </button>
+
+            <button wire:click='changeCategorieToEquipement' @class([ "'inline-flex items-center px-4 py-2 text-xs
+                                                font-extrabold tracking-widest uppercase duration-150 ease-in-out rounded-md shadow-sm transpition bg-wthite
+                                                hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                                                disabled:opacity-25" , 'bg-primary text-white'=> $categorie ==
+                'Equipement',
+                ])>Materiels
+                Inventoriés
+            </button>
+        </div>
+
         <div class="mt-4">
             <x-input-label for="acquistionIdSelected" :value="__('Selectionner une Acquisition ?')" />
+
+            @php
+            $acquisitions =$categorie == 'Equipement' ? $acquisitions : $fournitruesacquistions;
+            @endphp
+
+
 
             <select name="type" wire:model.live.defer='acquistionIdSelected'
                 class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary">

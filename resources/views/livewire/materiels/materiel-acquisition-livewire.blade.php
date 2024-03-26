@@ -35,13 +35,22 @@
                 <div class="mt-4">
                     <x-input-label for="quantite" :value="__(' Quantité')" />
                     @if ($estInventorie)
-                    <p class="text-sm text-blue-500 flex flex-col">
+                    <p class="flex flex-col text-sm text-blue-500">
                         Nouvelle acquisition d'un materiel inventorié
                     </p>
                     @endif
-                    <input disabled="{{ $estInventorie }}" type="number" wire:model="quantite"
+
+                    @if ($estInventorie == true)
+                    <input @disabled(true) type="number" wire:model="quantite"
                         class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Quantite" />
+                    @else
+
+                    <input type="number" wire:model="quantite"
+                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        placeholder="Quantite" />
+                    @endif
+
                     <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
                 </div>
                 <div class="mt-4">

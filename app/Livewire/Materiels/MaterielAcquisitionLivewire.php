@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Materiels;
 
+use App\Models\Fourniture;
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Livewire\Component;
@@ -47,15 +48,29 @@ class MaterielAcquisitionLivewire extends Component
 
         if (!empty($this->materiel->id)) {
 
-            MaterielAcquisition::create([
-                'quantite' => $this->quantite,
-                'carateristiques' => $this->carateristiques,
-                'date_acquisition' => $this->date_acquisition,
-                'numero_inventaire' => $this->numero_inventaire,
-                'destination' => $this->destination,
-                'materiel_id' => $this->materiel->id,
-                'base_quantite' => $this->materiel->categorie == 'Fourniture' ? $this->quantite : "1"
-            ]);
+            if ($this->materiel->categorie == 'Equipement') {
+                MaterielAcquisition::create([
+                    'quantite' => $this->quantite,
+                    'carateristiques' => $this->carateristiques,
+                    'date_acquisition' => $this->date_acquisition,
+                    'numero_inventaire' => $this->numero_inventaire,
+                    'destination' => $this->destination,
+                    'materiel_id' => $this->materiel->id,
+                    'base_quantite' =>  "1"
+                ]);
+            } else {
+                Fourniture::create([
+                    'quantite' => $this->quantite,
+                    'carateristiques' => $this->carateristiques,
+                    'date_acquisition' => $this->date_acquisition,
+                    'destination' => $this->destination,
+                    'materiel_id' => $this->materiel->id,
+                    'base_quantite' => $this->quantite
+                ]);
+            }
+
+
+
             $this->dispatch("acquisitionSaved");
         }
         $this->reset('quantite');

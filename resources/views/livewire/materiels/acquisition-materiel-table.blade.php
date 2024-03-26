@@ -109,6 +109,7 @@
                 @endif
                 <td class="px-6 py-4">
                     {{ $materiel_acquisition->materiel->designation }}
+                    {{ $materiel_acquisition->materiel->reference }}
                 </td>
                 <td class="px-6 py-4">
                     @if ($materiel_acquisition->destination == 'informatique')

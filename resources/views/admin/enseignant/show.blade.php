@@ -110,8 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($enseignant->acquisition as $acquisition)
-                                @if ($acquisition->numero_inventaire)
+                                @foreach ($enseignant->materielacquisition as $acquisition)
 
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
@@ -154,7 +153,6 @@
                                     </td>
 
                                 </tr>
-                                @endif
                                 @endforeach
 
                             </tbody>
@@ -196,8 +194,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($enseignant->acquisition as $acquisition)
-                                @if (!$acquisition->numero_inventaire)
+                                @foreach ($enseignant->fourniture as $acquisition)
+
 
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">
@@ -210,9 +208,7 @@
                                         {{ $acquisition->pivot->date_affectation }}
                                     </td>
                                 </tr>
-                                @endif
                                 @endforeach
-
                             </tbody>
 
                         </table>

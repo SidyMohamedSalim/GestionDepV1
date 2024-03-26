@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
+use App\Models\Fourniture;
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class HomeController extends Controller
     {
         $data = [];
         $count = 0;
-        $acquisitions =  MaterielAcquisition::where('numero_inventaire', '!=', null)->get();
+        $acquisitions =  MaterielAcquisition::all();
 
         foreach ($acquisitions as $materiel) {
             $count += $materiel->quantite;
@@ -46,7 +47,7 @@ class HomeController extends Controller
 
         $data['inventoriee'] = $count;
         $count = 0;
-        $acquisitions =  MaterielAcquisition::where('numero_inventaire', '=', null)->get();
+        $acquisitions =  Fourniture::all();
 
         foreach ($acquisitions as $materiel) {
             $count += $materiel->quantite;

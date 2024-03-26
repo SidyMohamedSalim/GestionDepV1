@@ -5,6 +5,7 @@ namespace App\Models\Materiels;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\EnseignantMaterielAcquisition;
+use App\Models\Fourniture;
 use App\Models\Materiel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,7 @@ class MaterielAcquisition extends Model
         'nbre_restitution'
     ];
 
-    protected $with = ['materiel', 'enseignant', 'composants'];
+    protected $with = ['materiel', 'enseignant'];
 
     public function materiel(): BelongsTo
     {
@@ -49,15 +50,11 @@ class MaterielAcquisition extends Model
         return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
 
-    // un materiel inventoriee peut avoir des composants materiels
-    public function composants(): HasMany
+    public function fournitures(): BelongsToMany
     {
-        return $this->hasMany(MaterielAcquisition::class);
+        return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
     }
 
-    // un materiel non inventoriee peut avoir comment parent un  materiel inventoriee
-    public function parentMateriel(): BelongsTo
-    {
-        return $this->belongsTo(MaterielAcquisition::class);
-    }
+    // un materiel inventoriee peut avoir des composants materiels
+
 }

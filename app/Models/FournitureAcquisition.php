@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Fourniture extends Model
 {
     use HasFactory;
+
+
     protected $fillable = [
         'quantite',
         'date_acquisition',
@@ -23,11 +25,11 @@ class Fourniture extends Model
 
     protected $with = ['materiel', 'enseignant'];
 
-
     public function materiel(): BelongsTo
     {
         return $this->belongsTo(Materiel::class);
     }
+
 
     // un materiel non inventoriee peut avoir comment parent un  materiel inventoriee
     public function parentMateriel(): BelongsTo

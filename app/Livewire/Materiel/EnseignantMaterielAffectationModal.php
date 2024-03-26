@@ -4,6 +4,7 @@ namespace App\Livewire\Materiel;
 
 use App\Models\Enseignant;
 use App\Models\EnseignantMateriel;
+use App\Models\Fourniture;
 use App\Models\Materiel;
 use App\Models\Materiels\MaterielAcquisition;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -17,7 +18,7 @@ class EnseignantMaterielAffectationModal extends Component
     public string $quantite = '1';
 
     public Collection $enseignants;
-    public MaterielAcquisition $acquisition;
+    public Fourniture|MaterielAcquisition $acquisition;
 
     public string $enseignanIdSelected = '';
 
@@ -48,12 +49,21 @@ class EnseignantMaterielAffectationModal extends Component
     public function saveAcquisition()
     {
         $this->validate();
+        $materielEnseignant = '';
+        if (!empty($this->acquisition->numero_inventaire)) {
+            $materielEnseignant  =  $this->acquisition->enseignant()->attach($this->enseignanIdSelected, [
+                'date_affectation' => new DateTime(),
+                "quantite" => $this->quantite,
+                'signature' =>    "pending"
+            ]);
+        } else {
+            $materielEnseignant  =  $this->acquisition->enseignant()->attach($this->enseignanIdSelected, [
+                'date_affectation' => new DateTime(),
+                "quantite" => $this->quantite,
+            ]);
+        }
 
-        $materielEnseignant  =  $this->acquisition->enseignant()->attach($this->enseignanIdSelected, [
-            'date_affectation' => new DateTime(),
-            "quantite" => $this->quantite,
-            'signature' => $this->acquisition->numero_inventaire  ? "pending" : "not-concerned"
-        ]);
+
 
 
 
@@ -64,7 +74,9 @@ class EnseignantMaterielAffectationModal extends Component
 
         $this->reset('quantite');
         $this->dispatch("affectationSaved");
+
         $enseignant = Enseignant::find($this->enseignanIdSelected);
+
         if (!empty($this->acquisition->numero_inventaire)) {
             $pdf = Pdf::loadView('pdf.materiel-affectation', [
                 'acquisition' => $this->acquisition,

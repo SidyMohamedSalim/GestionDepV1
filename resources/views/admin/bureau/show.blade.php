@@ -67,7 +67,7 @@
                                         Nom
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Nom
+                                        Prenom
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Email
@@ -158,7 +158,7 @@
                             </thead>
                             <tbody>
                                 @forelse ($bureau->acquisition as $acquisition)
-                                <tr class="border-b odd:bg-white">
+                                <tr class="border-y bg-sky-50">
                                     <td class="px-6 py-4">
                                         {{ $acquisition->materiel->designation }}
                                     </td>
@@ -181,18 +181,30 @@
                                             <livewire:materiel.add-composant :acquisition="$acquisition"
                                                 :composants="$composants" />
                                         </x-modal-alpine>
-
                                     </td>
-
                                 </tr>
+                                <td colspan="5" class="items-center justify-center w-full py-3 bg-gray-100 ">
+                                    <p class="flex items-center justify-center w-full font-extrabold">Composants</p>
+                                </td>
+                                @foreach ($acquisition->fournitures as $composant)
+                                <tr class="border-b">
+                                    <td class="px-6 py-4">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $composant->materiel->designation }} {{$composant->materiel->reference }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $composant->pivot->quantite }}
+                                    </td>
+                                    {{ $composant->pivot->date_affectation }}
+                                </tr>
+                                @endforeach
                                 @empty
                                 <div class="flex items-center justify-center w-full h-full">
                                     <p>Vide !!</p>
                                 </div>
                                 @endforelse
-
                             </tbody>
-
                         </table>
                     </section>
                 </div>

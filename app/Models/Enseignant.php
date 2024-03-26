@@ -22,22 +22,25 @@ class Enseignant extends Model
         'daterecrutement',
     ];
 
+
     public  function bureau(): BelongsToMany
     {
         return $this->belongsToMany(Bureau::class);
     }
 
-    public  function acquisition(): BelongsToMany
+    public  function materielacquisition(): BelongsToMany
     {
         return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
     }
 
-
-
-    public  function affectation(): HasMany
+    public  function fourniture(): BelongsToMany
     {
-        return $this->hasMany(EnseignantMaterielAcquisition::class);
+        return $this->belongsToMany(Fourniture::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_acquisition_id']);
     }
+
+
+
+
 
     public function restitution(): HasMany
     {

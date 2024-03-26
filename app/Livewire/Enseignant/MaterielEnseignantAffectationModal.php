@@ -3,7 +3,7 @@
 namespace App\Livewire\Enseignant;
 
 use App\Models\Enseignant;
-use App\Models\EnseignantMateriel;
+use App\Models\Fourniture;
 use App\Models\Materiels\MaterielAcquisition;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
@@ -16,13 +16,25 @@ class MaterielEnseignantAffectationModal extends Component
     public string $quantite = '1';
 
     public Collection $acquisitions;
+    public Collection $fournitruesacquistions;
 
-    public MaterielAcquisition $acquisition;
+    public string $categorie = 'Equipement';
+
+    public MaterielAcquisition|Fourniture $acquisition;
 
 
     public string $acquistionIdSelected = '';
 
 
+    public function changeCategorieToEquipement()
+    {
+        $this->categorie =  "Equipement";
+    }
+
+    public function changeCategorieToFourniture()
+    {
+        $this->categorie = "Fourniture";
+    }
 
 
     public function updating($property, $value)
@@ -30,7 +42,11 @@ class MaterielEnseignantAffectationModal extends Component
 
 
         if ($property === 'acquistionIdSelected') {
-            $this->acquisition = MaterielAcquisition::find($value);
+            if ($this->categorie == 'Equipement') {
+                $this->acquisition = MaterielAcquisition::find($value);
+            } else {
+                $this->acquisition = Fourniture::find($value);
+            }
         }
     }
 
@@ -59,11 +75,18 @@ class MaterielEnseignantAffectationModal extends Component
     {
         $this->validate();
 
-        $this->enseignant->acquisition()->attach($this->acquisition->id, [
-            'date_affectation' => new DateTime(),
-            "quantite" => $this->quantite,
-            'signature' => $this->acquisition->numero_inventaire  ? "pending" : "not-concerned"
-        ]);
+        if ($this->categorie == 'Equipement') {
+            $this->enseignant->materielacquisition()->attach($this->acquisition->id, [
+                'date_affectation' => new DateTime(),
+                "quantite" => $this->quantite,
+                'signature' =>  "pending"
+            ]);
+        } else {
+            $this->enseignant->fourniture()->attach($this->acquisition->id, [
+                'date_affectation' => new DateTime(),
+                "quantite" => $this->quantite,
+            ]);
+        }
 
 
         $this->acquisition->update([

@@ -3,6 +3,7 @@
 namespace App\Livewire\Materiels;
 
 use App\Models\Enseignant;
+use App\Models\Fourniture;
 use App\Models\Materiels\MaterielAcquisition;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -51,10 +52,10 @@ class AcquisitionMaterielTable extends Component
     #[On('affectationSaved')]
     public function onAffectationSaved()
     {
-        $this->reset('type');
+        $this->numero_inventaire = '12';
+        $this->reset('numero_inventaire');
         session()->flash('saveAffectation', 'Le materiel a ete affecte avec succes');
     }
-
 
     public function updating($property, $value)
     {
@@ -69,8 +70,13 @@ class AcquisitionMaterielTable extends Component
 
     public function render()
     {
+        $query = null;
 
-        $query = MaterielAcquisition::query();
+        if ($this->categorie == 'Fourniture') {
+            $query = Fourniture::query();
+        } else {
+            $query = MaterielAcquisition::query();
+        }
 
         if (!empty($this->designation)) {
             $query = $query->whereHas('materiel', function ($query) {
@@ -79,7 +85,7 @@ class AcquisitionMaterielTable extends Component
         }
 
 
-        if (!empty($this->numero_inventaire)) {
+        if (!empty($this->numero_inventaire) && $this->categorie == 'Equipement') {
             $query = $query->where('numero_inventaire', "LIKE", "%{$this->numero_inventaire}%");
         }
 
