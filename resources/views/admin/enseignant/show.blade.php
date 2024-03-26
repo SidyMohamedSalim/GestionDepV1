@@ -110,7 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($enseignant->materielacquisition as $acquisition)
+                                @foreach ($enseignant->equipement as $acquisition)
 
                                 <tr class="border-b odd:bg-white">
                                     <td class="px-6 py-4">

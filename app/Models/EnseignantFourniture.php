@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class EnseignantFourniture extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'quantite',
         'materiel_id',
@@ -20,6 +21,7 @@ class EnseignantFourniture extends Model
     {
         return $this->belongsTo(Enseignant::class);
     }
+
 
     public function acquisition(): BelongsTo
     {

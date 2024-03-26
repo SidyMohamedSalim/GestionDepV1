@@ -4,7 +4,7 @@ namespace App\Livewire\Materiels;
 
 use App\Models\Enseignant;
 use App\Models\Fourniture;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -75,7 +75,7 @@ class AcquisitionMaterielTable extends Component
         if ($this->categorie == 'Fourniture') {
             $query = Fourniture::query();
         } else {
-            $query = MaterielAcquisition::query();
+            $query = Equipement::query();
         }
 
         if (!empty($this->designation)) {
@@ -104,7 +104,7 @@ class AcquisitionMaterielTable extends Component
         return view(
             'livewire.materiels.acquisition-materiel-table',
             [
-                "materiel_acquisitions" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
+                "equipements" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
                 'enseignants' => Enseignant::all()
             ]
         );

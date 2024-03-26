@@ -12,20 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fournitures', function (Blueprint $table) {
+        Schema::create('equipements', function (Blueprint $table) {
             $table->id();
             $table->float('quantite')->default(1);
             $table->float('base_quantite')->default(1);
             $table->date('date_acquisition');
+            $table->integer('nbre_restitution')->default(0);
             $table->string('carateristiques')->nullable();
             $table->boolean('share')->default(false); //partager entre enseignant
             $table->enum('destination', ['informatique', 'laboratoire']);
 
-            //Parent materiel pour un materiel utilise dans un materiel detenant un materiel
-            // $table->foreignIdFor(MaterielAcquisition::class)->nullable();
-
+            $table->string("numero_inventaire");
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();
-            $table->unique(['id']);
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fournitures');
+        Schema::dropIfExists('equipements');
     }
 };

@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
 
-                                @forelse ($materiel->materielAcquisition as $acquisition)
+                                @forelse ($materiel->equipement as $acquisition)
                                 <tr class="border-b odd:bg-white">
 
                                     @if ($materiel->categorie == 'Equipement')
@@ -155,7 +155,7 @@
                             <tbody>
 
                                 @php
-                                $acquisitions = $materiel->categorie == 'Equipement' ? $materiel->materielAcquisition :
+                                $acquisitions = $materiel->categorie == 'Equipement' ? $materiel->equipement :
                                 $materiel->fourniture;
                                 @endphp
                                 @forelse ($acquisitions as $acquisition)

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,19 +28,15 @@ class Enseignant extends Model
         return $this->belongsToMany(Bureau::class);
     }
 
-    public  function materielacquisition(): BelongsToMany
+    public  function equipement(): BelongsToMany
     {
-        return $this->belongsToMany(MaterielAcquisition::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+        return $this->belongsToMany(Equipement::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
     }
 
     public  function fourniture(): BelongsToMany
     {
-        return $this->belongsToMany(Fourniture::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_acquisition_id']);
+        return $this->belongsToMany(Fourniture::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_id']);
     }
-
-
-
-
 
     public function restitution(): HasMany
     {

@@ -101,11 +101,11 @@
                                 <path d="M12 5v14" />
                             </svg>
                         </x-slot>
-                        <livewire:materiels.materiel-acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
+                        <livewire:materiels.acquisition-livewire :materiel="$materiel" :key="$materiel->id" />
                     </x-modal-alpine>
 
 
-                    @if (count($materiel->materielAcquisition) == 0)
+                    @if (count($materiel->equipement) == 0)
                     <x-modal-alpine title="Suppression" :key="$materiel->id" name="materiel de {{ $materiel->id }}">
                         <x-slot name="icon">
                             <x-icons.delete />

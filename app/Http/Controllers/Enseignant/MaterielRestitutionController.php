@@ -8,7 +8,7 @@ use App\Http\Requests\Materiels\MaterielRequest;
 use App\Models\Enseignant;
 use App\Models\Materiel;
 use App\Models\MaterielRestitution;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -19,14 +19,14 @@ class MaterielRestitutionController extends Controller
 {
 
 
-    public function restore(MaterielRestitutionRequest $request, MaterielAcquisition $acquisition)
+    public function restore(MaterielRestitutionRequest $request, Equipement $acquisition)
     {
 
         $data = $request->validated();
 
         // dd($data, $acquisition);
 
-        $lastRestitution = MaterielRestitution::query()->where("enseignant_id", "=", $data['enseignant_id'])->where('materiel_acquisition_id', "=", $acquisition->id)->limit(1)->get();
+        $lastRestitution = MaterielRestitution::query()->where("enseignant_id", "=", $data['enseignant_id'])->where('equipement_id', "=", $acquisition->id)->limit(1)->get();
 
         // if (!empty($lastRestitution[0])) {
         //     $lastRestitution[0]->delete();
@@ -34,7 +34,7 @@ class MaterielRestitutionController extends Controller
 
 
         MaterielRestitution::create([
-            'materiel_acquisition_id' => $data['affectation_id'],
+            'equipement_id' => $data['affectation_id'],
             'enseignant_id' => $data['enseignant_id'],
             'date_restitution' => new DateTime(),
             'designation' => $acquisition->materiel->designation,
@@ -54,7 +54,7 @@ class MaterielRestitutionController extends Controller
 
 
 
-    public function downloadPDf(Enseignant $enseignant, MaterielAcquisition $acquisition)
+    public function downloadPDf(Enseignant $enseignant, Equipement $acquisition)
     {
         $pdf = Pdf::loadView('pdf.materiel-restitution', [
             'materiel' => $acquisition,

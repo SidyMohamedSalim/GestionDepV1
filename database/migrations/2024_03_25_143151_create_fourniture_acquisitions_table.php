@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fourniture_acquisitions', function (Blueprint $table) {
+        Schema::create('fournitures', function (Blueprint $table) {
             $table->id();
             $table->float('quantite')->default(1);
             $table->float('base_quantite')->default(1);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('destination', ['informatique', 'laboratoire']);
 
             //Parent materiel pour un materiel utilise dans un materiel detenant un materiel
-            // $table->foreignIdFor(MaterielAcquisition::class)->nullable();
+            // $table->foreignIdFor(Equipement::class)->nullable();
 
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();
             $table->unique(['id']);
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fourniture_acquisitions');
+        Schema::dropIfExists('fournitures');
     }
 };

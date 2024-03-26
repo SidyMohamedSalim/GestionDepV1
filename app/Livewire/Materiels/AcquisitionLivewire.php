@@ -4,10 +4,10 @@ namespace App\Livewire\Materiels;
 
 use App\Models\Fourniture;
 use App\Models\Materiel;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Livewire\Component;
 
-class MaterielAcquisitionLivewire extends Component
+class AcquisitionLivewire extends Component
 {
     public Materiel $materiel;
 
@@ -18,9 +18,6 @@ class MaterielAcquisitionLivewire extends Component
     public string $destination = '';
 
     public string $numero_inventaire = '';
-
-
-
 
     protected function rules()
     {
@@ -44,12 +41,9 @@ class MaterielAcquisitionLivewire extends Component
 
         $this->validate();
 
-
-
         if (!empty($this->materiel->id)) {
-
             if ($this->materiel->categorie == 'Equipement') {
-                MaterielAcquisition::create([
+                Equipement::create([
                     'quantite' => $this->quantite,
                     'carateristiques' => $this->carateristiques,
                     'date_acquisition' => $this->date_acquisition,
@@ -68,17 +62,13 @@ class MaterielAcquisitionLivewire extends Component
                     'base_quantite' => $this->quantite
                 ]);
             }
-
-
-
             $this->dispatch("acquisitionSaved");
         }
         $this->reset('quantite');
     }
 
-
     public function render()
     {
-        return view('livewire.materiels.materiel-acquisition-livewire');
+        return view('livewire.materiels.acquisition-livewire');
     }
 }

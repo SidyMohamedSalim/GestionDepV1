@@ -6,7 +6,7 @@ use App\Models\Enseignant;
 use App\Models\EnseignantMateriel;
 use App\Models\Fourniture;
 use App\Models\Materiel;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,7 +18,7 @@ class EnseignantMaterielAffectationModal extends Component
     public string $quantite = '1';
 
     public Collection $enseignants;
-    public Fourniture|MaterielAcquisition $acquisition;
+    public Fourniture|Equipement $acquisition;
 
     public string $enseignanIdSelected = '';
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Bureau\BureauRequest;
 use App\Models\Bureau;
 use App\Models\Fourniture;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Builder;
 
 class BureauController extends Controller

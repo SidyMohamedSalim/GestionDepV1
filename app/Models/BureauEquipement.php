@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class BureauMaterielAcquisition extends Model
+class BureauEquipement extends Model
 {
 
     protected $fillable = [
@@ -26,7 +26,7 @@ class BureauMaterielAcquisition extends Model
 
     public function acquisition(): BelongsTo
     {
-        return $this->belongsTo(MaterielAcquisition::class);
+        return $this->belongsTo(Equipement::class);
     }
 
     use HasFactory;

@@ -1,21 +1,17 @@
 <?php
 
-namespace App\Models\Materiels;
+namespace App\Models;
 
-use App\Models\Bureau;
-use App\Models\Enseignant;
-use App\Models\EnseignantMaterielAcquisition;
-use App\Models\Fourniture;
-use App\Models\Materiel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class MaterielAcquisition extends Model
+class Equipement extends Model
 {
     use HasFactory;
+
 
     protected $fillable = [
         'quantite',
@@ -37,24 +33,21 @@ class MaterielAcquisition extends Model
 
     public  function affectation(): HasMany
     {
-        return $this->hasMany(EnseignantMaterielAcquisition::class);
+        return $this->hasMany(EnseignantEquipement::class);
     }
 
     public  function enseignant(): BelongsToMany
     {
-        return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+        return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
     }
 
     public  function bureau(): BelongsToMany
     {
-        return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'materiel_acquisition_id']);
+        return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
     }
 
     public function fournitures(): BelongsToMany
     {
         return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
     }
-
-    // un materiel inventoriee peut avoir des composants materiels
-
 }

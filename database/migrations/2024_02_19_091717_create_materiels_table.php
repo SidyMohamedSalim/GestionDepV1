@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('categorie', ['Equipement', 'Fourniture']);
             $table->enum('type', ['Bureau', 'Informatique']);
             $table->string("reference")->nullable();
-
             $table->timestamps();
         });
     }

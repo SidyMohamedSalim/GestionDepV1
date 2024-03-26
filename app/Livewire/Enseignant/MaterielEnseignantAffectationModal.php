@@ -4,7 +4,7 @@ namespace App\Livewire\Enseignant;
 
 use App\Models\Enseignant;
 use App\Models\Fourniture;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,7 +20,7 @@ class MaterielEnseignantAffectationModal extends Component
 
     public string $categorie = 'Equipement';
 
-    public MaterielAcquisition|Fourniture $acquisition;
+    public Equipement|Fourniture $acquisition;
 
 
     public string $acquistionIdSelected = '';
@@ -43,7 +43,7 @@ class MaterielEnseignantAffectationModal extends Component
 
         if ($property === 'acquistionIdSelected') {
             if ($this->categorie == 'Equipement') {
-                $this->acquisition = MaterielAcquisition::find($value);
+                $this->acquisition = Equipement::find($value);
             } else {
                 $this->acquisition = Fourniture::find($value);
             }
@@ -76,7 +76,7 @@ class MaterielEnseignantAffectationModal extends Component
         $this->validate();
 
         if ($this->categorie == 'Equipement') {
-            $this->enseignant->materielacquisition()->attach($this->acquisition->id, [
+            $this->enseignant->equipement()->attach($this->acquisition->id, [
                 'date_affectation' => new DateTime(),
                 "quantite" => $this->quantite,
                 'signature' =>  "pending"

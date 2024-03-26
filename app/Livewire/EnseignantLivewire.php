@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\Fourniture;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -104,7 +104,7 @@ class EnseignantLivewire extends Component
             [
                 'enseignants' => $query->with('bureau')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
                 'bureaux' => Bureau::all(),
-                'acquisitions' => MaterielAcquisition::with("materiel")->where("quantite", ">", "0")->get(),
+                'acquisitions' => Equipement::with("materiel")->where("quantite", ">", "0")->get(),
                 'fournitures' => Fourniture::with("materiel")->where("quantite", ">", "0")->get()
             ]
         );

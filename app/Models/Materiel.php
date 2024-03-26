@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -23,7 +23,7 @@ class Materiel extends Model
 
 
 
-    protected $with = ['fourniture', 'materielAcquisition'];
+    protected $with = ['fourniture', 'equipement'];
 
 
     public function fourniture(): HasMany
@@ -31,8 +31,8 @@ class Materiel extends Model
         return $this->hasMany(Fourniture::class);
     }
 
-    public function materielAcquisition(): HasMany
+    public function equipement(): HasMany
     {
-        return $this->hasMany(MaterielAcquisition::class);
+        return $this->hasMany(Equipement::class);
     }
 }

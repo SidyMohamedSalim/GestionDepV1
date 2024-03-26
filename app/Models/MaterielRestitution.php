@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,7 +16,7 @@ class MaterielRestitution extends Model
         "date_restitution",
         'signature',
         'enseignant_id',
-        'materiel_acquisition_id',
+        'equipement_id',
         'designation',
         'numero_inventaire'
     ];
@@ -30,6 +30,6 @@ class MaterielRestitution extends Model
 
     public function acquisition(): BelongsTo
     {
-        return $this->belongsTo(MaterielAcquisition::class);
+        return $this->belongsTo(Equipement::class);
     }
 }

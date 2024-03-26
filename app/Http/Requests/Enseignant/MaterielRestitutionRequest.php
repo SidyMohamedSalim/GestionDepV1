@@ -22,7 +22,7 @@ class MaterielRestitutionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'affectation_id' => ['required', 'exists:enseignant_materiel_acquisition,id'],
+            'affectation_id' => ['required', 'exists:enseignant_equipement,id'],
             'enseignant_id' => ['required']
         ];
     }

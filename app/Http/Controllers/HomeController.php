@@ -7,7 +7,7 @@ use App\Models\Enseignant;
 use App\Models\EnseignantVacataire;
 use App\Models\Fourniture;
 use App\Models\Materiel;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         $data = [];
         $count = 0;
-        $acquisitions =  MaterielAcquisition::all();
+        $acquisitions =  Equipement::all();
 
         foreach ($acquisitions as $materiel) {
             $count += $materiel->quantite;

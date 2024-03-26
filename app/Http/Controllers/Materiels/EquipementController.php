@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Materiels;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Materiels\MaterielAcquisitionRequest;
+use App\Http\Requests\Materiels\EquipementRequest;
 use App\Models\Materiel;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Http\Request;
 
-class MaterielAcquisitionController extends Controller
+class EquipementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class MaterielAcquisitionController extends Controller
     public function create()
     {
         return view('admin.Materiel.acquisition.form', [
-            'MaterielAcquisition' => new MaterielAcquisition(),
+            'Equipement' => new Equipement(),
 
         ]);
     }
@@ -32,7 +32,7 @@ class MaterielAcquisitionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MaterielAcquisitionRequest $request)
+    public function store(EquipementRequest $request)
     {
         $data  = $request->validated();
 
@@ -40,7 +40,7 @@ class MaterielAcquisitionController extends Controller
 
 
         foreach ($data['acquisition'] as $acquisitionData) {
-            MaterielAcquisition::create([
+            Equipement::create([
                 'materiel_id' => $acquisitionData['materiel_id'],
                 'quantite' => $acquisitionData['quantite'],
                 'caracteristiques' => $data['caracteristiques'],
@@ -49,46 +49,46 @@ class MaterielAcquisitionController extends Controller
             ]);
         }
 
-        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'Les acquisitions  ont ete faites ');
+        return redirect()->route('materiel.equipement.index')->with('success', 'Les acquisitions  ont ete faites ');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(MaterielAcquisition $materiel_acquisition)
+    public function show(Equipement $equipement)
     {
         return view('admin.Materiel.acquisition.show', [
-            'acquisition' => $materiel_acquisition
+            'acquisition' => $equipement
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MaterielAcquisition $materiel_acquisition)
+    public function edit(Equipement $equipement)
     {
         //
         return view('admin.Materiel.acquisition.form', [
-            'materiel_acquisition' => $materiel_acquisition
+            'equipement' => $equipement
         ]);;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(MaterielAcquisitionRequest $request, MaterielAcquisition $materiel_acquisition)
+    public function update(EquipementRequest $request, Equipement $equipement)
     {
-        $materiel_acquisition->update($request->validated());
-        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition modifié');
+        $equipement->update($request->validated());
+        return redirect()->route('materiel.equipement.index')->with('success', 'Equipement modifié');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MaterielAcquisition $materiel_acquisition)
+    public function destroy(Equipement $equipement)
     {
         //
-        $materiel_acquisition->delete();
-        return redirect()->route('materiel.materiel_acquisition.index')->with('success', 'MaterielAcquisition supprimé');
+        $equipement->delete();
+        return redirect()->route('materiel.equipement.index')->with('success', 'Equipement supprimé');
     }
 }

@@ -5,7 +5,7 @@ use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\Enseignant\EnseignantVacataireController;
 use App\Http\Controllers\Enseignant\MaterielRestitutionController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Materiels\MaterielAcquisitionController;
+use App\Http\Controllers\Materiels\EquipementController;
 use App\Http\Controllers\Materiels\MaterielController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Relations\BureauEnseignantController;
@@ -68,7 +68,7 @@ Route::resource('bureau', BureauController::class)->middleware('auth');
 // materiels
 Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(function () {
     Route::resource('materiel', MaterielController::class)->middleware('auth');
-    Route::resource('materiel_acquisition', MaterielAcquisitionController::class)->middleware('auth');
+    Route::resource('equipement', EquipementController::class)->middleware('auth');
 });
 
 

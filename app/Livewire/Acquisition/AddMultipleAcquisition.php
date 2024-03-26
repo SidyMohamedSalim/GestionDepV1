@@ -4,7 +4,7 @@ namespace App\Livewire\Acquisition;
 
 use App\Models\Fourniture;
 use App\Models\Materiel;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Livewire\Component;
 
 class AddMultipleAcquisition extends Component
@@ -50,7 +50,7 @@ class AddMultipleAcquisition extends Component
         foreach ($data['acquisition'] as $acquisitionData) {
             if (!empty($acquisitionData['materiel_id'])) {
                 if ($this->categorie == 'Equipement') {
-                    MaterielAcquisition::create([
+                    Equipement::create([
                         'materiel_id' => $acquisitionData['materiel_id'],
                         'quantite' => "1",
                         'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
@@ -72,7 +72,7 @@ class AddMultipleAcquisition extends Component
 
         session()->flash('success', 'Les acquisitions  ont été faites');
 
-        $this->redirectRoute('materiel.materiel_acquisition.index');
+        $this->redirectRoute('materiel.equipement.index');
     }
 
 

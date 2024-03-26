@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class EnseignantMaterielAcquisition extends Model
+class EnseignantEquipement extends Model
 {
     use HasFactory;
 
@@ -24,9 +24,8 @@ class EnseignantMaterielAcquisition extends Model
         return $this->belongsTo(Enseignant::class);
     }
 
-
     public function acquisition(): BelongsTo
     {
-        return $this->belongsTo(MaterielAcquisition::class);
+        return $this->belongsTo(Equipement::class);
     }
 }

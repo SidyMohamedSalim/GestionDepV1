@@ -14,7 +14,7 @@
 
     <div class="flex items-center justify-between my-6 bg">
         <h1 class="text-2xl font-extrabold">Gestion des differentes acquisitions</h1>
-        <a href="{{ route('materiel.materiel_acquisition.create') }}"
+        <a href="{{ route('materiel.equipement.create') }}"
             class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
             + Nouvelles acquisitions
         </a>
@@ -100,49 +100,49 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($materiel_acquisitions as $materiel_acquisition)
+            @forelse ($equipements as $equipement)
             <tr class="border-b odd:bg-white">
                 @if ($isInventoriee)
                 <td class="px-6 py-4 text-primary">
-                    {{ $materiel_acquisition->numero_inventaire }}
+                    {{ $equipement->numero_inventaire }}
                 </td>
                 @endif
                 <td class="px-6 py-4">
-                    {{ $materiel_acquisition->materiel->designation }}
-                    {{ $materiel_acquisition->materiel->reference }}
+                    {{ $equipement->materiel->designation }}
+                    {{ $equipement->materiel->reference }}
                 </td>
                 <td class="px-6 py-4">
-                    @if ($materiel_acquisition->destination == 'informatique')
+                    @if ($equipement->destination == 'informatique')
                     Departement Informatique
                     @else
                     Laboratoire
                     @endif
                 </td>
                 <td class="px-6 py-4">
-                    @if ( $materiel_acquisition->materiel->categorie == "Equipement" &&
-                    $materiel_acquisition->materiel->type == 'Informatique' )
+                    @if ( $equipement->materiel->categorie == "Equipement" &&
+                    $equipement->materiel->type == 'Informatique' )
                     Matériel
                     @else
-                    {{ $materiel_acquisition->materiel->categorie }}
+                    {{ $equipement->materiel->categorie }}
                     @endif
-                    {{ $materiel_acquisition->materiel->type }}
+                    {{ $equipement->materiel->type }}
                 </td>
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    {{ $materiel_acquisition->quantite }}
+                    {{ $equipement->quantite }}
                 </th>
                 @if ($isInventoriee)
                 <td class="px-6 py-4">
-                    {{ $materiel_acquisition->nbre_restitution }}
+                    {{ $equipement->nbre_restitution }}
                 </td>
                 @endif
 
                 <td class="px-6 py-4">
-                    {{ $materiel_acquisition->date_acquisition }}
+                    {{ $equipement->date_acquisition }}
                 </td>
 
                 <td class="flex items-center gap-4 px-6 py-4 justify-evenly">
                     {{-- voir --}}
-                    {{-- <a href="{{ route('materiel.materiel_acquisition.show', $materiel_acquisition) }}"
+                    {{-- <a href="{{ route('materiel.equipement.show', $equipement) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
 
                         <x-icons.eyes />
@@ -150,14 +150,14 @@
 
 
                     {{-- affectation --}}
-                    <x-modal-alpine title="Affectation d'un enseignant" :key="$materiel_acquisition->id"
-                        name="enseignant de {{ $materiel_acquisition->id }}">
+                    <x-modal-alpine title="Affectation d'un enseignant" :key="$equipement->id"
+                        name="enseignant de {{ $equipement->id }}">
                         <x-slot name="icon">
                             <x-icons.utils />
                         </x-slot>
                         <livewire:materiel.enseignant-materiel-affectation-modal :enseignants="$enseignants"
-                            :acquisition="$materiel_acquisition" key="materiel-{{$materiel_acquisition->id}}"
-                            :elementId="$materiel_acquisition->id" />
+                            :acquisition="$equipement" key="materiel-{{$equipement->id}}"
+                            :elementId="$equipement->id" />
                     </x-modal-alpine>
 
 
@@ -165,14 +165,12 @@
                     {{-- delete --}}
 
 
-                    <x-modal-alpine title="Suppression" :key="$materiel_acquisition->id"
-                        name="materiel de {{ $materiel_acquisition->id }}">
+                    <x-modal-alpine title="Suppression" :key="$equipement->id" name="materiel de {{ $equipement->id }}">
                         <x-slot name="icon">
                             <x-icons.delete />
                         </x-slot>
-                        <livewire:modals.confirm-delete-modal :elementId="$materiel_acquisition->id"
-                            routeName='materiel.materiel_acquisition.destroy'
-                            key="delete-{{ $materiel_acquisition->id }}" />
+                        <livewire:modals.confirm-delete-modal :elementId="$equipement->id"
+                            routeName='materiel.equipement.destroy' key="delete-{{ $equipement->id }}" />
                     </x-modal-alpine>
 
 
@@ -188,7 +186,7 @@
         </tbody>
 
     </table>
-    <div class="py-6">{{ $materiel_acquisitions->links() }}</div>
+    <div class="py-6">{{ $equipements->links() }}</div>
 
 
 </div>

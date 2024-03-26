@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Enseignant;
-use App\Models\EnseignantMaterielAcquisition;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\EnseignantEquipement;
+use App\Models\Equipement;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,13 +18,13 @@ return new class extends Migration
             $table->id();
             $table->string("designation")->nullable();
             $table->string("numero_inventaire")->nullable();
-            $table->foreignIdFor(MaterielAcquisition::class);
+            $table->foreignIdFor(Equipement::class);
             $table->foreignIdFor(Enseignant::class);
             $table->string("quantite")->default("1");
             $table->date("date_restitution");
             $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('pending');
             $table->timestamps();
-            $table->unique(['id', 'materiel_acquisition_id', 'enseignant_id', 'date_restitution']);
+            $table->unique(['id', 'equipement_id', 'enseignant_id', 'date_restitution']);
         });
     }
 

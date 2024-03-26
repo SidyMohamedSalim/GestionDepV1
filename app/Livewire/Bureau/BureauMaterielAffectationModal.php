@@ -3,7 +3,7 @@
 namespace App\Livewire\Bureau;
 
 use App\Models\Bureau;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,7 +17,7 @@ class BureauMaterielAffectationModal extends ModalComponent
 
     public Collection $acquisitions;
 
-    public MaterielAcquisition $acquisition;
+    public Equipement $acquisition;
 
 
     public string $acquistionIdSelected = '';
@@ -30,7 +30,7 @@ class BureauMaterielAffectationModal extends ModalComponent
 
 
         if ($property === 'acquistionIdSelected') {
-            $this->acquisition = MaterielAcquisition::find($value);
+            $this->acquisition = Equipement::find($value);
         }
     }
 

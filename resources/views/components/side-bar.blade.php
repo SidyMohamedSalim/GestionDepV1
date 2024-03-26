@@ -80,8 +80,8 @@
                 </svg>
             </div>
             <div id="menu1" class="flex flex-col items-start justify-start w-full gap-4 px-2 pb-1 mt-3 md:w-auto ">
-                <a href="{{ route('materiel.materiel_acquisition.index') }}"
-                    class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52 @if(Str::contains($routeName, 'materiel.materiel_acquisition')) bg-gray-700 text-white @endif">
+                <a href="{{ route('materiel.equipement.index') }}"
+                    class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52 @if(Str::contains($routeName, 'materiel.equipement')) bg-gray-700 text-white @endif">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M8 19C10.2091 19 12 17.2091 12 15C12 12.7909 10.2091 11 8 11C5.79086 11 4 12.7909 4 15C4 17.2091 5.79086 19 8 19Z"

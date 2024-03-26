@@ -3,7 +3,7 @@
 namespace App\Livewire\Materiel;
 
 use App\Models\Fourniture;
-use App\Models\Materiels\MaterielAcquisition;
+use App\Models\Equipement;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -11,7 +11,7 @@ use Livewire\Component;
 class AddComposant extends Component
 {
 
-    public MaterielAcquisition $acquisition;
+    public Equipement $acquisition;
 
     public Collection $composants;
 
