@@ -22,7 +22,7 @@ class Fourniture extends Model
         'materiel_id',
     ];
 
-    protected $with = ['materiel', 'enseignant'];
+    // protected $with = ['materiel', 'enseignant'];
 
     public function materiel(): BelongsTo
     {
@@ -30,16 +30,16 @@ class Fourniture extends Model
     }
 
 
-    // un materiel non inventoriee peut avoir comment parent un  materiel inventoriee
-    public function parentMateriel(): BelongsTo
-    {
-        return $this->belongsTo(Equipement::class);
-    }
+    // // un materiel non inventoriee peut avoir comment parent un  materiel inventoriee
+    // public function parentMateriel(): BelongsTo
+    // {
+    //     return $this->belongsTo(Equipement::class);
+    // }
 
-    public  function affectation(): HasMany
-    {
-        return $this->hasMany(EnseignantFourniture::class);
-    }
+    // public  function affectation(): HasMany
+    // {
+    //     return $this->hasMany(EnseignantFourniture::class);
+    // }
 
     public  function enseignant(): BelongsToMany
     {

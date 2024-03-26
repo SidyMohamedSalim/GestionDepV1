@@ -24,30 +24,30 @@ class Equipement extends Model
         'nbre_restitution'
     ];
 
-    protected $with = ['materiel', 'enseignant'];
+    // protected $with = ['materiel', 'enseignant'];
 
     public function materiel(): BelongsTo
     {
         return $this->belongsTo(Materiel::class);
     }
 
-    public  function affectation(): HasMany
-    {
-        return $this->hasMany(EnseignantEquipement::class);
-    }
+    // public  function affectation(): HasMany
+    // {
+    //     return $this->hasMany(EnseignantEquipement::class);
+    // }
 
     public  function enseignant(): BelongsToMany
     {
         return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
     }
 
-    public  function bureau(): BelongsToMany
-    {
-        return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
-    }
+    // public  function bureau(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
+    // }
 
-    public function fournitures(): BelongsToMany
-    {
-        return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
-    }
+    // public function fournitures(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
+    // }
 }
