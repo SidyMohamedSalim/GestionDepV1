@@ -12,11 +12,16 @@ use Livewire\Component;
 
 class MaterielEnseignantAffectationModal extends Component
 {
+    public $showModal = false;
+
     public Enseignant $enseignant;
     public string $quantite = '1';
 
+
     public Collection $acquisitions;
     public Collection $fournitruesacquistions;
+
+
 
     public string $categorie = 'Equipement';
 
@@ -39,7 +44,6 @@ class MaterielEnseignantAffectationModal extends Component
 
     public function updating($property, $value)
     {
-
 
         if ($property === 'acquistionIdSelected') {
             if ($this->categorie == 'Equipement') {
@@ -73,8 +77,8 @@ class MaterielEnseignantAffectationModal extends Component
     }
     public function saveAcquisition()
     {
-        $this->validate();
 
+        $this->validate();
         if ($this->categorie == 'Equipement') {
             $this->enseignant->equipement()->attach($this->acquisition->id, [
                 'date_affectation' => new DateTime(),
@@ -96,6 +100,9 @@ class MaterielEnseignantAffectationModal extends Component
 
         $this->reset('quantite');
         $this->dispatch("affectationSaved");
+        $this->showModal = false;
+
+
 
         if (!empty($this->acquisition->numero_inventaire)) {
             $pdf = Pdf::loadView('pdf.materiel-affectation', [

@@ -38,6 +38,7 @@ class EnseignantLivewire extends Component
     ];
 
 
+
     public  function setOrderField(string $fieldname)
     {
         if ($fieldname == $this->orderByField) {

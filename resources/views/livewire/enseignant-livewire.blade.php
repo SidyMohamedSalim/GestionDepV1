@@ -100,35 +100,24 @@
                     </a>
 
                     {{-- affectation bureau --}}
-                    <x-modal-alpine title="Selectionner un bureau" :key="$enseignant->id"
-                        name="desktop de {{ $enseignant->id }}">
-                        <x-slot name="icon">
-                            <x-icons.desktop />
-                        </x-slot>
-                        <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
-                            :bureaux="$bureaux" key="bureau-{{$enseignant->id}}">
-                    </x-modal-alpine>
+                    <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
+                        :bureaux="$bureaux" key="bureau-{{$enseignant->id}}">
 
-
-                    {{-- affectation materiel --}}
-                    <x-modal-alpine title="Affectation d'un materiel" :key="$enseignant->id"
-                        name="materiel de {{ $enseignant->id }}">
-                        <x-slot name="icon">
-                            <x-icons.utils />
-                        </x-slot>
+                        {{-- affectation materiel --}}
                         <livewire:enseignant.materiel-enseignant-affectation-modal
                             :fournitruesacquistions="$fournitures" :acquisitions="$acquisitions"
                             :enseignant="$enseignant" key="materiel-{{$enseignant->id}}" />
-                    </x-modal-alpine>
-                    {{-- delete --}}
 
-                    <x-modal-alpine title="Suppression" :key="$enseignant->id" name="materiel de {{ $enseignant->id }}">
-                        <x-slot name="icon">
-                            <x-icons.delete />
-                        </x-slot>
-                        <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
-                            routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" />
-                    </x-modal-alpine>
+                        {{-- delete --}}
+
+                        <x-modal-alpine title="Suppression" :key="$enseignant->id"
+                            name="materiel de {{ $enseignant->id }}">
+                            <x-slot name="icon">
+                                <x-icons.delete />
+                            </x-slot>
+                            <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
+                                routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" />
+                        </x-modal-alpine>
 
 
                 </td>

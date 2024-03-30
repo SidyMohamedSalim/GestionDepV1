@@ -29,8 +29,12 @@
                             {{ __('Locaux') }}
                         </x-nav-link>
                         <x-nav-link :href="route('materiel.equipement.index')"
-                            :active="Str::startsWith($routeName, 'materiel') ">
+                            :active="Str::startsWith($routeName, 'materiel.equipement') ">
                             {{ __('Stocks') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('materiel.materiel.index')"
+                            :active="Str::startsWith($routeName, 'materiel.materiel') ">
+                            {{ __('Materiels') }}
                         </x-nav-link>
                     </div>
                 </div>
@@ -74,7 +78,7 @@
 
                 <!-- Hamburger -->
                 <div class="flex items-center -me-2 sm:hidden">
-                    <button @click="open = !open"
+                    <button x-click="open = !open"
                         class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500">
                         <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"

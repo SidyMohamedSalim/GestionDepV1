@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+
     <div class="flex justify-center py-12 mx-auto max-w-7xl">
         {{ Breadcrumbs::render('bureaushow', $bureau ) }}
     </div>
@@ -152,6 +153,9 @@
                                         Date Affection
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Composants
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Actions
                                     </th>
                                 </tr>
@@ -160,7 +164,8 @@
                                 @forelse ($bureau->acquisition as $acquisition)
                                 <tr class="border-y bg-sky-50">
                                     <td class="px-6 py-4">
-                                        {{ $acquisition->materiel->designation }}
+                                        {{ $acquisition->materiel->designation }} {{ $acquisition->materiel->reference
+                                        }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <x-signature :signed="$acquisition->pivot->signature" />
@@ -170,6 +175,31 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $acquisition->pivot->date_affectation }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <ul>
+                                            @foreach ($acquisition->fournitures as $composant)
+                                            <li class="flex items-center mb-2">
+                                                <span class="w-2 h-2 mr-2 rounded-full bg-primary"></span>
+                                                <p class="flex items-center justify-center gap-2">
+                                                    <span>
+                                                        {{ $composant->materiel->designation }}
+                                                        {{$composant->materiel->reference }}
+                                                    </span>
+                                                    <span class="text-xs">
+                                                        Quantité : {{ $composant->pivot->quantite }}
+                                                    </span>
+                                                    <span
+                                                        class="px-2 font-extrabold text-red-500 cursor-pointer hover:underline">
+                                                        X
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li class="">
+
+                                            </li>
+                                            @endforeach
+                                        </ul>
                                     </td>
                                     <td class="px-6 py-4">
                                         <x-modal-alpine title="Ajouter un composant" :key="$acquisition->id"
@@ -183,22 +213,6 @@
                                         </x-modal-alpine>
                                     </td>
                                 </tr>
-                                <td colspan="5" class="items-center justify-center w-full py-3 bg-gray-100 ">
-                                    <p class="flex items-center justify-center w-full font-extrabold">Composants</p>
-                                </td>
-                                @foreach ($acquisition->fournitures as $composant)
-                                <tr class="border-b">
-                                    <td class="px-6 py-4">
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $composant->materiel->designation }} {{$composant->materiel->reference }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $composant->pivot->quantite }}
-                                    </td>
-                                    {{ $composant->pivot->date_affectation }}
-                                </tr>
-                                @endforeach
                                 @empty
                                 <div class="flex items-center justify-center w-full h-full">
                                     <p>Vide !!</p>

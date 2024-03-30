@@ -1,5 +1,4 @@
 <div class="p-2">
-
     <h1 class="py-6 text-xl text-center">Affection de materiel au bureau <span class="font-extrabold">{{
             $bureau->designation }} </h1>
     <div class="flex flex-col gap-4 p-6 border-b odd:bg-white">
@@ -33,7 +32,7 @@
             <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-end mt-4" x-on:click="showModal:false">
             <x-primary-button wire:click.prevent='saveAcquisition()' class="ms-3 w-fit">
                 {{ __('Affecter') }}
             </x-primary-button>

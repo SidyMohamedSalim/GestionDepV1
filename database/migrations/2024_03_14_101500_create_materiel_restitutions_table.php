@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Enseignant;
-use App\Models\EnseignantEquipement;
 use App\Models\Equipement;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -24,7 +23,7 @@ return new class extends Migration
             $table->date("date_restitution");
             $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('pending');
             $table->timestamps();
-            $table->unique(['id', 'equipement_id', 'enseignant_id', 'date_restitution']);
+            $table->unique(['id']);
         });
     }
 

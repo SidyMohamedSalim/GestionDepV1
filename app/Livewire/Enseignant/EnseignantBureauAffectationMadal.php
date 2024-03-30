@@ -12,6 +12,8 @@ class EnseignantBureauAffectationMadal extends Component
     public Enseignant $enseignant;
     public Collection $bureaux;
 
+    public  $show = false;
+
     public function render()
     {
         return view('livewire.enseignant.enseignant-bureau-affectation-madal');

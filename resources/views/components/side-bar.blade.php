@@ -123,7 +123,7 @@
                     <p class="text-base leading-4 ">Admin Materiels</p>
                 </a>
 
-                <a
+                {{-- <a
                     class="flex items-center justify-start w-full px-3 py-2 space-x-6 text-gray-400 rounded cursor-pointer hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 md:w-52">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 21H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -134,7 +134,7 @@
                             stroke-linejoin="round" />
                     </svg>
                     <p class="text-base leading-4 ">Archives</p>
-                </a>
+                </a> --}}
             </div>
         </div>
 
