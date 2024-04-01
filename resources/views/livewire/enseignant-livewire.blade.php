@@ -13,7 +13,7 @@
     <div>
         @if (session('saveAffectation'))
         <div
-            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
             <span>{{ session('saveAffectation') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -24,9 +24,9 @@
         @endif
     </div>
 
-    <table class="w-full text-sm text-left rtl:text-right ">
+    <table class="w-full text-sm text-left rtl:text-right">
 
-        <thead class="text-xs text-white uppercase bg-primary ">
+        <thead class="text-xs text-white uppercase bg-primary">
             <tr>
                 <x-table-header fieldname="active" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
@@ -83,11 +83,11 @@
                     <a href="{{ route('bureau.show',$bureau) }}" class="hover:underline hover:italic">
                         {{ $bureau->numero_bureau }}</a>
                     @empty
-                    <p class=" hover:cursor-not-allowed">Pas de Bureau</p>
+                    <p class="hover:cursor-not-allowed">Pas de Bureau</p>
                     @endforelse
 
                 </td>
-                <td class="flex items-center gap-3 px-6 py-4 justify-evenly">
+                <td class="flex gap-3 justify-evenly items-center px-6 py-4">
                     {{-- editer --}}
                     <a href="{{ route('enseignant.edit', $enseignant) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -123,7 +123,7 @@
                 </td>
             </tr>
             @empty
-            <div class="flex items-center justify-center w-full h-full">
+            <div class="flex justify-center items-center w-full h-full">
                 <p>Vide !!</p>
             </div>
             @endforelse
