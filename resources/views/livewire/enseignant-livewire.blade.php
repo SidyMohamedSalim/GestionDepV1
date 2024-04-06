@@ -9,6 +9,7 @@
             <x-search-input name="prenom" placeholder="Recherche par prenom" />
             <x-search-input name="email" placeholder="Recherche par email" />
         </form>
+
     </div>
     <div>
         @if (session('saveAffectation'))
@@ -23,6 +24,7 @@
         </div>
         @endif
     </div>
+
 
     <table class="w-full text-sm text-left rtl:text-right">
 

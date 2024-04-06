@@ -14,7 +14,7 @@ up:
 	docker-compose up -d
 
 composer-update:
-	docker exec web bash -c "composer update"
+	docker compose exec web bash -c "composer update"
 
 data:
-	docker exec web bash -c "php artisan migrate"
+	docker compose exec web bash -c "php artisan migrate"
