@@ -18,6 +18,7 @@ class Fourniture extends Model
         'date_acquisition',
         'destination',
         "carateristiques",
+        "reference",
         "base_quantite",
         'materiel_id',
     ];

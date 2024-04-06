@@ -16,6 +16,7 @@ class AcquisitionLivewire extends Component
     public string $date_acquisition = '';
     public string $carateristiques = '';
     public string $destination = '';
+    public string $reference = '';
 
     public string $numero_inventaire = '';
 
@@ -25,6 +26,7 @@ class AcquisitionLivewire extends Component
             'quantite' => "required",
             'date_acquisition' => "required",
             'carateristiques' => "nullable",
+            'reference' => "nullable",
             'destination' => ["required"],
             "numero_inventaire" => [$this->materiel->categorie == 'Equipement' ? "required" : "nullable"]
         ];
@@ -50,7 +52,8 @@ class AcquisitionLivewire extends Component
                     'numero_inventaire' => $this->numero_inventaire,
                     'destination' => $this->destination,
                     'materiel_id' => $this->materiel->id,
-                    'base_quantite' =>  "1"
+                    'base_quantite' =>  "1",
+                    "reference" => $this->reference
                 ]);
             } else {
                 Fourniture::create([
@@ -59,7 +62,9 @@ class AcquisitionLivewire extends Component
                     'date_acquisition' => $this->date_acquisition,
                     'destination' => $this->destination,
                     'materiel_id' => $this->materiel->id,
-                    'base_quantite' => $this->quantite
+                    'base_quantite' => $this->quantite,
+                    "reference" => $this->reference
+
                 ]);
             }
             $this->dispatch("acquisitionSaved");

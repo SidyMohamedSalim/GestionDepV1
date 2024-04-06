@@ -1,4 +1,4 @@
-<div class=" bg-gray-50">
+<div class="bg-gray-50">
     <div colspan="6">
         <form action="" class="p-8" wire:submit.prevent="saveAcquisiton">
 
@@ -26,7 +26,7 @@
                 <div class="mt-4">
                     <x-input-label for="numero_inventaire" :value="__('Numero d\'inventaire')" />
                     <input type="text" wire:model="numero_inventaire"
-                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Numero d'inventaire" />
                     <x-input-error :messages="$errors->get('numero_inventaire')" class="mt-2" />
                 </div>
@@ -42,12 +42,12 @@
 
                     @if ($estInventorie == true)
                     <input @disabled(true) type="number" wire:model="quantite"
-                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Quantite" />
                     @else
 
                     <input type="number" wire:model="quantite"
-                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Quantite" />
                     @endif
 
@@ -56,7 +56,7 @@
                 <div class="mt-4">
                     <x-input-label for="date_acquisition" :value="__('Date d\'Acquisition')" />
                     <input type="date" wire:model="date_acquisition"
-                        class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                         placeholder="Date d'Acquisition" />
                     <x-input-error :messages="$errors->get('date_acquisition')" class="mt-2" />
                 </div>
@@ -67,7 +67,17 @@
                     class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"></textarea>
                 <x-input-error :messages="$errors->get('caracteristiques')" class="mt-2" />
             </div>
-            <div class="flex items-center justify-end mt-4">
+
+            {{-- reference --}}
+            <div class="mt-4">
+                <x-input-label for="reference" :value="__('Reference')" />
+                <input type="text" wire:model="reference"
+                    class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                    placeholder="reference" />
+                <x-input-error :messages="$errors->get('reference')" class="mt-2" />
+            </div>
+
+            <div class="flex justify-end items-center mt-4">
                 <x-primary-button type='submit' class="ms-3" wire:loading.attr='disabled'>
                     {{ __('Enregistrer') }}
                 </x-primary-button>

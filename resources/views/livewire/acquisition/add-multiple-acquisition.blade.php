@@ -3,7 +3,7 @@
     @php
     $estInventorie = $categorie == 'Equipement';
     @endphp
-    <div class="grid justify-between grid-cols-2 gap-2 text-md-center">
+    <div class="grid grid-cols-2 gap-2 justify-between text-md-center">
         <button wire:click='changeCategorieToFourniture' @class([ "'inline-flex items-center px-4 py-2 text-xs
                                             font-extrabold tracking-widest uppercase duration-150 ease-in-out rounded-md shadow-sm transpition bg-wthite
                                             hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
@@ -26,7 +26,7 @@
 
     <form wire:submit.prevent='saveAcquisitions()' class="flex flex-col gap-4">
         @csrf
-        <div class="grid items-center gap-4 md:grid-cols-2">
+        <div class="grid gap-4 items-center md:grid-cols-2">
             <div class="mt-4">
                 <x-input-label for="destination" :value="__('Pour ?')" />
                 <select wire:model='destination'
@@ -40,7 +40,7 @@
             <div class="mt-4">
                 <x-input-label for="date_acquisition" :value="__('Date d\'Acquisition')" />
                 <input type="date" wire:model="date_acquisition"
-                    class="block w-full mt-1 rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                    class="block mt-1 w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
                     placeholder="Date d'Acquisition" />
                 <x-input-error :messages="$errors->get('date_acquisition')" class="mt-2" />
             </div>
@@ -51,8 +51,8 @@
                 <h1 class="py-4 text-xl font-extrabold">Les differentes acquisitions</h1>
                 <x-input-error :messages="$errors->get('acquisition')" class="mt-2" />
             </div>
-            @for ($i = 1; $i <= $nombre_acquisitions; $i++) <div class="p-4 my-2 bg-white rounded-lg shadow-sm ">
-                <p class="my-2 text-sm font-bold ">Materiel {{ $i }}</p>
+            @for ($i = 1; $i <= $nombre_acquisitions; $i++) <div class="p-4 my-2 bg-white rounded-lg shadow-sm">
+                <p class="my-2 text-sm font-bold">Materiel {{ $i }}</p>
                 <div @class([ 'grid items-start grid-cols-2 gap-3 my-4 ' , 'grid-cols-3'=>$estInventorie,
                     ])>
                     <div>
@@ -79,7 +79,7 @@
                     @endif
                     <div>
                         @if ($estInventorie)
-                        <p class="flex items-center justify-center "><span class="">Quantité
+                        <p class="flex justify-center items-center"><span class="">Quantité
                                 :</span><span class="text-xl font-extrabold">1</span>
                         </p>
                         @else
@@ -91,22 +91,34 @@
                     </div>
                 </div>
 
+
                 <div>
-                    <textarea wire:model="acquisition.{{ $i }}.carateristiques"
+                    <textarea wire:model="acquisition.{{ $i }}.caracteristiques"
                         class="w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
-                        placeholder="commentaire"></textarea>
+                        placeholder="Caracteristiques"></textarea>
+                    <x-input-error :messages="$errors->get('acquisition.' . $i . '.caracteristiques')" class="mt-2" />
                 </div>
+                {{-- reference --}}
+                <div class="mt-4">
+                    <x-input-label for="reference" :value="__('reference')" />
+                    <input type="text" wire:model="acquisition.{{ $i }}.reference" defaultValue="1"
+                        class="block w-full rounded-md shadow-sm border-primary-300 focus:border-primary focus:ring-primary"
+                        placeholder="reference" />
+                    <x-input-error :messages="$errors->get('acquisition.' . $i . '.reference')" class="mt-2" />
+                </div>
+
         </div>
+
         @endfor
 
-        <div class="flex justify-end gap-4 my-6 text-white">
+        <div class="flex gap-4 justify-end my-6 text-white">
             <button wire:click.prevent='decrement' @if ($nombre_acquisitions==1) disabled @endif
                 class="'inline-flex items-center px-4 py-2 text-xs font-extrabold tracking-widest uppercase duration-150 ease-in-out bg-secondary border rounded-md shadow-sm transpition bg-wthite hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">-Moins</button>
             <button wire:click.prevent='increment'
                 class="'inline-flex items-center px-4 py-2 text-xs font-extrabold tracking-widest uppercase duration-150 ease-in-out bg-secondary border rounded-md shadow-sm transpition bg-wthite hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">+Plus</button>
         </div>
 
-        <div class="flex items-center justify-end mt-6">
+        <div class="flex justify-end items-center mt-6">
             <x-primary-button class="ms-3">
                 {{ __('Enregistrer les acquisitions') }}
             </x-primary-button>

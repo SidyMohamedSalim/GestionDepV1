@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('carateristiques')->nullable();
             $table->boolean('share')->default(false); //partager entre enseignant
             $table->enum('destination', ['informatique', 'laboratoire']);
+            $table->string("reference")->nullable();
 
             $table->string("numero_inventaire");
             $table->foreignIdFor(Materiel::class)->constrained()->cascadeOnDelete();

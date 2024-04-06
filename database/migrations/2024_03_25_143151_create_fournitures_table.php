@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('carateristiques')->nullable();
             $table->boolean('share')->default(false); //partager entre enseignant
             $table->enum('destination', ['informatique', 'laboratoire']);
+            $table->string("reference")->nullable();
 
             //Parent materiel pour un materiel utilise dans un materiel detenant un materiel
             // $table->foreignIdFor(Equipement::class)->nullable();

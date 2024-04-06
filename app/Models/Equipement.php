@@ -20,6 +20,7 @@ class Equipement extends Model
         'destination',
         "carateristiques",
         "base_quantite",
+        "reference",
         'materiel_id',
         'nbre_restitution'
     ];

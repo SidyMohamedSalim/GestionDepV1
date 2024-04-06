@@ -9,27 +9,21 @@ use Livewire\Component;
 
 class AddMultipleAcquisition extends Component
 {
-
     public int $nombre_acquisitions = 1;
-
     public string $destination = '';
     public string $date_acquisition = '';
-    public array  $acquisition = [];
-
+    public array $acquisition = [];
     public string $categorie = 'Fourniture';
-
-
-
+    public string $reference = '';
 
     public function increment()
     {
         $this->nombre_acquisitions++;
     }
+
     public function decrement()
     {
-        if ($this->nombre_acquisitions > 1) {
-            $this->nombre_acquisitions--;
-        }
+        $this->nombre_acquisitions = max(1, $this->nombre_acquisitions - 1);
     }
 
     public function changeCategorieToEquipement()
@@ -44,37 +38,31 @@ class AddMultipleAcquisition extends Component
 
     public function saveAcquisitions()
     {
-
         $data = $this->validate();
 
         foreach ($data['acquisition'] as $acquisitionData) {
             if (!empty($acquisitionData['materiel_id'])) {
-                if ($this->categorie == 'Equipement') {
-                    Equipement::create([
-                        'materiel_id' => $acquisitionData['materiel_id'],
-                        'quantite' => "1",
-                        'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
-                        'numero_inventaire' => $acquisitionData['numero_inventaire'],
-                        'destination' => $data['destination'],
-                        'date_acquisition' => $data['date_acquisition'],
-                    ]);
-                } else {
-                    Fourniture::create([
-                        'materiel_id' => $acquisitionData['materiel_id'],
-                        'quantite' => $acquisitionData['quantite'],
-                        'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
-                        'destination' => $data['destination'],
-                        'date_acquisition' => $data['date_acquisition'],
-                    ]);
-                }
+                $this->createAcquisition($acquisitionData, $data);
             }
         }
 
-        session()->flash('success', 'Les acquisitions  ont été faites');
-
+        session()->flash('success', 'Les acquisitions ont été faites');
         $this->redirectRoute('materiel.equipement.index');
     }
 
+    protected function createAcquisition($acquisitionData, $data)
+    {
+        $model = $this->categorie == 'Equipement' ? new Equipement() : new Fourniture();
+        $model->fill([
+            'materiel_id' => $acquisitionData['materiel_id'],
+            'quantite' => $this->categorie == 'Equipement' ? "1" : $acquisitionData['quantite'],
+            'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
+            'reference' => $acquisitionData['reference'],
+            'numero_inventaire' => $this->categorie == 'Equipement' ? $acquisitionData['numero_inventaire'] : null,
+            'destination' => $data['destination'],
+            'date_acquisition' => $data['date_acquisition'],
+        ])->save();
+    }
 
     public function render()
     {
@@ -91,7 +79,8 @@ class AddMultipleAcquisition extends Component
             'acquisition' => ['array', 'required'],
             'acquisition.*.materiel_id' => 'required|exists:materiels,id',
             'acquisition.*.quantite' =>  $this->categorie == "Equipement" ? 'nullable|string' :  'required|integer|min:1',
-            'acquisition.*.carateristiques' => 'nullable|string',
+            'acquisition.*.reference' =>  "nullable|string",
+            'acquisition.*.caracteristiques' => 'nullable|string',
             'acquisition.*.numero_inventaire' => $this->categorie == "Fourniture" ? 'nullable|string' : "required|string",
         ];
     }
