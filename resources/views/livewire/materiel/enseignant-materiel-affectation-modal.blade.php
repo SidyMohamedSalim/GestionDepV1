@@ -10,7 +10,7 @@
     </h1>
     <div class="flex flex-col gap-4 p-6 border-b odd:bg-white">
 
-        {{-- mteriel acquisition --}}
+        {{-- materiel acquisition --}}
         <div class="mt-4">
             <x-input-label for="type" :value="__('Selectionner une Acquisition ?')" />
 
@@ -34,13 +34,13 @@
             <x-input-label for="quantite" :value="__('Quantité')" />
 
 
-            <x-text-input wire:model.defer='quantite' id="quantite" class="block w-full mt-1"
+            <x-text-input wire:model.defer='quantite' id="quantite" class="block mt-1 w-full"
                 value="{{ old('quantite') }}" />
 
             <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex justify-end items-center mt-4">
             <x-primary-button wire:click.prevent='saveAcquisition()' class="ms-3 w-fit">
                 {{ __('Affecter') }}
             </x-primary-button>

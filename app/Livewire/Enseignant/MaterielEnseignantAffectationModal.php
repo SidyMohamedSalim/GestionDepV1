@@ -17,23 +17,18 @@ class MaterielEnseignantAffectationModal extends Component
     public Enseignant $enseignant;
     public string $quantite = '1';
 
-
     public Collection $acquisitions;
     public Collection $fournitruesacquistions;
-
-
 
     public string $categorie = 'Equipement';
 
     public Equipement|Fourniture $acquisition;
 
-
     public string $acquistionIdSelected = '';
-
 
     public function changeCategorieToEquipement()
     {
-        $this->categorie =  "Equipement";
+        $this->categorie = "Equipement";
     }
 
     public function changeCategorieToFourniture()
@@ -41,16 +36,10 @@ class MaterielEnseignantAffectationModal extends Component
         $this->categorie = "Fourniture";
     }
 
-
     public function updating($property, $value)
     {
-
         if ($property === 'acquistionIdSelected') {
-            if ($this->categorie == 'Equipement') {
-                $this->acquisition = Equipement::find($value);
-            } else {
-                $this->acquisition = Fourniture::find($value);
-            }
+            $this->acquisition = $this->categorie == 'Equipement' ? Equipement::find($value) : Fourniture::find($value);
         }
     }
 
@@ -59,14 +48,13 @@ class MaterielEnseignantAffectationModal extends Component
         $this->withValidator(function ($validator) {
             $validator->after(function ($validator) {
                 if ($this->acquistionIdSelected == '') {
-                    $validator->errors()->add("acquistionIdSelected", "Veuillez selectionner d'abord une acquisition ");
+                    $validator->errors()->add("acquistionIdSelected", "Veuillez sélectionner d'abord une acquisition");
                 } elseif ($this->quantite > $this->acquisition->quantite) {
-                    $validator->errors()->add("quantite", "La quantite ne doit pas etre superieur a celle existante ");
+                    $validator->errors()->add("quantite", "La quantité ne doit pas être supérieure à celle existante");
                 }
             });
         });
     }
-
 
     public function rules()
     {
@@ -75,15 +63,16 @@ class MaterielEnseignantAffectationModal extends Component
             'quantite' => 'required',
         ];
     }
+
     public function saveAcquisition()
     {
-
         $this->validate();
+
         if ($this->categorie == 'Equipement') {
             $this->enseignant->equipement()->attach($this->acquisition->id, [
                 'date_affectation' => new DateTime(),
                 "quantite" => $this->quantite,
-                'signature' =>  "pending"
+                'signature' => "pending"
             ]);
         } else {
             $this->enseignant->fourniture()->attach($this->acquisition->id, [
@@ -91,7 +80,6 @@ class MaterielEnseignantAffectationModal extends Component
                 "quantite" => $this->quantite,
             ]);
         }
-
 
         $this->acquisition->update([
             'quantite' => ($this->acquisition->quantite - $this->quantite)
@@ -101,8 +89,6 @@ class MaterielEnseignantAffectationModal extends Component
         $this->reset('quantite');
         $this->dispatch("affectationSaved");
         $this->showModal = false;
-
-
 
         if (!empty($this->acquisition->numero_inventaire)) {
             $pdf = Pdf::loadView('pdf.materiel-affectation', [
@@ -116,7 +102,6 @@ class MaterielEnseignantAffectationModal extends Component
             }, 'decharge' . $this->acquisition->numero_inventaire . $this->enseignant->nom . '.pdf');
         }
     }
-
 
     public function render()
     {

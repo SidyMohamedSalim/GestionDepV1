@@ -12,7 +12,8 @@ class EnseignantBureauAffectationMadal extends Component
     public Enseignant $enseignant;
     public Collection $bureaux;
 
-    public  $show = false;
+    public $showModal = false;
+
 
     public function render()
     {

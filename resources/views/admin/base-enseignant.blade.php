@@ -15,6 +15,7 @@
                 <x-jet-button :href="route($route)" :active="request()->routeIs($route)">
                     {{ $label }}
                 </x-jet-button>
+
                 @endforeach
             </div>
 

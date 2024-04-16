@@ -11,7 +11,7 @@
             l'email <span class="font-extrabold">{{$enseignant->email }}</span></h1>
         <div class="flex flex-col gap-4 p-6 border-b odd:bg-white">
 
-            {{-- mteriel acquisition --}}
+            {{-- materiel acquisition --}}
 
             <div class="grid grid-cols-2 gap-2 justify-between text-md-center">
                 <button wire:click='changeCategorieToFourniture' @class([ "'inline-flex items-center px-4 py-2 text-xs
@@ -42,7 +42,6 @@
                 @php
                 $acquisitions =$categorie == 'Equipement' ? $acquisitions : $fournitruesacquistions;
                 @endphp
-
 
 
                 <select name="type" wire:model.live.defer='acquistionIdSelected'
@@ -77,9 +76,6 @@
                     {{ __('Affecter') }}
                 </x-primary-button>
             </div>
-
-
-
 
         </div>
     </div>
