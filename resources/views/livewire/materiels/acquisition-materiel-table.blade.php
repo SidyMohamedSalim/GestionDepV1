@@ -6,23 +6,23 @@
 
     <div>
         <a href="{{ route('materiel.materiel.index') }}"
-            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
+            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
             Admin des materiels
         </a>
     </div>
 
 
-    <div class="flex items-center justify-between my-6 bg">
+    <div class="flex justify-between items-center my-6 bg">
         <h1 class="text-2xl font-extrabold">Gestion des differentes acquisitions</h1>
         <a href="{{ route('materiel.equipement.create') }}"
-            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
+            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
             + Nouvelles acquisitions
         </a>
     </div>
     <div>
         @if (session('saveAffectation'))
         <div
-            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
             <span>{{ session('saveAffectation') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -34,7 +34,7 @@
     </div>
 
     <div class="py-4">
-        <div class="flex items-center gap-4 my-6">
+        <div class="flex gap-4 items-center my-6">
             <button wire:click.prevent="changeCategorie('Equipement')" @class(['inline-flex items-center px-8 py-2
                 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
                 border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
@@ -57,9 +57,20 @@
 
         </form>
     </div>
-    <table class="w-full text-sm text-left rtl:text-right ">
 
-        <thead class="text-xs text-white uppercase bg-primary ">
+    {{-- filter imprimante and pc --}}
+    @if ($categorie == 'Equipement')
+    <div class="py-4">
+        <div class="flex gap-2 items-center">
+            <x-tool-filter fieldname="Imprimante" :selectedValue="$filterByImprimanteOrOrdinateur" />
+            <x-tool-filter fieldname="Ordinateur" :selectedValue="$filterByImprimanteOrOrdinateur" />
+        </div>
+    </div>
+    @endif
+
+    <table class="w-full text-sm text-left rtl:text-right">
+
+        <thead class="text-xs text-white uppercase bg-primary">
             <tr>
                 @if ($isInventoriee)
                 <x-table-header fieldname="numero_inventaire" :selectedFieldName="$orderByField"
@@ -140,7 +151,7 @@
                     {{ $equipement->date_acquisition }}
                 </td>
 
-                <td class="flex items-center gap-4 px-6 py-4 justify-evenly">
+                <td class="flex gap-4 justify-evenly items-center px-6 py-4">
                     {{-- voir --}}
                     {{-- <a href="{{ route('materiel.equipement.show', $equipement) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -178,7 +189,7 @@
                 </td>
             </tr>
             @empty
-            <div class="flex items-center justify-center w-full h-full">
+            <div class="flex justify-center items-center w-full h-full">
                 <p>Vide !!</p>
             </div>
             @endforelse

@@ -1,15 +1,15 @@
 <div>
 
 
-    <div class="max-w-screen-xl m-6 mx-auto">
+    <div class="m-6 mx-auto max-w-screen-xl">
         {{-- new bureaux --}}
 
 
 
-        <div class="flex items-end justify-end mb-4">
+        <div class="flex justify-end items-end mb-4">
 
             <a href="{{ route('bureau.create') }}"
-                class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
+                class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
                 + Nouveau Local
             </a>
         </div>
@@ -26,9 +26,9 @@
 
         {{-- listing bureaux --}}
 
-        <table class="w-full text-sm text-left rtl:text-right ">
+        <table class="w-full text-sm text-left rtl:text-right">
 
-            <thead class="text-xs text-white uppercase bg-secondary ">
+            <thead class="text-xs text-white uppercase bg-secondary">
                 <tr>
                     <x-table-header fieldname="numero_bureau" :selectedFieldName="$orderByField"
                         :orderDirection="$orderByDirection">
@@ -57,7 +57,7 @@
             <tbody>
                 @foreach ($bureaux as $bureau)
                 <tr class="border-b odd:bg-white">
-                    <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap ">
+                    <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
                         {{ $bureau->numero_bureau }}
                     </th>
                     <td class="px-6 py-4">
@@ -72,7 +72,7 @@
                     <td class="px-6 py-4">
                         {{ $bureau->date_acquisition }}
                     </td>
-                    <td class="flex items-center justify-center gap-3 px-6 py-4">
+                    <td class="flex gap-3 justify-center items-center px-6 py-4">
 
                         {{-- edit --}}
                         <a href="{{ route('bureau.edit', $bureau) }}"

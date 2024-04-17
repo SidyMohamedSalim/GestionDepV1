@@ -23,7 +23,8 @@ class Fourniture extends Model
         'materiel_id',
     ];
 
-    // protected $with = ['materiel', 'enseignant'];
+    // protected $with = ['materiel'];
+
 
     public function materiel(): BelongsTo
     {

@@ -3,7 +3,7 @@
     <div>
         @if (session('saveAcquisition'))
         <div
-            class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+            class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
             <span>{{ session('saveAcquisition') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -23,9 +23,18 @@
         </form>
     </div>
 
-    <table class="w-full text-sm text-left rtl:text-right ">
 
-        <thead class="text-xs text-white uppercase bg-primary ">
+    {{-- filter imprimante and pc --}}
+    <div class="py-4">
+        <div class="flex gap-2 items-center">
+            <x-tool-filter fieldname="Imprimante" :selectedValue="$filterByImprimanteOrOrdinateur" />
+            <x-tool-filter fieldname="Ordinateur" :selectedValue="$filterByImprimanteOrOrdinateur" />
+        </div>
+    </div>
+
+    <table class="w-full text-sm text-left rtl:text-right">
+
+        <thead class="text-xs text-white uppercase bg-primary">
             <tr>
                 <x-table-header fieldname="active" :selectedFieldName="$orderByField"
                     :orderDirection="$orderByDirection">
@@ -69,14 +78,12 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ $materiel->type }}
-
                 </td>
-
                 <td class="px-6 py-4">
                     {{ $materiel->reference }}
 
                 </td>
-                <td class="flex items-center px-6 py-4 justify-evenly">
+                <td class="flex justify-evenly items-center px-6 py-4">
                     {{-- editer --}}
                     <a href="{{ route('materiel.materiel.edit',$materiel) }}"
                         class="font-medium text-primary dark:text-primary hover:underline">
@@ -105,13 +112,13 @@
                     </x-modal-alpine>
 
 
-                    @if (count($materiel->equipement) == 0)
+                    @if (count($materiel->equipement) == 0 && count($materiel->fourniture) == 0)
                     <x-modal-alpine title="Suppression" :key="$materiel->id" name="materiel de {{ $materiel->id }}">
                         <x-slot name="icon">
                             <x-icons.delete />
                         </x-slot>
 
-                        <div class="px-3 ">
+                        <div class="px-3">
                             <h1 class="py-6">Voulez vous vraiment supprimer cet element</h1>
                             <a class="px-4 py-2 my-2 text-white bg-red-500 rounded-lg"
                                 href="{{ route('materiel.materiel.destroy',$materiel) }}">Supprimer</a>
@@ -130,7 +137,7 @@
 
 
             @empty
-            <div class="flex items-center justify-center w-full h-full">
+            <div class="flex justify-center items-center w-full h-full">
                 <p>Vide !!</p>
             </div>
             @endforelse

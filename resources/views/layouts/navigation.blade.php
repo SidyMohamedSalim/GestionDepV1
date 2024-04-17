@@ -1,5 +1,5 @@
 <header>
-    <nav x-data="{ open: false }" class="border-b bg-gray-50 border-gray-50 ">
+    <nav x-data="{ open: false }" class="bg-gray-50 border-b border-gray-50">
 
         @php
         $routeName = Route::currentRouteName()
@@ -14,7 +14,7 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         {{-- logo --}}
                         <div
-                            class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:text-primary focus:outline-none focus:text-gray-700 focus:border-gray-300">
+                            class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 border-b-2 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:text-primary focus:outline-none focus:text-gray-700 focus:border-gray-300">
                             <img class="w-8" alt="logo" src="/logo.png" />
                         </div>
                         <x-nav-link :href="route('dashboard')" :active="Str::startsWith($routeName, 'dashboard')">
@@ -36,6 +36,10 @@
                             :active="Str::startsWith($routeName, 'materiel.materiel') ">
                             {{ __('Materiels') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('archives.affectation.index')"
+                            :active="Str::startsWith($routeName, 'archives.') ">
+                            {{ __('Archives') }}
+                        </x-nav-link>
                     </div>
                 </div>
 
@@ -44,7 +48,7 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 bg-white rounded-md border border-transparent transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ms-1">
@@ -79,7 +83,7 @@
                 <!-- Hamburger -->
                 <div class="flex items-center -me-2 sm:hidden">
                     <button x-click="open = !open"
-                        class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500">
+                        class="inline-flex justify-center items-center p-2 text-gray-400 rounded-md transition duration-150 ease-in-out hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500">
                         <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

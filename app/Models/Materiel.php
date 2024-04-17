@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Materiel extends Model
 {
@@ -21,10 +21,17 @@ class Materiel extends Model
         'reference',
     ];
 
-
-
     protected $with = ['fourniture', 'equipement'];
 
+    public function scopePc(Builder $query): void
+    {
+        $query->where('designation', 'LIKE', "%pc%")->where('categorie', 'LIKE', "equipement");
+    }
+
+    public function scopeImprimante(Builder $query): void
+    {
+        $query->where('designation', 'LIKE', "%imprimante%")->where('categorie', 'LIKE', "equipement");
+    }
 
     public function fourniture(): HasMany
     {

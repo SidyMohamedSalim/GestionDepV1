@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArchivesController;
 use App\Http\Controllers\Bureau\BureauController;
 use App\Http\Controllers\Enseignant\EnseigantController;
 use App\Http\Controllers\Enseignant\EnseignantVacataireController;
@@ -79,6 +80,22 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 // MaterielRestitution
 Route::prefix("/")->name('restoreMateriel.')->controller(MaterielRestitutionController::class)->middleware('auth')->group(function () {
     Route::post("/restore/{acquisition}", 'restore')->name('restore');
+});
+
+
+// archives
+Route::prefix("/archives")->name("archives.")->controller(ArchivesController::class)->middleware('auth')->group(function () {
+
+    //TODO
+    // all archives routes
+
+
+
+    //affectations
+
+    Route::prefix("/affectation")->name("affectation.")->group(function () {
+        Route::get("/", "allAffectations")->name('index');
+    });
 });
 
 

@@ -130,3 +130,10 @@ Breadcrumbs::for('materieledit', function (BreadcrumbTrail $trail, Materiel $mat
     $trail->parent('materielshow', $materiel);
     $trail->push("edit", route("materiel.materiel.edit", $materiel));
 });
+
+
+// affectation
+Breadcrumbs::for('affectations', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('affectations', route("materiel.materiel.index"));
+});

@@ -19,6 +19,9 @@ class AcquisitionMaterielTable extends Component
     public string $numero_inventaire = '';
     public string $destination = "";
 
+    public string $filterByImprimanteOrOrdinateur = '';
+
+
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
@@ -28,6 +31,7 @@ class AcquisitionMaterielTable extends Component
         'categorie' => ['except' => ""],
         "numero_inventaire" => ['except' => ""],
         'type' => ['except' => ""],
+        'filterByImprimanteOrOrdinateur' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
         'orderByDirection' => ['except' => "ASC"]
     ];
@@ -37,6 +41,12 @@ class AcquisitionMaterielTable extends Component
     {
         $this->categorie = $newCategorie;
     }
+
+    public function changeImprimanteOrPcValue($value)
+    {
+        $this->filterByImprimanteOrOrdinateur = $value == $this->filterByImprimanteOrOrdinateur ? '' : $value;
+    }
+
 
     public  function setOrderField(string $fieldname)
     {
@@ -96,6 +106,13 @@ class AcquisitionMaterielTable extends Component
         if (!empty($this->categorie)) {
             $query = $query->whereHas('materiel', function ($query) {
                 $query->where('materiels.categorie', "LIKE", "%{$this->categorie}%");
+            });
+        }
+
+
+        if (!empty($this->filterByImprimanteOrOrdinateur) && $this->categorie == 'Equipement') {
+            $query = $query->whereHas('materiel', function ($query) {
+                $query->where('materiels.designation', "LIKE", "%{$this->filterByImprimanteOrOrdinateur}%");
             });
         }
 

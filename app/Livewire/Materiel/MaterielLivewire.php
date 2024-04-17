@@ -12,6 +12,8 @@ class MaterielLivewire extends Component
 
     use WithPagination;
 
+    public string $filterByImprimanteOrOrdinateur = '';
+
     public string $type = '';
     public string $categorie = '';
     public string $designation = '';
@@ -25,6 +27,7 @@ class MaterielLivewire extends Component
         'categorie' => ['except' => ""],
         'reference' => ['except' => ""],
         'designation' => ['except' => ""],
+        'filterByImprimanteOrOrdinateur' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
         'orderByDirection' => ['except' => "ASC"]
     ];
@@ -37,6 +40,11 @@ class MaterielLivewire extends Component
             $this->orderByField = $fieldname;
             $this->reset('orderByDirection');
         }
+    }
+
+    public function changeImprimanteOrPcValue($value)
+    {
+        $this->filterByImprimanteOrOrdinateur = $value == $this->filterByImprimanteOrOrdinateur ? '' : $value;
     }
 
 
@@ -71,6 +79,11 @@ class MaterielLivewire extends Component
         if (!empty($this->designation)) {
             $query =
                 $query->where('designation', "LIKE", "%{$this->designation}%");
+        }
+
+        if (!empty($this->filterByImprimanteOrOrdinateur)) {
+            $query =
+                $query->where('designation', "LIKE", "%{$this->filterByImprimanteOrOrdinateur}%");
         }
 
         if (!empty($this->reference)) {

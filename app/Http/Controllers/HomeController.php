@@ -14,17 +14,16 @@ class HomeController extends Controller
 {
     //
 
-    function index()
+    public function index()
     {
-
-        $count_enseignant = Enseignant::all()->count();
-        $count_vacataire = EnseignantVacataire::all()->count();
-
-        $count_bureau = Bureau::all()->count();
-
+        $count_enseignant = Enseignant::count();
+        $count_vacataire = EnseignantVacataire::count();
+        $count_bureau = Bureau::count();
         $count_stocks = $this->countStocks();
 
+        $enseignants = Enseignant::with('bureau', 'equipement', 'fourniture')->get();
 
+        // dd($enseignants);
 
         return view('dashboard', [
             'count_enseignant' => $count_enseignant,
@@ -38,27 +37,16 @@ class HomeController extends Controller
     private function countStocks(): array
     {
         $data = [];
-        $count = 0;
-        $acquisitions =  Equipement::all();
-
-        foreach ($acquisitions as $materiel) {
-            $count += $materiel->quantite;
-        }
-
+        $count = Equipement::sum('quantite');
         $data['inventoriee'] = $count;
-        $count = 0;
-        $acquisitions =  Fourniture::all();
 
-        foreach ($acquisitions as $materiel) {
-            $count += $materiel->quantite;
-        }
-
+        $count = Fourniture::sum('quantite');
         $data['notinventoriee'] = $count;
 
         return $data;
     }
 
-    public  function help()
+    public function help()
     {
         return view('help');
     }
