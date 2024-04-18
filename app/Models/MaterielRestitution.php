@@ -16,6 +16,7 @@ class MaterielRestitution extends Model
         "date_restitution",
         'signature',
         'enseignant_id',
+        'bureau_id',
         'equipement_id',
         'designation',
         'numero_inventaire'
@@ -26,6 +27,11 @@ class MaterielRestitution extends Model
     public function enseignant(): BelongsTo
     {
         return $this->belongsTo(Enseignant::class);
+    }
+
+    public function bureau(): BelongsTo
+    {
+        return $this->belongsTo(Bureau::class);
     }
 
     public function acquisition(): BelongsTo

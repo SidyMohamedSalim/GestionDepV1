@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bureau;
 use App\Models\Enseignant;
 use App\Models\Equipement;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->string("designation")->nullable();
             $table->string("numero_inventaire")->nullable();
             $table->foreignIdFor(Equipement::class);
-            $table->foreignIdFor(Enseignant::class);
+            $table->foreignIdFor(Bureau::class)->nullable();
+            $table->foreignIdFor(Enseignant::class)->nullable();
             $table->string("quantite")->default("1");
             $table->date("date_restitution");
             $table->enum('signature', ['not-concerned', 'pending', 'signed'])->default('pending');

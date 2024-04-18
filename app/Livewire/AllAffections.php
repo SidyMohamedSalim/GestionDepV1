@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Enseignant;
-use App\Models\Materiel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,7 +19,6 @@ class AllAffections extends Component
         $this->categorie = $value;
     }
 
-
     public function changeImprimanteOrPcValue($value)
     {
         $this->filterByImprimanteOrOrdinateur = $value == $this->filterByImprimanteOrOrdinateur ? '' : $value;
@@ -28,12 +26,8 @@ class AllAffections extends Component
 
     public function render()
     {
-        $query = Enseignant::query();
-        if ($this->categorie == "Equipement") {
-            $query = $query->with('equipement');
-        } else {
-            $query = $query->with('fourniture');
-        }
+        $query = Enseignant::query()->with($this->categorie == "Equipement" ? 'equipement' : 'fourniture');
+
 
         return view('livewire.all-affections', [
             "enseignantsAffectations" => $query->paginate(10)

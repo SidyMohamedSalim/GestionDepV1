@@ -24,13 +24,13 @@
                         </header>
 
                         {{-- content --}}
-                        <div class="flex flex-col w-full gap-2 mt-4">
-                            <div class="flex items-center justify-between w-full">
+                        <div class="flex flex-col gap-2 mt-4 w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <p><span class="font-extrabold">Designation : </span> {{ $bureau->designation }}</p>
                                 <p><span class="font-extrabold">Capacité : </span> {{ $bureau->capacite }}</p>
                             </div>
 
-                            <div class="flex items-center justify-between w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <p><span class="font-extrabold">Date d'acquisition : </span> {{
                                     $bureau->date_acquisition }}
                                 </p>
@@ -48,21 +48,21 @@
                 <div>
                     <section>
                         {{-- header --}}
-                        <header class="flex items-center justify-between mb-4">
+                        <header class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
                                 {{ __('Enseignants du local') }}
                             </h2>
                             <a x-data=""
-                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25"
+                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25"
                                 href="{{ route('show_affecter_enseignants_bureau', $bureau) }}">
                                 <x-icons.users />
                             </a>
                         </header>
 
                         {{-- content --}}
-                        <table class="w-full text-sm text-left rtl:text-right ">
+                        <table class="w-full text-sm text-left rtl:text-right">
 
-                            <thead class="text-xs text-white uppercase bg-primary ">
+                            <thead class="text-xs text-white uppercase bg-primary">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Nom
@@ -98,7 +98,7 @@
                                     <td class="px-6 py-4">
                                         {{ $enseignant->daterecrutement }}
                                     </td>
-                                    <td class="flex items-center gap-2 px-6 py-4">
+                                    <td class="flex gap-2 items-center px-6 py-4">
                                         <div class="text-red-500 cursor-pointer hover:underline">
                                             <x-icons.delete />
                                         </div>
@@ -110,7 +110,7 @@
 
                                 </tr>
                                 @empty
-                                <div class="flex items-center justify-center w-full h-full">
+                                <div class="flex justify-center items-center w-full h-full">
                                     <p>Vide !!</p>
                                 </div>
                                 @endforelse
@@ -127,7 +127,7 @@
                 <div>
                     <section>
                         {{-- header --}}
-                        <header class="flex items-center justify-between mb-4">
+                        <header class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
                                 Materiels Affectés à ce local
                             </h2>
@@ -136,9 +136,9 @@
 
 
                         {{-- content --}}
-                        <table class="w-full text-sm text-left rtl:text-right ">
+                        <table class="w-full text-sm text-left rtl:text-right">
 
-                            <thead class="text-xs text-white uppercase bg-primary ">
+                            <thead class="text-xs text-white uppercase bg-primary">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Designation
@@ -162,7 +162,7 @@
                             </thead>
                             <tbody>
                                 @forelse ($bureau->acquisition as $acquisition)
-                                <tr class="border-y bg-sky-50">
+                                <tr class="bg-sky-50 border-y">
                                     <td class="px-6 py-4">
                                         {{ $acquisition->materiel->designation }} {{ $acquisition->materiel->reference
                                         }}
@@ -180,8 +180,8 @@
                                         <ul>
                                             @foreach ($acquisition->fournitures as $composant)
                                             <li class="flex items-center mb-2">
-                                                <span class="w-2 h-2 mr-2 rounded-full bg-primary"></span>
-                                                <p class="flex items-center justify-center gap-2">
+                                                <span class="mr-2 w-2 h-2 rounded-full bg-primary"></span>
+                                                <p class="flex gap-2 justify-center items-center">
                                                     <span>
                                                         {{ $composant->materiel->designation }}
                                                         {{$composant->materiel->reference }}
@@ -211,10 +211,30 @@
                                             <livewire:materiel.add-composant :acquisition="$acquisition"
                                                 :composants="$composants" />
                                         </x-modal-alpine>
+                                        <x-modal-alpine title="restitution" :key="$acquisition->id"
+                                            name="materiel de {{ $acquisition->id }}">
+                                            <x-slot name="icon">
+                                                <span
+                                                    class="text-xs text-red-500 cursor-pointer hover:underline">Restitué?</span>
+                                            </x-slot>
+                                            <form
+                                                action="{{ route('restoreMateriel.bureau',['acquisition'=>$acquisition->id,'bureau'=>$bureau->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
+                                                    restitué ?</p>
+                                                <input type="text" class="hidden" name="affectation_id" id=""
+                                                    value="{{$acquisition->pivot->id}}">
+                                                <button type="submit"
+                                                    class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
+                                                    Valider</button>
+                                            </form>
+
+                                        </x-modal-alpine>
                                     </td>
                                 </tr>
                                 @empty
-                                <div class="flex items-center justify-center w-full h-full">
+                                <div class="flex justify-center items-center w-full h-full">
                                     <p>Vide !!</p>
                                 </div>
                                 @endforelse

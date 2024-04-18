@@ -56,4 +56,6 @@
             @endforelse
         </tbody>
     </table>
+
+    <div>{{ $enseignants->links() }}</div>
 </div>

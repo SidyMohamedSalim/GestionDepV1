@@ -23,16 +23,16 @@
                         </header>
 
                         {{-- content --}}
-                        <div class="flex flex-col w-full gap-2 mt-4">
-                            <div class="flex items-center justify-between w-full">
+                        <div class="flex flex-col gap-2 mt-4 w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <p><span class="font-extrabold">Nom : </span> {{ $enseignant->nom }}</p>
                                 <p><span class="font-extrabold">Prenom : </span> {{ $enseignant->prenom }}</p>
                             </div>
-                            <div class="flex items-center justify-between w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <p><span class="font-extrabold">Email : </span> {{ $enseignant->email }}</p>
                                 <p><span class="font-extrabold">Grade : </span> {{ $enseignant->grade }}</p>
                             </div>
-                            <div class="flex items-center justify-between w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <p><span class="font-extrabold">Date de recrutement : </span> {{
                                     $enseignant->daterecrutement }}
                                 </p>
@@ -60,7 +60,7 @@
 
             @if (session('status'))
             <div
-                class="flex items-center justify-between w-full p-2 px-4 my-4 font-bold rounded-lg bg-primary text-success">
+                class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
                 <span>{{ session('status') }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -75,19 +75,16 @@
                 <div>
                     <section>
                         {{-- header --}}
-                        <header class="flex items-center justify-between mb-4">
+                        <header class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
                                 {{ __('acquisitions Inventoriées Reçus') }}
                             </h2>
-
-
-
                         </header>
 
                         {{-- content --}}
-                        <table class="w-full text-sm text-left rtl:text-right ">
+                        <table class="w-full text-sm text-left rtl:text-right">
 
-                            <thead class="text-xs text-white uppercase bg-primary ">
+                            <thead class="text-xs text-white uppercase bg-primary">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Numero Inventaire
@@ -135,19 +132,19 @@
                                                 <span
                                                     class="text-xs text-red-500 cursor-pointer hover:underline">Restitué?</span>
                                             </x-slot>
-                                            <form action="{{ route('restoreMateriel.restore',$acquisition->id) }}"
+                                            <form
+                                                action="{{ route('restoreMateriel.enseignant',['acquisition'=>$acquisition->id,'enseignant'=>$enseignant->id]) }}"
                                                 method="post">
                                                 @csrf
                                                 <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
                                                     restitué ?</p>
-                                                <input type="text" class="hidden" name="enseignant_id" id=""
-                                                    value="{{$enseignant->id }}">
                                                 <input type="text" class="hidden" name="affectation_id" id=""
                                                     value="{{$acquisition->pivot->id}}">
                                                 <button type="submit"
                                                     class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
                                                     Valider</button>
                                             </form>
+
                                         </x-modal-alpine>
 
                                     </td>
@@ -168,7 +165,7 @@
                 <div>
                     <section>
                         {{-- header --}}
-                        <header class="flex items-center justify-between mb-4">
+                        <header class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-extrabold text-primary">
                                 {{ __('acquisitions Non Inventoriées Reçus') }}
                             </h2>
@@ -176,9 +173,9 @@
                         </header>
 
                         {{-- content --}}
-                        <table class="w-full text-sm text-left rtl:text-right ">
+                        <table class="w-full text-sm text-left rtl:text-right">
 
-                            <thead class="text-xs text-white uppercase bg-primary ">
+                            <thead class="text-xs text-white uppercase bg-primary">
                                 <tr>
 
                                     <th scope="col" class="px-6 py-3">
@@ -232,9 +229,9 @@
                 </div>
 
                 {{-- content --}}
-                <table class="w-full text-sm text-left rtl:text-right ">
+                <table class="w-full text-sm text-left rtl:text-right">
 
-                    <thead class="text-xs text-white uppercase bg-primary ">
+                    <thead class="text-xs text-white uppercase bg-primary">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Numero Inventaire

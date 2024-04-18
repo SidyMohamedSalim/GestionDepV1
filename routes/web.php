@@ -79,7 +79,8 @@ Route::prefix('/materiels')->name('materiel.')->middleware('auth')->group(functi
 
 // MaterielRestitution
 Route::prefix("/")->name('restoreMateriel.')->controller(MaterielRestitutionController::class)->middleware('auth')->group(function () {
-    Route::post("/restore/{acquisition}", 'restore')->name('restore');
+    Route::post("bureau/restore/{enseignant}/{acquisition}", 'restoreEquipementEnseignant')->name('enseignant');
+    Route::post("/restore/{bureau}/{acquisition}", 'restoreEquipementBureau')->name('bureau');
 });
 
 

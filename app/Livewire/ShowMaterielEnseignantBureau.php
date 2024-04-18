@@ -10,8 +10,7 @@ class ShowMaterielEnseignantBureau extends Component
     public function render()
     {
         return view('livewire.show-materiel-enseignant-bureau', [
-            "enseignants" => Enseignant::with('bureau', 'equipement', 'fourniture')->get()
-
+            "enseignants" => Enseignant::with('bureau', 'equipement', 'fourniture')->orderBy('created_at', 'desc')->paginate(5)
         ]);
     }
 }

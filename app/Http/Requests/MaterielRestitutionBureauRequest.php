@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Enseignant;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MaterielRestitutionRequest extends FormRequest
+class MaterielRestitutionBureauRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class MaterielRestitutionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'affectation_id' => ['required', 'exists:enseignant_equipement,id'],
+            'affectation_id' => ['required', 'exists:bureau_equipement,id'],
         ];
     }
 }
