@@ -77,7 +77,7 @@
                     {{ $affectation->pivot->quantite }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $affectation->pivot->date_affectation }}
+                    {{ \Carbon\Carbon::parse()->translatedFormat('j F Y') }}
                 </td>
                 <td class="px-6 py-4">
                     <x-icons.eyes />

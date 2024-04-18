@@ -51,4 +51,11 @@ class Equipement extends Model
     {
         return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
     }
+
+
+
+    public function getDateAcquisitionAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
 }

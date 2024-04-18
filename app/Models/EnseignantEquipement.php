@@ -28,4 +28,9 @@ class EnseignantEquipement extends Model
     {
         return $this->belongsTo(Equipement::class);
     }
+
+    public function getDateAffectationAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
 }

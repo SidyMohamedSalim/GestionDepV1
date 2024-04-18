@@ -18,4 +18,13 @@ class EnseignantVacataire extends Model
         'date_debut',
         'date_fin',
     ];
+
+    public function getDateDebutAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
+    public function getDateFinAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
 }

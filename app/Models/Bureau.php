@@ -33,4 +33,9 @@ class Bureau extends Model
     {
         return $this->hasMany(MaterielRestitution::class);
     }
+
+    public function getDateAcquisitionAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
 }

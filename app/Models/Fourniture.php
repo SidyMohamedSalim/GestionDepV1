@@ -47,4 +47,9 @@ class Fourniture extends Model
     {
         return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_id']);
     }
+
+    public function getDateAcquisitionAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+    }
 }

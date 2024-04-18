@@ -26,7 +26,17 @@ class AllAffections extends Component
 
     public function render()
     {
-        $query = Enseignant::query()->with($this->categorie == "Equipement" ? 'equipement' : 'fourniture');
+        $query = null;
+
+        if ($this->categorie == "Equipement") {
+            $query = Enseignant::query()->with(['equipement' => function ($query) {
+                $query->with("materiel");
+            }]);
+        } else {
+            $query = Enseignant::query()->with(['fourniture' => function ($query) {
+                $query->with("materiel");
+            }]);
+        }
 
 
         return view('livewire.all-affections', [

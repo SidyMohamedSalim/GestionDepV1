@@ -23,6 +23,8 @@ class Enseignant extends Model
     ];
 
 
+
+
     public  function bureau(): BelongsToMany
     {
         return $this->belongsToMany(Bureau::class);
@@ -30,16 +32,24 @@ class Enseignant extends Model
 
     public  function equipement(): BelongsToMany
     {
-        return $this->belongsToMany(Equipement::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
+        return $this->belongsToMany(Equipement::class)->withTimestamps()
+            ->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id'])
+            ->orderByPivot('date_affectation', 'desc');
     }
 
     public  function fourniture(): BelongsToMany
     {
-        return $this->belongsToMany(Fourniture::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_id']);
+        return $this->belongsToMany(Fourniture::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_id'])
+            ->orderByPivot('date_affectation', 'desc');
     }
 
     public function restitution(): HasMany
     {
         return $this->hasMany(MaterielRestitution::class);
+    }
+
+    public function getDateRecrutementAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
     }
 }
