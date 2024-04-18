@@ -67,16 +67,17 @@
             @foreach ($affectations as $affectation)
             <tr class="border-b odd:bg-white">
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    {{-- {{ $affectation->materiel->designation }} --}}
+                    {{ $affectation->materiel->designation }}
                 </th>
                 <td class="px-6 py-4">
                     {{ $enseignantAffectations->nom }} {{ $enseignantAffectations->prenom }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $affectation->quantite }}
+
+                    {{ $affectation->pivot->quantite }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $affectation->date_affectation }}
+                    {{ $affectation->pivot->date_affectation }}
                 </td>
                 <td class="px-6 py-4">
                     <x-icons.eyes />
@@ -88,7 +89,7 @@
         </tbody>
 
     </table>
-    {{-- <div class="py-6">{{ $equipements->links() }}</div> --}}
+    <div class="py-6">{{ $enseignantsAffectations->links() }}</div>
 
 
 </div>
