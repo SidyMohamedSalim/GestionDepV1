@@ -5,11 +5,7 @@
     @endphp
 
 
-
-
-
-
-    <div class="py-4">
+    <div class="py-4 flex justify-between items-center">
         <div class="flex gap-4 items-center my-6">
             <button wire:click.prevent="changeCategorie('Equipement')" @class(['inline-flex items-center px-8 py-2
                 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
@@ -23,8 +19,13 @@
                 Non Inventoriée
             </button>
         </div>
+        <div class="mt-4">
+            <x-input-label for="max_by_page" :value="__('Total par Page')" />
 
+            <x-text-input min="0" id="max_by_page" class="block w-full mt-1" type='number'
+                wire:model.live.debounce.100ms='perPage' value="{{ old('max_by_page', $perPage) }}" />
 
+        </div>
     </div>
 
     {{-- filter imprimante and pc --}}
@@ -59,37 +60,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($enseignantsAffectations as $enseignantAffectations)
-            @php
-            $affectations = $isInventoriee == true ? $enseignantAffectations->equipement :
-            $enseignantAffectations->fourniture;
-            @endphp
-            @foreach ($affectations as $affectation)
+            @foreach($data as $item)
             <tr class="border-b odd:bg-white">
                 <th scope="row" class="px-6 py-4 font-bold whitespace-nowrap">
-                    {{ $affectation->materiel->designation }}
+                    {{ $item['designation'] }}
                 </th>
                 <td class="px-6 py-4">
-                    {{ $enseignantAffectations->nom }} {{ $enseignantAffectations->prenom }}
+                    {{ $item['nom'] }} {{ $item['prenom'] }}
                 </td>
                 <td class="px-6 py-4">
 
-                    {{ $affectation->pivot->quantite }}
+                    {{ $item['quantite'] }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ \Carbon\Carbon::parse()->translatedFormat('j F Y') }}
+                    {{ \Carbon\Carbon::parse($item['date_affectation'])->translatedFormat('j F Y') }}
                 </td>
                 <td class="px-6 py-4">
                     <x-icons.eyes />
                 </td>
             </tr>
             @endforeach
-
-            @endforeach
         </tbody>
 
     </table>
-    <div class="py-6">{{ $enseignantsAffectations->links() }}</div>
-
+    <div class="py-6">{{ $data->links() }}</div>
 
 </div>

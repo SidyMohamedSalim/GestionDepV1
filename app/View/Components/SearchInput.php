@@ -11,7 +11,7 @@ class SearchInput extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $name, public string $placeholder)
+    public function __construct(public string $name, public string $placeholder, public string $type = "search")
     {
         //
     }
