@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Equipement;
+use App\utils\DataGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -50,6 +50,6 @@ class Enseignant extends Model
 
     public function getDateRecrutementAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+        return DataGenerator::FormateDate($value);
     }
 }

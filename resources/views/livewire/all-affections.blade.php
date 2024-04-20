@@ -73,7 +73,8 @@
                     {{ $item['quantite'] }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ \Carbon\Carbon::parse($item['date_affectation'])->translatedFormat('j F Y') }}
+                    {{
+                    App\utils\DataGenerator::FormateDate($item['date_affectation']) }}
                 </td>
                 <td class="px-6 py-4">
                     <x-icons.eyes />

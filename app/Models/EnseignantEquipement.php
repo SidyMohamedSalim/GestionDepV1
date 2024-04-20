@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Equipement;
+use App\utils\DataGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,6 @@ class EnseignantEquipement extends Model
 
     public function getDateAffectationAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+        return DataGenerator::FormateDate($value);
     }
 }

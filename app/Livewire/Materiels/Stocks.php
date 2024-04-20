@@ -9,7 +9,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AcquisitionMaterielTable extends Component
+class Stocks extends Component
 {
 
     use WithPagination;
@@ -119,7 +119,7 @@ class AcquisitionMaterielTable extends Component
 
 
         return view(
-            'livewire.materiels.acquisition-materiel-table',
+            'livewire.materiels.stocks',
             [
                 "equipements" => $query->with('materiel')->where('quantite', ">", "0")->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
                 'enseignants' => Enseignant::all()

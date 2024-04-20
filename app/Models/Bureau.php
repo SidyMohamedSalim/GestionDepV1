@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Equipement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\utils\DataGenerator;
+
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -36,6 +38,6 @@ class Bureau extends Model
 
     public function getDateAcquisitionAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+        return DataGenerator::FormateDate($value);
     }
 }

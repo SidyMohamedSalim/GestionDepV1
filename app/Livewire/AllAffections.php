@@ -78,6 +78,7 @@ class AllAffections extends Component
             $data = $data->filter(function ($item) {
                 return $item['designation'] == $this->filterByImprimanteOrOrdinateur;
             });
+            $this->resetPage();
         }
 
 

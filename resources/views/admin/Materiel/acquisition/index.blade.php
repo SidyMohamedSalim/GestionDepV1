@@ -7,7 +7,7 @@
             {{ Breadcrumbs::render('stocks') }}
         </div>
         <x-success-message />
-        <livewire:materiels.acquisition-materiel-table />
+        <livewire:materiels.stocks />
     </div>
 
 

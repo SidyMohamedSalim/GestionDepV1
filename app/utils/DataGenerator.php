@@ -20,4 +20,9 @@ class DataGenerator
         $results = $data->slice(($currentPage - 1) * $perPage, $perPage);
         return new LengthAwarePaginator($results, $total, $perPage, $currentPage);
     }
+
+    public static function FormateDate($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y à H:i');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\utils\DataGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,10 +22,10 @@ class EnseignantVacataire extends Model
 
     public function getDateDebutAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+        return DataGenerator::FormateDate($value);
     }
     public function getDateFinAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
+        return DataGenerator::FormateDate($value);
     }
 }
