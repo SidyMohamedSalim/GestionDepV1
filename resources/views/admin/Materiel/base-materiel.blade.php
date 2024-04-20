@@ -6,7 +6,7 @@
             </x-jet-button>
         </div>
 
-        <x-success-message />
+        <x-succes-message />
 
         @php
         $type = request()->input("type");

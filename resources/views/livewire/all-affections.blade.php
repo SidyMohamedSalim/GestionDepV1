@@ -7,17 +7,7 @@
 
     <div class="py-4 flex justify-between items-center">
         <div class="flex gap-4 items-center my-6">
-            <button wire:click.prevent="changeCategorie('Equipement')" @class(['inline-flex items-center px-8 py-2
-                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
-                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
-                focus:ring-2 focus:ring-primary focus:ring-offset-2 ',"text-white bg-primary"=>$categorie == "Equipement" ])>Inventoriée </button>
-            <button wire:click.prevent=' changeCategorie("Fourniture")' @class([' inline-flex items-center px-8 py-2
-                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
-                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
-                focus:ring-2 focus:ring-primary focus:ring-offset-2',"text-white bg-primary"=>$categorie == 'Fourniture'
-                ])>
-                Non Inventoriée
-            </button>
+
         </div>
         <div class="mt-4">
             <x-input-label for="max_by_page" :value="__('Total par Page')" />
@@ -54,9 +44,9 @@
                 <th scope="col" class="px-6 py-3">
                     Date d'affectation
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {{-- <th scope="col" class="px-6 py-3">
                     Actions
-                </th>
+                </th> --}}
             </tr>
         </thead>
         <tbody>
@@ -76,9 +66,9 @@
                     {{
                     App\utils\DataGenerator::FormateDate($item['date_affectation']) }}
                 </td>
-                <td class="px-6 py-4">
+                {{-- <td class="px-6 py-4">
                     <x-icons.eyes />
-                </td>
+                </td> --}}
             </tr>
             @endforeach
         </tbody>

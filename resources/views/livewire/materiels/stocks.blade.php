@@ -5,47 +5,34 @@
     @endphp
 
     <div>
-        <a href="{{ route('materiel.materiel.index') }}"
-            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
+
+        <x-ligth-button :href="route('materiel.materiel.index')">
             Admin des materiels
-        </a>
+        </x-ligth-button>
     </div>
 
 
     <div class="flex justify-between items-center my-6 bg">
         <h1 class="text-2xl font-extrabold">Gestion des differentes acquisitions</h1>
-        <a href="{{ route('materiel.equipement.create') }}"
-            class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25'>
+
+        <x-ligth-button :href="route('materiel.equipement.create')">
             + Nouvelles acquisitions
-        </a>
+        </x-ligth-button>
+
     </div>
     <div>
-        @if (session('saveAffectation'))
-        <div
-            class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
-            <span>{{ session('saveAffectation') }}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-check">
-                <path d="M20 6 9 17l-5-5" />
-            </svg>
-        </div>
-        @endif
+        <x-succes-message name="saveAffectation" />
     </div>
 
     <div class="py-4">
         <div class="flex gap-4 items-center my-6">
-            <button wire:click.prevent="changeCategorie('Equipement')" @class(['inline-flex items-center px-8 py-2
-                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
-                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
-                focus:ring-2 focus:ring-primary focus:ring-offset-2 ',"text-white bg-primary"=>$categorie == "Equipement" ])>Inventoriée </button>
-            <button wire:click.prevent=' changeCategorie("Fourniture")' @class([' inline-flex items-center px-8 py-2
-                text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out border
-                border-transparent rounded-md hover:bg-primary focus:bg-primary active:bg-primary focus:outline-none
-                focus:ring-2 focus:ring-primary focus:ring-offset-2',"text-white bg-primary"=>$categorie == 'Fourniture'
-                ])>
-                Non Inventoriée
-            </button>
+
+            <x-button-categorie name="Equipement" :selectedCategorie="$categorie"
+                action='changeCategorie("Equipement")'>
+                Inventoriée</x-button-categorie>
+            <x-button-categorie name="Fourniture" :selectedCategorie="$categorie"
+                action='changeCategorie("Fourniture")'>Non Inventoriée</x-button-categorie>
+
         </div>
 
         <form class="grid gap-2 md:grid-cols-3">

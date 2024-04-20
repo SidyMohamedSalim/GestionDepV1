@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="m-10 mx-auto max-w-screen-xl">
-        <x-success-message />
+        <x-succes-message />
 
         <div class="flex justify-between items-center my-4">
             @php

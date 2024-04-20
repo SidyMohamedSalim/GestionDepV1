@@ -7,13 +7,8 @@
         </form>
     </div>
     <div>
-        @if (session('saveAffectation'))
-        <div
-            class="flex justify-between items-center p-2 px-4 my-4 w-full font-bold rounded-lg bg-primary text-success">
-            <span>{{ session('saveAffectation') }}</span>
-            <x-icons.check />
-        </div>
-        @endif
+        <x-succes-message name="saveAffectation" />
+
     </div>
 
     <table class="w-full text-sm text-left rtl:text-right">

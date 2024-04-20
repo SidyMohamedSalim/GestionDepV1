@@ -6,7 +6,7 @@
         <div class="py-4">
             {{ Breadcrumbs::render('stocks') }}
         </div>
-        <x-success-message />
+        <x-succes-message />
         <livewire:materiels.stocks />
     </div>
 
