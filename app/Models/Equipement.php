@@ -43,10 +43,11 @@ class Equipement extends Model
         return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
     }
 
-    // public  function bureau(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
-    // }
+
+    public  function bureau(): BelongsToMany
+    {
+        return $this->belongsToMany(Bureau::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);
+    }
 
     public function fournitures(): BelongsToMany
     {

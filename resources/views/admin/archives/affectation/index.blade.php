@@ -1,16 +1,12 @@
-<x-app-layout>
+@extends('admin.archives.base-archive')
 
 
+@section('action-right')
+@endsection
 
-    <div class="m-10 mx-auto max-w-screen-xl">
-        <div class="my-6">
-            <x-succes-message />
-        </div>
-        <div class="py-4">
-            {{ Breadcrumbs::render('affectations') }}
-        </div>
-
-        <livewire:all-affections />
-    </div>
-
-</x-app-layout>
+@section('content')
+<div class="py-4">
+    {{ Breadcrumbs::render('affectations') }}
+</div>
+<livewire:all-affections />
+@endsection

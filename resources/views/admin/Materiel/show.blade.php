@@ -49,10 +49,6 @@
                             <h2 class="text-xl font-extrabold text-primary">
                                 Differentes Acquisitions
                             </h2>
-                            {{-- <p x-data=""
-                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
-                                <x-icons.users />
-                            </p> --}}
                         </header>
 
                         {{-- content --}}
@@ -119,10 +115,7 @@
                             <h2 class="text-xl font-extrabold text-primary">
                                 Affectations Enseignants pour ce materiel
                             </h2>
-                            {{-- <p x-data=""
-                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-25">
 
-                            </p> --}}
                         </header>
 
                         {{-- content --}}

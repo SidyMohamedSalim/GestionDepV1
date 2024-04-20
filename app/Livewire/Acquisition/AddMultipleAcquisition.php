@@ -57,7 +57,7 @@ class AddMultipleAcquisition extends Component
             'materiel_id' => $acquisitionData['materiel_id'],
             'quantite' => $this->categorie == 'Equipement' ? "1" : $acquisitionData['quantite'],
             'caracteristiques' => $acquisitionData['carateristiques'] ?? null,
-            'reference' => $acquisitionData['reference'],
+            'reference' => $acquisitionData['reference'] ?? "",
             'numero_inventaire' => $this->categorie == 'Equipement' ? $acquisitionData['numero_inventaire'] : null,
             'destination' => $data['destination'],
             'date_acquisition' => $data['date_acquisition'],

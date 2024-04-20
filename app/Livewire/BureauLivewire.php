@@ -79,9 +79,7 @@ class BureauLivewire extends Component
             'bureaux' =>
             $query->with('enseignant')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
             'enseignants' => Enseignant::all(),
-            'acquisitions' => Equipement::query()->where('quantite', ">", "0")->whereHas('materiel', function (Builder $query) {
-                $query->where('categorie', '=', 'Equipement');
-            })->get()
+            'acquisitions' => Equipement::query()->where('quantite', ">", "0")->with("materiel")->get()
         ]);
     }
 }

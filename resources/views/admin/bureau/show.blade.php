@@ -189,6 +189,10 @@
                                                     <span class="text-xs">
                                                         Quantité : {{ $composant->pivot->quantite }}
                                                     </span>
+
+                                                    {{-- TODO
+                                                    //Retrait
+                                                    --}}
                                                     <span
                                                         class="px-2 font-extrabold text-red-500 cursor-pointer hover:underline">
                                                         X

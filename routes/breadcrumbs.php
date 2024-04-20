@@ -135,5 +135,11 @@ Breadcrumbs::for('materieledit', function (BreadcrumbTrail $trail, Materiel $mat
 // affectation
 Breadcrumbs::for('affectations', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('affectations', route("materiel.materiel.index"));
+    $trail->push('affectations', route("archives.affectation.index"));
+});
+
+// demandes
+Breadcrumbs::for('demandes', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('demandes', route("archives.demande.index"));
 });

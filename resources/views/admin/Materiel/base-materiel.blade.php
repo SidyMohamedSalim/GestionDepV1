@@ -15,9 +15,13 @@
 
         <h1 class="mt-6 text-2xl font-extrabold">Gestion des materiels</h1>
 
-        <div class="flex justify-end items-center my-4">
+        <div class="flex justify-end gap-4 items-center my-4">
             <x-jet-button href="{{ route('materiel.materiel.create') }}">
                 +nouveau materiel
+            </x-jet-button>
+
+            <x-jet-button href="{{ route('materiel.materiel.create') }}">
+                Faire une Demande
             </x-jet-button>
         </div>
 

@@ -23,6 +23,6 @@ class DataGenerator
 
     public static function FormateDate($value)
     {
-        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y à H:i');
+        return \Carbon\Carbon::parse($value)->translatedFormat('j F Y');
     }
 }

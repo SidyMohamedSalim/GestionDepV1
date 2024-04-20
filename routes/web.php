@@ -90,12 +90,18 @@ Route::prefix("/archives")->name("archives.")->controller(ArchivesController::cl
     //TODO
     // all archives routes
 
-
-
     //affectations
 
     Route::prefix("/affectation")->name("affectation.")->group(function () {
         Route::get("/", "allAffectations")->name('index');
+    });
+
+
+    // demandes
+
+    Route::prefix("/demande")->name("demande.")->group(function () {
+        Route::get("/", "allDemandes")->name('index');
+        Route::get("/add", "addDemande")->name('add');
     });
 });
 
