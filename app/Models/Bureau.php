@@ -26,6 +26,7 @@ class Bureau extends Model
     }
 
 
+
     public  function acquisition(): BelongsToMany
     {
         return $this->belongsToMany(Equipement::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'signature', 'equipement_id']);

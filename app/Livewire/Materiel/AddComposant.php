@@ -38,24 +38,27 @@ class AddComposant extends Component
                     $validator->errors()->add("acquistionIdSelected", "Veuillez selectionner d'abord une acquisition ");
                 } elseif ($this->quantite > $composant->quantite) {
                     $validator->errors()->add("quantite", "La quantite ne doit pas etre superieur a celle existante ");
+                } else
+                if ($composant->equipements()->wherePivot('equipement_id', $this->acquisition->id)->exists()) {
+                    $validator->errors()->add("quantite", "Le composant a déjà été affecté à ce meme equipement ou à  un équipement similaire.");
                 }
             });
         });
     }
 
-
     public function saveAcquisition()
     {
         $this->validate();
 
+
         $composant = Fourniture::find($this->materielIdSelected);
+
 
         // dump($composant);
         $this->acquisition->fournitures()->attach($composant->id, [
             "quantite" => $this->quantite,
             "date_affectation" => new DateTime()
         ]);
-
         $composant->update([
             'quantite' => ($composant->quantite - $this->quantite)
         ]);
@@ -67,7 +70,6 @@ class AddComposant extends Component
         session()->flash('success', 'affectation reussi.');
 
         $this->reset('materielIdSelected');
-        redirect()->with('success', 'Le materiel a ete affecte avec succes');
     }
 
 

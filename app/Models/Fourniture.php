@@ -49,6 +49,11 @@ class Fourniture extends Model
         return $this->belongsToMany(Enseignant::class)->withTimestamps()->withPivot(['id', 'quantite', 'date_affectation', 'fourniture_id']);
     }
 
+    public function equipements(): BelongsToMany
+    {
+        return $this->belongsToMany(Equipement::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
+    }
+
     public function getDateAcquisitionAttribute($value)
     {
         return DataGenerator::FormateDate($value);

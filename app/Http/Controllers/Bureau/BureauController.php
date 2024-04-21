@@ -56,7 +56,6 @@ class BureauController extends Controller
      */
     public function edit(Bureau $bureau)
     {
-        //
         return view('admin.bureau.form', [
             'bureau' => $bureau
         ]);;

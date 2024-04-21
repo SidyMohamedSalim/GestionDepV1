@@ -10,6 +10,7 @@
         {{ Breadcrumbs::render('bureaushow', $bureau ) }}
     </div>
 
+    <x-succes-message />
 
     <div class="pb-12">
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
@@ -189,14 +190,22 @@
                                                     <span class="text-xs">
                                                         Quantité : {{ $composant->pivot->quantite }}
                                                     </span>
-
                                                     {{-- TODO
                                                     //Retrait
                                                     --}}
-                                                    <span
-                                                        class="px-2 font-extrabold text-red-500 cursor-pointer hover:underline">
-                                                        X
-                                                    </span>
+
+                                                    <x-modal-alpine title="Retirer ce composant" :key="$acquisition->id"
+                                                        name="composant de {{ $composant->id }}">
+                                                        <x-slot name="icon">
+                                                            <span
+                                                                class="px-2 font-extrabold text-red-500 cursor-pointer hover:underline">
+                                                                X
+                                                            </span>
+                                                        </x-slot>
+                                                        <livewire:remove-composant-in-materiel :materiel="$acquisition"
+                                                            :composant="$composant" />
+                                                    </x-modal-alpine>
+
                                                 </p>
                                             </li>
                                             <li class="">
