@@ -12,4 +12,12 @@
             {{ __('Delete') }}
         </x-danger-button>
     </div>
+
+    @script
+    <script>
+        $wire.on('refreshPage', () => {
+        window.location.reload();
+        });
+    </script>
+    @endscript
 </div>

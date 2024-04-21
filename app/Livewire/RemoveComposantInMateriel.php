@@ -5,8 +5,9 @@ namespace App\Livewire;
 use App\Models\Equipement;
 use App\Models\Fourniture;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class RemoveComposantInMateriel extends Component
+class RemoveComposantInMateriel extends ModalComponent
 {
 
     public  Fourniture $composant;
@@ -20,6 +21,11 @@ class RemoveComposantInMateriel extends Component
 
         $this->composant->save();
         $this->composant->equipements()->detach($this->materiel->id);
+
+        $this->closeModal();
+        $this->reset("composant");
+        $this->closeModalWithEvents(['refreshPage']);
+
 
         session()->flash('success', 'le composant a été retiré avec succes');
     }

@@ -69,8 +69,7 @@
                 <x-input-error :messages="$errors->get('quantite')" class="mt-2" />
             </div>
 
-            <p x-text="$wire.showModal"></p>
-            <p x-text="showModal"></p>
+
             <div class="flex justify-end items-center mt-4">
                 <x-primary-button wire:click.prevent='saveAcquisition()' class="ms-3 w-fit">
                     {{ __('Affecter') }}

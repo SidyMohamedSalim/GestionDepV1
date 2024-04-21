@@ -67,6 +67,7 @@ class AcquisitionLivewire extends Component
 
                 ]);
             }
+
             $this->dispatch("acquisitionSaved");
         }
         $this->reset('quantite');

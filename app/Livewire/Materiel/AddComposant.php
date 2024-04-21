@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Materiel;
 
+use LivewireUI\Modal\ModalComponent;
 use App\Models\Fourniture;
 use App\Models\Equipement;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
-use Livewire\Component;
 
-class AddComposant extends Component
+class AddComposant extends  ModalComponent
 {
 
     public Equipement $acquisition;
@@ -50,7 +50,6 @@ class AddComposant extends Component
     {
         $this->validate();
 
-
         $composant = Fourniture::find($this->materielIdSelected);
 
 
@@ -65,16 +64,17 @@ class AddComposant extends Component
         $composant->save();
 
         $this->reset('quantite');
-        $this->dispatch("affectationSaved");
+
+        $this->closeModalWithEvents(['refreshPage']);
 
         session()->flash('success', 'affectation reussi.');
-
-        $this->reset('materielIdSelected');
     }
 
 
     public function render()
     {
+
+
         return view('livewire.materiel.add-composant');
     }
 }

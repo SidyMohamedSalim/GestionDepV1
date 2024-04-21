@@ -60,6 +60,8 @@ class MaterielLivewire extends Component
 
         session()->flash('saveAcquisition', 'Acquisition fait avec succes');
         $this->reset("categorie");
+
+        $this->dispatchBrowserEvent('refreshPage');
     }
 
 

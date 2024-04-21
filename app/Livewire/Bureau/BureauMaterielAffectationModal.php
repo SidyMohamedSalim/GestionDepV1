@@ -72,7 +72,7 @@ class BureauMaterielAffectationModal extends ModalComponent
         $this->acquisition->save();
 
         $this->reset('quantite');
-        $this->dispatch("affectationSaved");
+        $this->closeModalWithEvents(["affectationSaved"]);
 
         $pdf = Pdf::loadView('pdf.materiel-affectation', [
             'acquisition' => $this->acquisition,

@@ -57,18 +57,16 @@
                         <x-icons.eyes />
                     </a>
                     <livewire:enseignant.enseignant-bureau-affectation-madal :enseignant="$enseignant"
-                        :bureaux="$bureaux" key="bureau-{{$enseignant->id}}">
-                        <livewire:enseignant.materiel-enseignant-affectation-modal
-                            :fournitruesacquistions="$fournitures" :acquisitions="$acquisitions"
-                            :enseignant="$enseignant" key="materiel-{{$enseignant->id}}">
-                            <x-modal-alpine title="Suppression" :key="$enseignant->id"
-                                name="materiel de {{ $enseignant->id }}">
-                                <x-slot name="icon">
-                                    <x-icons.delete />
-                                </x-slot>
-                                <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
-                                    routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" />
-                            </x-modal-alpine>
+                        :bureaux="$bureaux" key="bureau-{{$enseignant->id}}" />
+
+                    <livewire:enseignant.materiel-enseignant-affectation-modal :fournitruesacquistions="$fournitures"
+                        :acquisitions="$acquisitions" :enseignant="$enseignant" key="materiel-{{$enseignant->id}}" />
+
+
+                    <button
+                        wire:click="$dispatch('openModal', { component: 'modals.confirm-delete-modal', arguments: { elementId: {{ $enseignant->id }} ,routeName:'enseignant.destroy'}})">
+                        <x-icons.delete />
+                    </button>
                 </td>
             </tr>
             @empty

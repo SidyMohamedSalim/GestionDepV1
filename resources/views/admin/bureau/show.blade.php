@@ -10,7 +10,7 @@
         {{ Breadcrumbs::render('bureaushow', $bureau ) }}
     </div>
 
-    <x-succes-message />
+    <x-succes-message name='success' />
 
     <div class="pb-12">
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
@@ -206,6 +206,8 @@
                                                             :composant="$composant" />
                                                     </x-modal-alpine>
 
+
+
                                                 </p>
                                             </li>
                                             <li class="">
@@ -224,6 +226,13 @@
                                             <livewire:materiel.add-composant :acquisition="$acquisition"
                                                 :composants="$composants" />
                                         </x-modal-alpine>
+                                        {{--
+                                        <button
+                                            onClick='Livewire.dispatch("openModal",{ component: "materiel.add-composant",arguments: @json(["acqusition"=>$acquisition,"composants"=>$composants]) })'>
+                                            <p class="cursor-pointer text-primary hover:underline">Ajouter un
+                                                composant</p>
+                                        </button> --}}
+
                                         <x-modal-alpine title="restitution" :key="$acquisition->id"
                                             name="materiel de {{ $acquisition->id }}">
                                             <x-slot name="icon">
@@ -234,7 +243,8 @@
                                                 action="{{ route('restoreMateriel.bureau',['acquisition'=>$acquisition->id,'bureau'=>$bureau->id]) }}"
                                                 method="post">
                                                 @csrf
-                                                <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment le
+                                                <p class="my-6 text-lg font-bold text-center">Voulez-vous vraiment
+                                                    le
                                                     restitué ?</p>
                                                 <input type="text" class="hidden" name="affectation_id" id=""
                                                     value="{{$acquisition->pivot->id}}">
@@ -242,7 +252,6 @@
                                                     class="px-6 py-2 mt-4 mb-4 text-white bg-red-500 rounded-lg cursor-pointer hover:underline">
                                                     Valider</button>
                                             </form>
-
                                         </x-modal-alpine>
                                     </td>
                                 </tr>
@@ -258,4 +267,6 @@
             </div>
         </div>
     </div>
+
+
 </x-app-layout>
