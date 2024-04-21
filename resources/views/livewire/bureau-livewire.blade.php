@@ -40,10 +40,14 @@
                     </x-table-header>
                     <x-table-header fieldname="capacite" :selectedFieldName="$orderByField"
                         :orderDirection="$orderByDirection">
-                        Capacite Max
+                        Cap Max
                     </x-table-header>
                     <th scope="col" class="px-6 py-3">
-                        Nombre Actuel
+                        Nbre Actuel
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Imprimante
                     </th>
                     <x-table-header fieldname="date_acquisition" :selectedFieldName="$orderByField"
                         :orderDirection="$orderByDirection">
@@ -70,8 +74,17 @@
                         {{ count($bureau->enseignant)}}
                     </td>
                     <td class="px-6 py-4">
+                        @if (count($bureau->acquisition)> 0)
+                        {{ $bureau->acquisition[0]->materiel->designation }} {{ $bureau->acquisition[0]->reference }}
+                        @else
+                        <x-icons.remove />
+                        @endif
+
+                    </td>
+                    <td class="px-6 py-4">
                         {{ $bureau->date_acquisition }}
                     </td>
+
                     <td class="flex gap-3 justify-center items-center px-6 py-4">
 
                         {{-- edit --}}

@@ -73,11 +73,13 @@ class BureauLivewire extends Component
         if (!empty($this->designation)) {
             $query = $query->where('designation', "LIKE", "%{$this->designation}%");
         }
-
-
         return view('livewire.bureau-livewire', [
             'bureaux' =>
-            $query->with('enseignant')->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
+            $query->with(['enseignant', 'acquisition' => function ($query) {
+                $query->with('materiel')->whereHas('materiel', function ($query) {
+                    $query->where("designation", 'LIKE', '%Imprimante%');
+                });
+            }])->orderBy($this->orderByField, $this->orderByDirection)->paginate(10),
             'enseignants' => Enseignant::all(),
             'acquisitions' => Equipement::query()->where('quantite', ">", "0")->with("materiel")->get()
         ]);

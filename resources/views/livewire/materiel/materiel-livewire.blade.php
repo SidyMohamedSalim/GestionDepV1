@@ -7,11 +7,19 @@
     </div>
 
     <div class="py-4">
-        <form class="grid gap-2 md:grid-cols-4">
+
+        @php
+        $cateogoriesOptionsSearch = ['Equipement','Fourniture'];
+        $typeOptionsSearch = ['Informatique','Bureau'];
+        @endphp
+        <form class="grid gap-2 md:grid-cols-3">
             <x-search-input name="designation" placeholder="Recherche par designation" />
-            <x-search-input name="categorie" placeholder="Recherche par categorie" />
-            <x-search-input name="type" placeholder="Recherche par type" />
-            <x-search-input name="reference" placeholder="Recherche par reference" />
+            <x-search-select name="categorie" :options="$cateogoriesOptionsSearch"
+                placeholder="Selectionner une categorie" />
+
+
+            <x-search-select name="type" :options="$typeOptionsSearch" placeholder="Selectionner un type" />
+
         </form>
     </div>
 
@@ -42,10 +50,7 @@
                 <x-table-header fieldname="type" :selectedFieldName="$orderByField" :orderDirection="$orderByDirection">
                     Type
                 </x-table-header>
-                <x-table-header fieldname="reference_id" :selectedFieldName="$orderByField"
-                    :orderDirection="$orderByDirection">
-                    Reference
-                </x-table-header>
+
                 <th scope="col" class="px-6 py-3">
                     Actions
                 </th>
@@ -71,10 +76,7 @@
                 <td class="px-6 py-4">
                     {{ $materiel->type }}
                 </td>
-                <td class="px-6 py-4">
-                    {{ $materiel->reference }}
 
-                </td>
                 <td class="flex justify-evenly items-center px-6 py-4">
                     {{-- editer --}}
                     <a href="{{ route('materiel.materiel.edit',$materiel) }}"
@@ -109,15 +111,8 @@
                         <x-slot name="icon">
                             <x-icons.delete />
                         </x-slot>
-
-                        <div class="px-3">
-                            <h1 class="py-6">Voulez vous vraiment supprimer cet element</h1>
-                            <a class="px-4 py-2 my-2 text-white bg-red-500 rounded-lg"
-                                href="{{ route('materiel.materiel.destroy',$materiel) }}">Supprimer</a>
-                        </div>
-                        {{--
-                        <livewire:modals.confirm-delete-modal :elementId="$enseignant->id"
-                            routeName='enseignant.destroy' key="delete-{{ $enseignant->id }}" /> --}}
+                        <livewire:modals.confirm-delete-modal :elementId="$materiel->id"
+                            routeName='materiel.materiel.destroy' key="delete-{{ $materiel->id }}" />
                     </x-modal-alpine>
                     @endif
 

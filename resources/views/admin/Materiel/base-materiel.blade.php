@@ -20,9 +20,6 @@
                 +nouveau materiel
             </x-jet-button>
 
-            <x-jet-button href="{{ route('materiel.materiel.create') }}">
-                Faire une Demande
-            </x-jet-button>
         </div>
 
         @yield('content')

@@ -45,6 +45,7 @@ class Stocks extends Component
     public function changeImprimanteOrPcValue($value)
     {
         $this->filterByImprimanteOrOrdinateur = $value == $this->filterByImprimanteOrOrdinateur ? '' : $value;
+        $this->resetPage();
     }
 
 

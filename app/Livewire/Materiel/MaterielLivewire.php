@@ -17,7 +17,6 @@ class MaterielLivewire extends Component
     public string $type = '';
     public string $categorie = '';
     public string $designation = '';
-    public string $reference = '';
 
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
@@ -43,8 +42,11 @@ class MaterielLivewire extends Component
     }
 
     public function changeImprimanteOrPcValue($value)
+
+
     {
         $this->filterByImprimanteOrOrdinateur = $value == $this->filterByImprimanteOrOrdinateur ? '' : $value;
+        $this->resetPage();
     }
 
 
@@ -86,10 +88,7 @@ class MaterielLivewire extends Component
                 $query->where('designation', "LIKE", "%{$this->filterByImprimanteOrOrdinateur}%");
         }
 
-        if (!empty($this->reference)) {
-            $query =
-                $query->where('reference', "LIKE", "%{$this->reference}%");
-        }
+
 
         return view(
             'livewire.materiel.materiel-livewire',

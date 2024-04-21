@@ -36,6 +36,15 @@ class Bureau extends Model
         return $this->hasMany(MaterielRestitution::class);
     }
 
+    public function scopeImprimante($query)
+    {
+        return $query->with('acquisition')->whereHas('acquisition', function ($query) {
+            $query->whereHas("materiel", function ($query) {
+                $query->where('designation', "LIKE", '%Imprimante%');
+            });
+        });
+    }
+
     public function getDateAcquisitionAttribute($value)
     {
         return DataGenerator::FormateDate($value);

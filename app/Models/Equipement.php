@@ -54,6 +54,14 @@ class Equipement extends Model
         return $this->belongsToMany(Fourniture::class)->withPivot('quantite', 'date_affectation')->wherePivot('quantite', '>', '0');
     }
 
+    public function scopeImprimante($query)
+    {
+        return $query->whereHas('materiel', function ($query) {
+            $query->where('designation', 'Imprimante');
+        });
+    }
+
+
 
 
     public function getDateAcquisitionAttribute($value)
