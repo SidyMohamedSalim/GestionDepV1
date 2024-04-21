@@ -22,7 +22,6 @@ class Stocks extends Component
     public string $filterByImprimanteOrOrdinateur = '';
 
 
-
     public string $orderByField = 'created_at';
     public string $orderByDirection = 'DESC';
 
@@ -41,6 +40,12 @@ class Stocks extends Component
     {
         $this->categorie = $newCategorie;
     }
+
+    public function updatedCategorie()
+    {
+        $this->resetPage();
+    }
+
 
     public function changeImprimanteOrPcValue($value)
     {

@@ -186,5 +186,6 @@
     </table>
     <div class="py-6">{{ $equipements->links() }}</div>
 
+</div>
 
 </div>
