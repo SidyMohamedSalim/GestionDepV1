@@ -133,4 +133,13 @@
 
     </table>
     <div class="py-6">{{ $materiels->links() }}</div>
+
+    @script
+    <script>
+        $wire.on('refreshPage', () => {
+        window.location.reload();
+        });
+    </script>
+    @endscript
+
 </div>

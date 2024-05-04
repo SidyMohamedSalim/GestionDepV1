@@ -85,12 +85,5 @@
         </form>
     </div>
 
-    @script
-    <script>
-        $wire.on('acquisitionSaved', () => {
-            window.location.reload();
-        });
-    </script>
-    @endscript
 
 </div>

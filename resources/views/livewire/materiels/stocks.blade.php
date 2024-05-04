@@ -45,7 +45,7 @@
         </form>
     </div>
 
-    {{-- filter imprimante and pc --}}
+    {{-- filter imprimante and pc(ordinateur) --}}
     @if ($categorie == 'Equipement')
     <div class="py-4">
         <div class="flex gap-2 items-center">

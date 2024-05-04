@@ -24,7 +24,6 @@ class MaterielLivewire extends Component
     protected $queryString = [
         'type' => ['except' => ""],
         'categorie' => ['except' => ""],
-        'reference' => ['except' => ""],
         'designation' => ['except' => ""],
         'filterByImprimanteOrOrdinateur' => ['except' => ""],
         'orderByField' => ['except' => "created_at"],
@@ -61,7 +60,7 @@ class MaterielLivewire extends Component
         session()->flash('saveAcquisition', 'Acquisition fait avec succes');
         $this->reset("categorie");
 
-        $this->dispatchBrowserEvent('refreshPage');
+        $this->dispatch("refreshPage");
     }
 
 

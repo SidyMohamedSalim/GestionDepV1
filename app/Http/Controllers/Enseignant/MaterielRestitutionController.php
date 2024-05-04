@@ -49,7 +49,7 @@ class MaterielRestitutionController extends Controller
         $acquisition->save();
         $acquisition->enseignant()->detach($enseignant->id);
 
-        $this->downloadPDf($enseignant, $acquisition);
+        // $this->downloadPDf($enseignant, $acquisition);
 
         return Redirect::back()->with('status', 'restitution reussi !');
     }

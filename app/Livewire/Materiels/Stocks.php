@@ -36,9 +36,10 @@ class Stocks extends Component
     ];
 
 
-    public function changeCategorie(string $newCategorie)
+    public function changeCategorie($value)
     {
-        $this->categorie = $newCategorie;
+        $this->categorie = $value;
+        $this->resetPage();
     }
 
     public function updatedCategorie()
