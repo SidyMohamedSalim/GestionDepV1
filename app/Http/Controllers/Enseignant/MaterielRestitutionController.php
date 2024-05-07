@@ -80,20 +80,32 @@ class MaterielRestitutionController extends Controller
         $acquisition->save();
         $acquisition->bureau()->detach($bureau->id);
 
-        // $this->downloadPDf($bureau, $acquisition);
+        // $this->downloadPDfBureau($bureau, $acquisition);
 
         return Redirect::back()->with('status', 'restitution reussi !');
     }
 
-    private function downloadPDf(Enseignant  $data, Equipement $acquisition)
+    private function downloadPDfBureau(Bureau  $bureau, Equipement $acquisition)
     {
-        $pdf = Pdf::loadView('pdf.materiel-restitution', [
+        $pdf = Pdf::loadView('pdf.materiel-restitution-bureau', [
             'materiel' => $acquisition,
-            'data' => $data,
+            'bureau' => $bureau,
             'quantite' => 1,
         ]);
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->download();
-        }, 'decharge' . $acquisition->numero_inventaire . $data->id . '.pdf');
+        }, 'decharge' . $acquisition->numero_inventaire . $bureau->id . '.pdf');
+    }
+
+    private function downloadPDf(Enseignant  $enseignant, Equipement $acquisition)
+    {
+        $pdf = Pdf::loadView('pdf.materiel-restitution', [
+            'materiel' => $acquisition,
+            'enseignant' => $enseignant,
+            'quantite' => 1,
+        ]);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->download();
+        }, 'decharge' . $acquisition->numero_inventaire . $enseignant->id . '.pdf');
     }
 }
