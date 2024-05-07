@@ -1,7 +1,7 @@
 <div>
 
 
-    <div class="font-extrabold text-xl my-4 ">
+    <div class="my-4 text-xl font-extrabold">
         <h1>Toutes les demandes</h1>
     </div>
 
@@ -9,7 +9,7 @@
         @foreach ($demandes as $demande )
         <div class="mb-16 first:mt-8">
             <div class="bg-gray-200 border-b">
-                <div class="px-6 py-4 flex justify-between">
+                <div class="flex justify-between px-6 py-4">
                     <p>
                         <span class="font-extrabold">Titre : </span>{{ $demande->titre }}
                     </p>
@@ -17,16 +17,40 @@
                         <span class="font-extrabold">Date de la demande : </span>{{$demande->date_demande }}
                     </p>
                     <div class="flex gap-2">
-                        <p class="font-extrabold ">Statut : </p>
+                        <p class="font-extrabold">Statut : </p>
+                        @if ($startEditStatusDemande == false)
                         <p class="flex gap-2">
                             @if ($demande->status == 'pending')
                             <x-icons.load /> En cours
-                            @elseif ($demande == 'reset')
+                            @elseif ($demande->status == 'reset')
                             <x-icons.remove /> Annulé
                             @else
                             <x-icons.valid /> Terminé
                             @endif
                         </p>
+                        <button wire:click.prevent='changestartEditStatusDemande()' class="text-xs">
+                            <x-icons.pencil />
+                        </button>
+                        @else
+                        <select wire:model.defer='status'
+                            class="text-xs bg-transparent border-none outline-none focus:border-none hover:border-none">
+                            <option value="pending" @checked($demande->status == 'pending')>
+                                En cours
+                            </option>
+                            <option value="finish" @checked($demande->status == 'finish')>
+                                Terminé
+                            </option>
+                            <option value="reset" @checked($demande->status == 'reset')>
+                                Annulé
+                            </option>
+
+                        </select>
+
+                        <button wire:click.prevent="changeStatut('{{ $demande->id }}')" class="text-xs">
+                            <x-icons.send />
+                        </button>
+                        @endif
+
                     </div>
                     {{-- Actions --}}
                     <div class="flex gap-2">
@@ -71,7 +95,7 @@
 
                     @foreach ($demande->items as $item)
                     <tr class="bg-white border-b">
-                        <th scope="row" class="px-6 py-4 ">
+                        <th scope="row" class="px-6 py-4">
                         </th>
                         <th scope="row" class="px-6 py-4 font-bold">
                             {{ $item->designation }}

@@ -80,7 +80,7 @@ class MaterielRestitutionController extends Controller
         $acquisition->save();
         $acquisition->bureau()->detach($bureau->id);
 
-        // $this->downloadPDfBureau($bureau, $acquisition);
+        $this->downloadPDfBureau($bureau, $acquisition);
 
         return Redirect::back()->with('status', 'restitution reussi !');
     }

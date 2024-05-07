@@ -93,6 +93,7 @@
                     </tr>
 
                     <!-- Ajoutez d'autres lignes pour plus de matériel si nécessaire -->
+
                 </tbody>
             </table>
         </div>
